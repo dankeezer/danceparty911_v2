@@ -1,0 +1,32 @@
+
+body{
+overflow: hidden;
+height: 100%; 
+max-height: 100%; 
+}
+
+#leftside{
+position: absolute;
+top: 0;
+bottom: 0; 
+left: 0;
+width: 50%; /*Width of frame div*/
+height: 100%;
+overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+background: #fff;
+color: white;
+}
+
+#rightside{
+position: absolute;
+top: 0; 
+left: 50%; /*Set left value to WidthOfFrameDiv*/
+right: 0;
+bottom: 0;
+overflow: auto; 
+background: #fff;
+}
+
+.innertube{
+margin: 15px; /*Margins for inner DIV inside each DIV (to provide padding)*/
+}

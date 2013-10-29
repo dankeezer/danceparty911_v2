@@ -1,0 +1,42 @@
+
+<head>
+
+
+<!-- Page player core CSS -->
+<link rel="stylesheet" type="text/css" href="css/page-player-djcopy.css" />
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.1/angular.js">
+</script>
+
+<script type="text/javascript">
+function PlaylistCtrl($scope, $http){
+$http.get('xyz/indexDJ.json').then(function(response) {
+  $scope.playlist = response.data;
+});
+}
+</script>
+
+<!-- soundManager API -->
+<script src="script/soundmanager2-dj.js"></script>
+
+
+<!-- Page player main script -->
+<script src="script/page-playerDJ.js"></script>
+
+</head>
+
+<body ng-app>
+  <div ng-controller="PlaylistCtrl">
+    <div class="headerwrap">
+      <div class="header">
+      </div>
+    </div>
+    <div>
+      <ul class="playlist">
+        <li ng-repeat="track in playlist.tracks">
+          <a href="{{track.path}}"><b>{{track.artistName}}</b> - {{track.title}}</a>
+        </li>
+      </ul>
+    </div>
+</body>
+</html>
