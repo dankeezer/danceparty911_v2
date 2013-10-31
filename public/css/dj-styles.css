@@ -1,32 +1,46 @@
+ul.playlist{
+    position:relative;
+}
+body {
+ font:50% normal Helvetica, sans-serif; margin:0px 0 0 0;
 
-body{
-overflow: hidden;
-height: 100%; 
-max-height: 100%; 
 }
 
-#leftside{
-position: absolute;
-top: 0;
-bottom: 0; 
-left: 0;
-width: 50%; /*Width of frame div*/
-height: 100%;
-overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-background: #fff;
-color: white;
+table.one {table-layout: automatic
 }
 
-#rightside{
-position: absolute;
-top: 0; 
-left: 50%; /*Set left value to WidthOfFrameDiv*/
-right: 0;
-bottom: 0;
-overflow: auto; 
-background: #fff;
-}
+h1 {font-size: 1170%; 
+	margin:0; 
+	padding:0; 
+	color: #FF33cc; 
+	line-height:0.6;
+	margin:50px 0 0; 
+	letter-spacing: 0px; 
+	display: inline}
 
-.innertube{
-margin: 15px; /*Margins for inner DIV inside each DIV (to provide padding)*/
-}
+h2 {font-size: 1170%; 
+	margin:0; 
+	padding:0; 
+	color: #FF33cc; 
+	line-height:0.6;
+	margin:50px 0 0; 
+	letter-spacing: -10px; 
+	display: inline}
+	
+h3 {font-size: 105%; 
+	margin:0; 
+	padding:0; 
+	color: #FF33cc; 
+	line-height:1.6;
+	margin:0 0; 
+	letter-spacing: -10px;
+	display: inline}
+	
+h4 {font-size: 105%; 
+	margin:0; 
+	padding:0; 
+	color: #FFFF00; 
+	line-height:1.6;
+	margin:0 0; 
+	letter-spacing: -10px;
+	display: inline}
