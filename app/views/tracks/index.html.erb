@@ -1,10 +1,35 @@
-<% # register a client with YOUR_CLIENT_ID as client_id_ %>
-<% client = SoundCloud.new(:client_id => YOUR_CLIENT_ID) %>
-<% # get 10 hottest tracks %>
-<% @tracks = client.get('/tracks', :limit => 10, :order => 'hotness') %>
-<% # print each link %>
+<br />
+	<center>
+<h1>TRACKS</h1>
 
-
-<% @tracks.each do |track| %>
-  <%= link_to track.permalink_url %>
+<%= form_tag "/", method: "GET" do %>
+	<%= text_field_tag :q, params[:q] %>
+	<%= submit_tag "Search" %>
 <% end %>
+
+<h2>
+<table>
+	<tr><h3>
+		<td><h3>Artist Name</h3></td>
+		<td><h3>Title</h3></td>
+		<td><h3>Stream URL</h3></td>
+	</tr>
+
+	<tr>
+		<td><h4><%= @sc_track.title %></h4></td>
+		<td><h4><%= @sc_track.download_url %></h4></td>
+	</tr>
+
+	<% @tracks.each do |track| %>
+		<tr>
+		<td><h4><%= track.artist_name %></h4></td>
+		<td><h4><%= track.title %></h4></td>
+		<td><h4><%= track.stream_url %></h4></td>
+	</tr>
+	<% end %>
+</table>
+
+</center>
+<hr>
+<h4><%= link_to "Add Entry", new_track_path(@track) %></h4>
+

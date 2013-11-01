@@ -1,7 +1,6 @@
 Danceparty911V2::Application.routes.draw do
-  get "welcome/index"
-  get "tracks/index"
   root "tracks#index"
+  resources :tracks
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

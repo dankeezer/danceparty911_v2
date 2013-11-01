@@ -1,0 +1,18 @@
+<center>
+<table>
+	<tr><h3>
+		<td><h3>Artist Name</h3></td>
+		<td><h3>Title</h3></td>
+		<td><h3>Stream URL</h3></td>
+	</tr>
+
+		<tr>
+		<td width="33%"><h4><%= @track.artist_name %></h4></td>
+		<td width="33%"><h4><%= @track.title %></h4></td>
+		<td width="33%"><h4><%= @track.stream_url %></h4></td>
+	</tr>
+</table>
+</center>
+<hr>
+<h4><%= link_to "Edit Entry", edit_track_path(@track) %></h4>
+<h4><a href="../">Back</a></h4>

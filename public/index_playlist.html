@@ -1,13 +1,372 @@
 
-
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <link rel="shortcut icon" href="favicon.ico">
 <title>Emergency Dance Party Playlist - 26 hours, 51 minutes, 20 seconds</title>
+<meta name="robots" content="noindex" />
+<meta name="robots" content="nofollow" />
+<meta name="robots" content="noarchive" />
+<meta name="googlebot" content="nosnippet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+<script>
+var myMessages = ['blue','white','modeControl','dpLogo']; // define the messages types     
+function hideAllMessages()
+{
+     var messagesHeights = new Array(); // this array will store height for each
+   
+     for (i=0; i<myMessages.length; i++)
+     {
+          messagesHeights[i] = $('.' + myMessages[i]).innerHeight();
+          $('.' + myMessages[i]).css('top', -messagesHeights[i] * 1.1); //move element outside viewport    
+     }
+}
+
+function showMessage(type)
+{
+  $('.trigger').click(function(){
+    hideAllMessages();
+    $('.splash').css("z-index",10);
+    $('.splash').fadeIn(1000, function(){
+      $('.blue.message').css("z-index",40);
+      $('.white.message').css("z-index",30);
+      $('.modeControl.message').css("z-index",20);
+      $('.dpLogo.message').css("z-index",11);
+      $('.white.message').stop().animate({top:"0"}, 900);
+      $('.blue.message').stop().animate({top:"0"}, 500);
+    });
+  });
+}
+
+$(document).ready(function(){
+     
+     // Initially, hide them all
+     hideAllMessages();
+     
+     // Show message
+     for(var i=0;i<myMessages.length;i++)
+     {
+      showMessage(myMessages[i]);
+     }
+     
+     // When message is clicked, move it further.
+  $('.blue.message').click(function(){        
+    $('.cruiseCtrl').attr('data-href', 'dropbox.html');
+    $('.djSteez').attr('data-href', 'dj/index-dropbox.html');  
+    $('.white.message').stop().animate({top: -$('.white.message').outerHeight() * 1.1}, 500);  
+    $('.blue.message').stop().animate({height:"30%"}, 500);
+    $('.bluebox').stop().animate({height:"100%",top:"0"}, 400, function(){
+      $('.modeControl.message').stop().animate({top:"0"}, 900);
+      $('.dpLogo.message').stop().animate({top:"0"}, 900); 
+    });
+  });   
+
+  $('.white.message').click(function(){    
+    $('.cruiseCtrl').attr('data-href', 'index.html');
+    $('.djSteez').attr('data-href', 'dj/index.html');     
+    $('.white.message').stop().animate({height:"30%"}, 500);
+    $('.blue.message').stop().animate({top: -$('.blue.message').outerHeight() * 1.1}, 500); 
+    $('.whitebox').stop().animate({height:"100%", top:"0"}, 400, function(){
+      $('.modeControl.message').stop().animate({top:"0"}, 900);
+      $('.dpLogo.message').stop().animate({top:"0"}, 900); 
+    });
+  });  
+
+  $('.dpLogo.message').click(function(){ 
+    $('.bluebox').stop().animate({height:"100%", top: "0"}, 900);
+    $('.whitebox').stop().animate({height:"50%", top: "50%"}, 900);
+    $('.white.message').stop().animate({top: -$('.white.message').outerHeight() * 1.1}, 500); 
+    $('.blue.message').stop().animate({top: -$('.blue.message').outerHeight() * 1.1}, 500); 
+    $('.modeControl.message').stop().animate({top: -$('.modeControl.message').innerHeight() * 1.1}, 500);
+    $('.dpLogo.message').stop().animate({top: (-$('.dpLogo.message').innerHeight() * 1.1)}, 500, function() {
+      $('.blue.message').stop().animate({top:"0", height:"50%"}, 500);
+      $('.white.message').stop().animate({top:"0", height:"100%"}, 900);    
+    });
+  });  
+     
+});       
+</script>
+
+<style type="text/css"> 
+
+/* INDEX.HTML STYLES */
+
+div.headerwrap {
+    position:fixed;
+    width:1920px;
+    top:0px;
+    left:0;
+    background:white;
+    padding-top:25px;
+    padding-bottom:10px;
+    z-index: 9;
+
+}
+
+ul.playlist{
+    position:relative;
+    top:165px;  
+}
+
+body {
+ font:100% normal Helvetica, sans-serif; margin:0 0 0 0;
+
+}
+
+table.one {table-layout: automatic
+}
+
+h1 {
+  font-size: 1170%; 
+  margin:0; 
+  padding:0; 
+  color: #FF33cc; 
+  line-height:0.6;
+  margin:50px 0 0; 
+  letter-spacing: -5px; 
+  display: inline
+}
+
+/* PI and MENU STYLES
+
+body
+{
+    font:100% normal Helvetica, sans-serif; margin:0 0 0 0;
+     height: 100%;
+     width: 100%;
+}
+
+*/
+
+
+#white h1 {
+  color: white;
+  font-weight:bold;
+  font-size: 50pt; 
+  text-align: center;
+  margin:0; 
+  padding:0;
+  line-height:1;
+  margin:0 0 0; 
+  letter-spacing: 0px; 
+  display: inline;
+  font: normal Helvetica, sans-serif; margin:0 0 0 0;
+}
+
+h2 {
+  color: white;
+  font-weight:bold;
+  font-size: 90pt; 
+  text-align: center;
+  text-shadow: 4px 4px #004385;
+  margin:0; 
+  padding:0;
+  line-height:1;
+  margin:0 0 0; 
+  letter-spacing: 0px; 
+  display: inline;
+  font: normal Helvetica, sans-serif; margin:0 0 0 0;
+}
+
+h3 {
+  color: white;
+  font-weight:bold;
+  font-size: 90pt; 
+  text-align: center;
+  text-shadow: 4px 4px #e600ac;
+  margin:0; 
+  padding:0;
+  line-height:1;
+  margin:0 0 0; 
+  letter-spacing: 0px; 
+  display: inline;
+  font: normal Helvetica, sans-serif; margin:0 0 0 0;
+}
+
+h4 {
+  color: white;
+  font-weight:normal;
+  font-size: 11pt; 
+  line-height:.5;
+  letter-spacing: 1px; 
+  display: inline;
+}
+
+
+h5 {
+  color: white;
+  font-weight:bold;
+  font-size: 50pt; 
+  text-align: center;
+  margin:0; 
+  padding:0;
+  line-height:1;
+  margin:0 0 0; 
+  letter-spacing: 0px; 
+  display: inline;
+  font: normal Helvetica, sans-serif; margin:0 0 0 0;
+}
+
+.message
+{
+   width: 100%;
+   position: fixed;
+   _position: absolute;
+
+}
+
+.blue
+{
+   height: 50%;
+   width: 100%;
+   background-color: #0074d4;
+   box-shadow: 0px 2px 20px #000000;
+   z-index: -1;
+}
+
+.bluebox
+{
+  position: absolute;
+  height: 100%;
+  width:100%;
+  top: 0;
+
+}
+
+.dropbox
+{
+  max-width:50%;
+}
+
+.white
+{
+   height: 100%;
+   width: 100%;
+   background-color: #FFFFFF;
+   border-color: #FFFFFF;
+   box-shadow: 0px 2px 20px #000000;
+   z-index: -1;
+}
+
+.whitebox
+{
+  position: absolute;
+  height: 50%;
+  width:100%;
+  top: 50%;
+}
+
+.modeControl
+{
+   width: 100%;
+   height: 80%;
+   padding: 0 0 0 0;
+   box-shadow: 0px 2px 20px #000000;
+   z-index: -1;
+background: #ff33cc; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #ff33cc 0%, #ff33cc 50%, #1e90ff 50%, #1e90ff 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ff33cc), color-stop(50%,#ff33cc), color-stop(50%,#1e90ff), color-stop(100%,#1e90ff)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #ff33cc 0%,#ff33cc 50%,#1e90ff 50%,#1e90ff 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #ff33cc 0%,#ff33cc 50%,#1e90ff 50%,#1e90ff 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #ff33cc 0%,#ff33cc 50%,#1e90ff 50%,#1e90ff 100%); /* IE10+ */
+background: linear-gradient(135deg,  #ff33cc 0%,#ff33cc 50%,#1e90ff 50%,#1e90ff 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff33cc', endColorstr='#1e90ff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+}
+
+.cruiseCtrl
+{
+   position: absolute;
+   width: 50%;
+   top: 47%;
+}
+
+
+.djSteez
+{
+   position: absolute;
+   width: 50%;
+   top: 47%;
+   left: 49.6%;
+}
+
+.dpLogo
+{
+   height: 100%;
+   width: 100%;
+   padding-bottom: 3%;
+   box-shadow: 0px 2px 20px #000000;
+   z-index: -1;
+   background: #ff33cc; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #ff33cc 0%, #ff33cc 50%, #1e90ff 50%, #1e90ff 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ff33cc), color-stop(50%,#ff33cc), color-stop(50%,#1e90ff), color-stop(100%,#1e90ff)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #ff33cc 0%,#ff33cc 50%,#1e90ff 50%,#1e90ff 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #ff33cc 0%,#ff33cc 50%,#1e90ff 50%,#1e90ff 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #ff33cc 0%,#ff33cc 50%,#1e90ff 50%,#1e90ff 100%); /* IE10+ */
+background: linear-gradient(135deg,  #ff33cc 0%,#ff33cc 50%,#1e90ff 50%,#1e90ff 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff33cc', endColorstr='#1e90ff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.thenetrules {
+  background-color: #000000;
+  opacity:0.2;
+  position: fixed;
+  width: 15px;
+  height: 20px;
+  right: 10px;
+  bottom: 10px;
+  z-index: 8 !important;
+}
+
+#thenetrules a:link,
+  a:visited,
+  a:hover {
+  color:#FFFFFF;
+  text-decoration: none;
+}
+
+#thenetrules a:active {
+  color:#FFFF00;
+  text-decoration: none;
+}
+
+.splash {
+  position:fixed;
+  height:100%;
+  width:100%;
+  top: 0;
+  display: none;
+  background-color:#FF33CC;
+  z-index:-1;
+  overflow: auto; /*Disable scrollbars. Set to "scroll" to enable*/
+  -webkit-overflow-scrolling: touch;
+background: #ff33cc; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #ff33cc 0%, #ff33cc 60%, #1e90ff 60%, #1e90ff 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ff33cc), color-stop(50%,#ff33cc), color-stop(50%,#1e90ff), color-stop(100%,#1e90ff)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #ff33cc 0%,#ff33cc 60%,#1e90ff 60%,#1e90ff 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #ff33cc 0%,#ff33cc 60%,#1e90ff 60%,#1e90ff 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #ff33cc 0%,#ff33cc 60%,#1e90ff 60%,#1e90ff 100%); /* IE10+ */
+background: linear-gradient(135deg,  #ff33cc 0%,#ff33cc 60%,#1e90ff 60%,#1e90ff 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff33cc', endColorstr='#1e90ff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+</style>
+
+
+
+
 <!-- Page player core CSS -->
 <link rel="stylesheet" type="text/css" href="css/page-player.css" />
+
+<style type="text/css">
+ul.playlist li .comment {font-size:0.65em;opacity:0.5}
+</style>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.1/angular.js">
 </script>
@@ -63,12 +422,23 @@ var PP_CONFIG = {
         <h1>{{playlist.title}}</h1>
       </div>
     </div>
+
     <div>
       <ul class="playlist">
         <li ng-repeat="track in playlist.tracks">
-          <a href="{{track.path}}"><b>{{track.artistName}}</b> - {{track.title}}</a>
+          <a href="{{track.stream_url}}"><b>{{track.artist_name}}</b> - {{track.title}}</a>
         </li>
       </ul>
+      <ul class="playlist">
+        <li><P></li>
+        <li><a href="dreamjob.html"><font color="#3399FF"><b>DREAMJOB</b> (2012)</a></font></li>
+        <li><a href="dielast.html"><font color="#3399FF"><b>DIE LAST</b> (2011)</a></font></li>
+        <li><a href="evening.html"><font color="#3399FF"><b>EVENING</b> (2010)</a></font></li>
+        <li><a href="joiedevivre.html"><font color="#3399FF"><b>JOIE DE VIVRE!</b> (2010)</a></font></li>
+        <li><a href="smilegirl.html"><font color="#3399FF"><b>SMILE, GIRL</b> (2009)</a></font></li>
+        <li><a href="breezy.html"><font color="#3399FF"><b>BREEEEZY</b> (2009)</a></font></li>
+        <li><a href="awesome.html"><font color="#3399FF"><b>AWESOME</b> (2008)</a> </font></li>
+        <li><a href="http://moodlight.org/#3" target="_blank"><font color="#FF33CC"><b>EMERGENCY STROBE LIGHT</b></a> </font></li>
     </div>
 
  <div id="control-template">
@@ -95,5 +465,107 @@ var PP_CONFIG = {
  </div> 
 </div>
 
+<!-- SPLASH DIV -->
+<div class="splash">
+  <table border=0 width="100%" height="100%">
+    <tr>
+      <td border=0 valign="middle">
+        <center>
+        <a href="#" style="text-decoration: none;"><img src="images/911transparent.gif" /></a>
+        </center>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!--MENU DIVs-->
+<div class="blue message">
+  <div class="bluebox">
+    <table border=0 width="100%" height="100%">
+      <tr>
+        <td border=2 valign="middle">    
+          <center><img class="dropbox" src="images/dropbox.gif"></center>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<div class="white message">
+  <div class="whitebox">
+      <table border=0 width="100%" height="100%">
+        <tr>
+          <td border=2 valign="middle">    
+            <center><img src="images/playloud.gif" width="50%" style="max-width:50%; height:auto;"></center>
+        </td>
+      </tr>
+    </table>  
+  </div>
+</div>
+
+<!-- INSTRUCTION DIVS -->
+<div class="modeControl message">
+    <table border=0 width="100%" height="100%">
+      <
+      <tr>
+        <td border=0 valign="middle">
+          <center>
+            <div class="cruiseCtrl message" id="cruiseCtrl" data-href="http://www.google.com">
+              <img src="images/instructions/cruiseCtrl.gif" width="75%" style="max-width:75%; height:auto;">
+            </div>
+
+            <div class="djSteez message" id="djSteez" data-href="http://www.yahoo.com">
+              <img src="images/instructions/djSteez.gif" width="77%" style="max-width:77%; height:auto;">
+            </div>
+          </center>
+        </td>
+      </tr>
+    </table></a>
+</div>
+
+<div class="dpLogo message">
+    <table border=0 width="100%" height="100%">
+      <tr height="80%">
+      </tr>
+      <tr>
+        <td border=0 valign="middle">
+          <center><img src="images/instructions/911logo1096.gif" width="50%" style="max-width:50%; height:auto;"></center>
+        </td>
+      </tr>
+    </table>
+</div>
+
+<!--PI DIV-->
+
+<div class="thenetrules">
+  <table border=0 width="100%" height="100%">
+      <tr>
+        <td border=0 valign="middle">
+        <center>
+        <h4 id="thenetrules"><a href="#" class="trigger" style="text-decoration: none;">π</a></h4>
+        </center>
+        </td>
+      </tr>
+  </table>
+</div>
+
+<script>
+
+var newPages = ["djSteez", "cruiseCtrl"];
+for (i=0; i<newPages.length; i++)
+{
+  document.getElementById(newPages[i]).addEventListener("click", function(evt) {
+     var a = document.createElement('a');
+     a.setAttribute("href", this.getAttribute("data-href"));
+     a.setAttribute("target", "_blank");
+     
+     var dispatch = document.createEvent("HTMLEvents")
+     dispatch.initEvent("click", true, true);
+     a.dispatchEvent(dispatch);
+  });
+}
+
+</script>
 </body>
 </html>
