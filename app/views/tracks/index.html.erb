@@ -10,23 +10,15 @@
 <h2>
 <table>
 	<tr><h3>
-		<td><h3>Artist Name</h3></td>
 		<td><h3>Title</h3></td>
 		<td><h3>Stream URL</h3></td>
 	</tr>
 
 	<tr>
-		<td><h4><%= @sc_track.title %></h4></td>
-		<td><h4><%= @sc_track.download_url %></h4></td>
+		<td><h4><%= track.title %></h4></td>
+		<td><h4><%= track.download_url %></h4></td>
 	</tr>
 
-	<% @tracks.each do |track| %>
-		<tr>
-		<td><h4><%= track.artist_name %></h4></td>
-		<td><h4><%= track.title %></h4></td>
-		<td><h4><%= track.stream_url %></h4></td>
-	</tr>
-	<% end %>
 </table>
 
 </center>

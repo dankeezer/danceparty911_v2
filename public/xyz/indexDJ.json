@@ -4,7 +4,7 @@
 
   {
     "artist_name": "Nas vs. Phantogram",
-    "stream_url": "http://ec-media.soundcloud.com/16fCvt8OWs7g.128.mp3?ff61182e3c2ecefa438cd02102d0e385713f0c1faf3b033959566bf90d06ec17d8d5c131f5ab57cc0aff889615f7f638c7623e696177e45fd3e9fe5c4d581d6ba77abdbbff&AWSAccessKeyId=AKIAJ4IAZE5EOI7PA7VQ&Expires=1383237397&Signature=TzcupUcQFFf4uSkTTuIBgHv0mHU%3D",
+    "stream_url": "http://api.soundcloud.com/tracks/90200703/stream?client_id=284a0193e0651ff008b8d9fe6066e137",
     "title": "N.Y. State of Diamonds (young daniel remix)"
   },
   {

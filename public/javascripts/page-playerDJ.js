@@ -579,10 +579,10 @@ function PagePlayer() {
 
     sURL = o.getAttribute('href');
 
-    if (!o.href || (!sm.canPlayLink(o) && !self.hasClass(o,'playable')) || self.hasClass(o,'exclude')) {
+     if (!o.href || (!sm.canPlayLink(o) && !self.hasClass(o,'playable')) || self.hasClass(o,'exclude')) {
 
       // do nothing, don't return anything.
-      return true;
+       return true;
 
     } else {
 

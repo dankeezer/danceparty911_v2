@@ -138,7 +138,7 @@ var PP_CONFIG = {
     <div>
       <ul class="playlist">
         <li ng-repeat="track in playlist.tracks">
-          <a href="{{track.stream_url}}"><b>{{track.artist_name}}</b> - {{track.title}}</a>
+          <a type="audio/mp3" href="{{track.stream_url}}"><b>{{track.artist_name}}</b> - {{track.title}}</a>
         </li>
       </ul>
     </div>
