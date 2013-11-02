@@ -39,7 +39,7 @@ class TracksController < ApplicationController
   def destroy
     @track = Track.find(params[:id])
     @track.destroy
-    redirect_to track_path(@track)
+    redirect_to tracks_path
   end
 
   def get_from_soundcloud

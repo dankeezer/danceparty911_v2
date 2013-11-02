@@ -29,3 +29,7 @@
 </center>
 <hr>
 <h5><%= link_to "Add Entry", new_track_path(@track) %></h5>
+
+<ul class="playlist">
+	<li><a class="sm2_link" type="audio/mp3" href="<%= @track.stream_url %>?client_id=284a0193e0651ff008b8d9fe6066e137"><%= @track.title %></a></li>
+</ul>
