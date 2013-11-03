@@ -4,6 +4,7 @@ Danceparty911V2::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root 'tracks#index'
+  get 'tracks#new' => 'tracks#index'
   resources :tracks
   get 'welcome' => 'welcome#index'
 

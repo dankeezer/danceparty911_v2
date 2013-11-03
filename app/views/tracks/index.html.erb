@@ -37,14 +37,16 @@ var PP_CONFIG = {
 
  <ul class="playlist">
 
- 	<li><%= form_tag do %>
- 		Submit
- 		<% end %>
+ 	<li>
+ 	<%= form_for Track.new do |f| %>
+		<%= f.text_field :original_url %><br />
+		<%= f.submit %>
+	<% end %>
  	</li>
 
  	<% @tracks.each do |track| %>
     	<li><a class="sm2_link" type="audio/mp3" href="<%= track.stream_url %>">
     		<b><%= track.artist_name %></b> - <%= track.title %></a>
-    	</li>
+		</li>
 	<% end %>
 </ul>
