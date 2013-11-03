@@ -19,15 +19,31 @@ class TracksController < ApplicationController
   	if @track.save
 
       client = SoundCloud.new(:client_id => "284a0193e0651ff008b8d9fe6066e137")
-      @sc_track = client.get('/resolve', :url => @track[:original_url])
+      @sc_url = client.get('/resolve', :url => @track[:original_url])
 
-      if @sc_track["stream_url"] == nil
-        flash[:notice] = "SoundCloud user disabled streaming for this one"
+      if @sc_url.kind == "playlist"
+        @sc_playlist = @sc_url["tracks"]
+        @sc_playlist.each do |t|
+          Track.create artist_name: t["user"]["username"], title: t.title, stream_url: t.stream_url + "?client_id=284a0193e0651ff008b8d9fe6066e137" 
+        end
         Track.delete(@track.id)
         redirect_to tracks_path
+
+      elsif @sc_url.kind == "track"
+        if @sc_url["stream_url"] == nil
+          flash[:notice] = "SoundCloud user disabled streaming for this one"
+          Track.delete(@track.id)
+          redirect_to tracks_path
+        else
+          @track.update(artist_name: @sc_url["user"]["username"], title: @sc_url["title"], stream_url: @sc_url["stream_url"] + "?client_id=284a0193e0651ff008b8d9fe6066e137")
+          redirect_to tracks_path
+        end
+
       else
-        @track.update(artist_name: @sc_track["user"]["username"], title: @sc_track["title"], stream_url: @sc_track["stream_url"] + "?client_id=284a0193e0651ff008b8d9fe6066e137")
+        flash[:notice] = "Not a playlist or track"
+        Track.delete(@track.id)
         redirect_to tracks_path
+
       end
 
   	else
