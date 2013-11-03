@@ -7,10 +7,18 @@
 */
 
 .new_track input[type=text], .new_track textarea {
-	width: 50%;
-	font-size: 1.5em;
-	padding:0.25em 0.5em 0.25em 0.5em;
+	width: 90%;
+	font-size: 1.25em;
+	padding:0.4em 0.5em 0.25em 0.5em;
 
+}
+
+.sm2-container {
+	height: 0;
+}
+
+.sm2movie {
+	height: 0;
 }
 
 /*
@@ -75,7 +83,7 @@ ul.playlist li {
  position:relative;
  display:block;
  width:auto;
- font-size:2em;
+ font-size:1.25em;
  color:#666;
  padding:0.25em 0.5em 0.25em 0.5em;
  border:none;

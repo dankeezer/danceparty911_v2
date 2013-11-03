@@ -14,7 +14,7 @@
 // demo only, but you can use these settings too..
 soundManager.setup({
   flashVersion: 9,
-  preferFlash: true, // for visualization effects
+  preferFlash: false, // for visualization effects
   useHighPerformance: true, // keep flash on screen, boost performance
   wmode: 'transparent', // transparent SWF, if possible
   url: 'swf/'
@@ -52,7 +52,6 @@ var PP_CONFIG = {
  	<% @tracks.each do |track| %>
     	<li><a class="sm2_link" type="audio/mp3" href="<%= track.stream_url %>">
     			<b><%= track.artist_name %></b> - <%= track.title %></a>
-          <%= link_to "Remove", track_path(track), method: :delete %>
 
 
 		</li>
