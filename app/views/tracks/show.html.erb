@@ -4,12 +4,14 @@
 		<td><h5>Artist Name</h5></td>
 		<td><h5>Title</h5></td>
 		<td><h5>Stream URL</h5></td>
+		<td><h5>Original URL</h5></td>
 	</tr>
 
 		<tr>
-		<td width="33%"><h5><%= @track.artist_name %></h5></td>
-		<td width="33%"><h5><%= @track.title %></h5></td>
-		<td width="33%"><h5><%= @track.stream_url %></h5></td>
+			<td width="10%"><h5><%= @track.artist_name %></h5></td>
+			<td width="10%"><h5><%= @track.title %></h5></td>
+			<td width="40%"><h5><%= @track.stream_url %></h5></td>
+			<td width="40%"><h5><%= @track.original_url %></h5></td>
 	</tr>
 </table>
 </center>

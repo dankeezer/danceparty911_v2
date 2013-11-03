@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131101211919) do
+ActiveRecord::Schema.define(version: 20131103010344) do
 
   create_table "tracks", force: true do |t|
     t.string   "artist_name"
     t.string   "title"
     t.string   "stream_url"
+    t.string   "original_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

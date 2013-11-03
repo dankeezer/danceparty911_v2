@@ -13,14 +13,16 @@
 		<td><h5>Artist Name</h5></td>
 		<td><h5>Title</h5></td>
 		<td><h5>Stream URL</h5></td>
+		<td><h5>Original URL</h5></td>
 	</tr>
 
 
 		<% @tracks.each do |track| %>
 	<tr>
-			<td width="33%"><h5><%= track.artist_name %></h5></td>
-			<td width="33%"><h5><%= link_to track.title, track_path(@track) %></h5></td>
-			<td width="33%"><h5><%= track.stream_url %></h5></td>
+			<td width="10%"><h5><%= track.artist_name %></h5></td>
+			<td width="10%"><h5><%= link_to track.title, track_path(@track) %></h5></td>
+			<td width="40%"><h5><%= track.stream_url %></h5></td>
+			<td width="40%"><h5><%= track.original_url %></h5></td>
 	</tr>
 		<% end %>
 
@@ -30,6 +32,3 @@
 <hr>
 <h5><%= link_to "Add Entry", new_track_path(@track) %></h5>
 
-<ul class="playlist">
-	<li><a class="sm2_link" type="audio/mp3" href="<%= @track.stream_url %>?client_id=284a0193e0651ff008b8d9fe6066e137"><%= @track.title %></a></li>
-</ul>
