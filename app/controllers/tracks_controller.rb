@@ -14,13 +14,22 @@ class TracksController < ApplicationController
 
   def create
   	@track = Track.new(track_params)
+    @track.update(artist_name: "Unknown Artist", title: "Unknown Title")
+
   	if @track.save
-  		
+
       client = SoundCloud.new(:client_id => "284a0193e0651ff008b8d9fe6066e137")
       @sc_track = client.get('/resolve', :url => @track[:original_url])
-      @track.update(artist_name: @sc_track["user"]["username"], title: @sc_track["title"], stream_url: @sc_track["stream_url"] + "?client_id=284a0193e0651ff008b8d9fe6066e137")
-      redirect_to tracks_path
- 
+
+      if @sc_track["stream_url"] == nil
+        flash[:notice] = "SoundCloud user disabled streaming for this one"
+        Track.delete(@track.id)
+        redirect_to tracks_path
+      else
+        @track.update(artist_name: @sc_track["user"]["username"], title: @sc_track["title"], stream_url: @sc_track["stream_url"] + "?client_id=284a0193e0651ff008b8d9fe6066e137")
+        redirect_to tracks_path
+      end
+
   	else
   		render :new
   	end

@@ -35,24 +35,23 @@ var PP_CONFIG = {
 </script>
 
 
+  <center><h5>
+    <%= simple_form_for Track.new do |f| %>
+     <%= f.text_field :original_url, :placeholder => 'Enter a SoundCloud URL' %>
+    <% end %>
+        <% if flash[:notice] == nil %>
+          <%= nil %>
+        <% else %>
+          <BR>
+          <b><%= flash[:notice] %></b>
+        <% end %>
+  </center></h5>
+
+
  <ul class="playlist">
-
- 	<li>
- 	<%= form_for Track.new do |f| %>
-		<%= f.text_field :original_url %><br />
-		<%= f.submit %>
-	<% end %>
- 	</li>
-
  	<% @tracks.each do |track| %>
     	<li><a class="sm2_link" type="audio/mp3" href="<%= track.stream_url %>">
-    		<% if track.artist_name == nil %>
-    			<%= nil %>
-    		<% else %>
-    			<b><%= track.artist_name %></b> - 
-    		<% end %>
-    		 
-    		<%= track.title %></a>
+    			<b><%= track.artist_name %></b> - <%= track.title %></a>
 
 		</li>
 	<% end %>
