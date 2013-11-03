@@ -23,23 +23,30 @@ class TracksController < ApplicationController
 
         if @sc_url.kind == "playlist"
           @sc_playlist = @sc_url["tracks"]
+          @sc_playlist.reverse!
           n = 0
 
           @sc_playlist.each do |t|
-
             if t.stream_url == nil
               n += 1
             else
-              Track.create artist_name: "SoundCloud", title: t.title, stream_url: t.stream_url + "?client_id=284a0193e0651ff008b8d9fe6066e137" 
+              @pl_track = Track.create title: t.title, stream_url: t.stream_url + "?client_id=284a0193e0651ff008b8d9fe6066e137" 
+              @pl_track
+              if t.purchase_url != nil
+                @pl_track.update(artist_name: t["user"]["username"]) 
+              else
+                @pl_track.update(artist_name: "SoundCloud")
+              end
             end
 
-            if n = 1
+            if n == 1
               flash[:notice] = "SoundCloud user disabled streaming for 1 track."
             elsif n > 1
               flash[:notice] = "SoundCloud user disabled streaming for #{n} tracks."
-            elsif n = 0
+            elsif n == 0
               nil
             end
+
           end
           Track.delete(@track.id)
           redirect_to tracks_path
@@ -53,7 +60,12 @@ class TracksController < ApplicationController
             redirect_to tracks_path
 
           else
-            @track.update(artist_name: "SoundCloud", title: @sc_url["title"], stream_url: @sc_url["stream_url"] + "?client_id=284a0193e0651ff008b8d9fe6066e137")
+             if @sc_url["purchase_url"] != nil
+                @track.update(artist_name: @sc_url["user"]["username"]) 
+            else
+                @track.update(artist_name: "SoundCloud")
+             end
+            @track.update(title: @sc_url["title"], stream_url: @sc_url["stream_url"] + "?client_id=284a0193e0651ff008b8d9fe6066e137")
             redirect_to tracks_path
 
           end

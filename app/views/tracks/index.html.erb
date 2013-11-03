@@ -35,16 +35,16 @@ var PP_CONFIG = {
 </script>
 
 
-  <center><h5>
+  <center><h5> 
     <%= simple_form_for Track.new do |f| %>
      <%= f.text_field :original_url, :placeholder => 'Enter a SoundCloud URL' %>
     <% end %>
         <% if flash[:notice] == nil %>
           <%= nil %>
         <% else %>
-          <BR>
+          <BR><font color="red">
           <b><%= flash[:notice] %></b>
-        <% end %>
+        <% end %></font>
   </center></h5>
 
 
