@@ -20,7 +20,7 @@ class TracksController < ApplicationController
       @sc_track = client.get('/resolve', :url => @track[:original_url])
       @track.update(title: @sc_track["title"], stream_url: @sc_track["stream_url"] + "?client_id=284a0193e0651ff008b8d9fe6066e137")
       redirect_to tracks_path
-
+ 
   	else
   		render :new
   	end
