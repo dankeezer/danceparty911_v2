@@ -49,10 +49,10 @@ var PP_CONFIG = {
     		<% if track.artist_name == nil %>
     			<%= nil %>
     		<% else %>
-    		<b><%= track.artist_name %></b> - 
-    		<% end %> 
+    			<b><%= track.artist_name %></b> - 
+    		<% end %>
+    		 
     		<%= track.title %></a>
-    		<%= link_to "Remove", track_path(track), method: :delete %>
 
 		</li>
 	<% end %>
