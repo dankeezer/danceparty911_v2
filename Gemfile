@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+gem 'libspotify'
+gem 'hallon'
+gem 'hallon-openal'
+gem 'spotify'
+gem 'ffi'
+
 gem 'simple_form'
 
 gem 'protected_attributes'

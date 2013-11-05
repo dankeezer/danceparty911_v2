@@ -8,6 +8,7 @@ Danceparty911V2::Application.routes.draw do
   resources :tracks
   get 'welcome' => 'welcome#index'
   get 'dj' => 'dj#index'
+  get 'temp' => 'temp#index'
 
 
   # You can have the root of your site routed with "root"
