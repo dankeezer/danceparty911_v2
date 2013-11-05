@@ -2,6 +2,11 @@ class TracksController < ApplicationController
 
   def index
     @tracks = params[:q] ? Track.search_for(params[:q]) : Track.all(:order => "created_at DESC")
+    #@tracks = current_user.tracks
+  end
+
+  def user
+        #@tracks = User.find(params[:user]).tracks
   end
 
   def new
@@ -13,11 +18,31 @@ class TracksController < ApplicationController
   end
 
   def create
-  	@track = Track.new(track_params)
+    if params[:original_url] == "up right down left right"
+      Track.set_secret_playlist
+    else
+      soundcloud_url = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:original_url])
+      if @soundcloud_url.kind == "playlist"
+        tracks = Track.get_playlists(@soundcloud_url) # in model this will be self.get_playlists
+        persisted_tracks = tracks.inject(Array.new) do |tracks, track|
+          tracks << Track.create(name: track[:name], artist: track[:artist], user_id: current_user.id)
+        end
+        if persisted_tracks.each { |track| track.errors.any? redirect_to :new }
+      elsif @soundcloud_url.kind == "track"
+        @track = Track.new(track_params, user_id: current_user.id)
+        if @track.save
+          redirect_to tracks_path
+        else
+          render :new
+        end
+      end
+      redirect_to tracks_path
+    end
+    ####
 
     if @track[:original_url].include? "soundcloud"
 
-    	if @track.save
+    	if @track.save # this should be after every successful entry, remove delete.
         @track.update(artist_name: "Unknown Artist", title: "Unknown Title")
         @sc_url = SOUNDCLOUD_CLIENT.get('/resolve', :url => @track[:original_url])
 
@@ -81,7 +106,7 @@ class TracksController < ApplicationController
     		render :new
     	end
 
-    elsif @track[:original_url].include? "keezer"
+    elsif @track[:original_url].include? "up down left right a b start"
       # @playlist_url = HTTParty.get "http://dankeezer.com/dp911/xyz/index.json"
       @playlist_url = JSON.parse(open("index.json").read)
       @playlist = @playlist_url["tracks"]
