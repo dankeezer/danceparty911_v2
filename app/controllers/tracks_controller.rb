@@ -81,7 +81,7 @@ class TracksController < ApplicationController
     		render :new
     	end
 
-    elsif @track[:original_url].include? "keezer"
+    elsif @track[:original_url].include? "up down left right a b start"
       # @playlist_url = HTTParty.get "http://dankeezer.com/dp911/xyz/index.json"
       @playlist_url = JSON.parse(open("index.json").read)
       @playlist = @playlist_url["tracks"]
