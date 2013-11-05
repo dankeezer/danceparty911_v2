@@ -12,11 +12,10 @@ class Track < ActiveRecord::Base
 		@playlist_url = JSON.parse(open("index.json").read)
 		@playlist = @playlist_url["tracks"]
 		@playlist.reverse!
-
 		@playlist.each do |t|
-			self.new artist_name: t["artistName"], title: t["title"], stream_url: t["path"]
+			Track.create artist_name: t["artistName"], title: t["title"], stream_url: t["path"]
 		end
-		flash[:notice] = "You found a secret."
+		"success"
   	end
 
 

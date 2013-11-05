@@ -18,9 +18,14 @@ class TracksController < ApplicationController
   end
 
   def create
-    if params[:original_url] == "up down left right a b start"
-      Track.set_secret_playlist
-      if @track.save
+    
+    if params[:track][:original_url] == "up down left right a b start"
+
+
+      @tracks = Track.set_secret_playlist
+
+      if @tracks == "success"
+        flash[:notice] = "You found a secret."
         redirect_to tracks_path
       else
         render :new
@@ -65,10 +70,11 @@ class TracksController < ApplicationController
     #   redirect_to tracks_path
     end
 
-    #### end of new logic with model integration 
+    ################## end of new logic with model integration ######################
 
-    #### old (working) logic
+    ################## old (working) logic ##########################################
 
+    #   @track = Track.new(track_params)
     #   if @track[:original_url].include? "soundcloud"
 
     #   if @track.save
