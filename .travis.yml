@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+  - "2.0.0"
+
+deploy:
+  provider: heroku
+  app: danceparty911_v2
+  api_key: 
+    secure: PRovzmJCX98qh5yX8mqB2vt0wWPq63YYqKL+1bLgAMxQTeVI/HXV4nLmJ0aA4VZ7qAXN7ugWPjFISVAZbGWJhtMSLjB2QToiK5GCANedxEuSNMKdyEvc60cliwK2GF3mdmd3ccS4oNeWY3xqS91Ehrmw+DRTJtFhGAKyltjKEXo=
