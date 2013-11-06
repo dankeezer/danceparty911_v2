@@ -4,6 +4,7 @@ gem 'libspotify'
 gem 'hallon'
 gem 'spotify'
 gem 'ffi'
+gem 'devise'
 
 gem 'simple_form'
 
