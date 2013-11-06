@@ -30,7 +30,7 @@ class TracksController < ApplicationController
             if t.stream_url == nil
               n += 1
             else
-              @pl_track = Track.create title: t.title, stream_url: t.stream_url + "?client_id=284a0193e0651ff008b8d9fe6066e137" 
+              @pl_track = Track.create bpm: t.bpm.to_i, title: t.title, stream_url: t.stream_url + "?client_id=284a0193e0651ff008b8d9fe6066e137" 
               @pl_track
               if t.purchase_url != nil
                 @pl_track.update(artist_name: t["user"]["username"]) 
@@ -65,7 +65,7 @@ class TracksController < ApplicationController
             else
                 @track.update(artist_name: "SoundCloud")
              end
-            @track.update(title: @sc_url["title"], stream_url: @sc_url["stream_url"] + "?client_id=284a0193e0651ff008b8d9fe6066e137")
+            @track.update(bpm: @sc_url["bpm"], title: @sc_url["title"], stream_url: @sc_url["stream_url"] + "?client_id=284a0193e0651ff008b8d9fe6066e137")
             redirect_to tracks_path
 
           end
