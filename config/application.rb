@@ -1,5 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
+# heroku made me do it
+config.assets.initialize_on_precompile = false
+
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
