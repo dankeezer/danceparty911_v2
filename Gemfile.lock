@@ -42,6 +42,9 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     debug_inspector (0.0.2)
+    dotenv (0.9.0)
+    dotenv-rails (0.9.0)
+      dotenv (= 0.9.0)
     erubis (2.7.0)
     execjs (2.0.2)
     ffi (1.9.3)
@@ -49,8 +52,6 @@ GEM
       ffi (~> 1.8)
       spotify (~> 12.5.1)
       weak_observable (~> 1.0)
-    hallon-openal (1.0.1)
-      hallon (~> 0.13)
     hashie (2.0.5)
     hike (1.2.3)
     httmultiparty (0.3.10)
@@ -67,18 +68,26 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
+    kgio (2.8.1)
     libspotify (12.1.51.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
+    pg (0.17.0)
     polyglot (0.3.3)
     protected_attributes (1.0.3)
       activemodel (>= 4.0.0, < 5.0)
+    pry (0.9.6)
+      coderay (>= 0.9.8)
+      method_source (>= 0.6.5)
+      ruby_parser (>= 2.0.5)
+      slop (~> 2.1.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -90,15 +99,23 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.0)
       sprockets-rails (~> 2.0.0)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.1)
+    rails_stdout_logging (0.0.3)
     railties (4.0.0)
       actionpack (= 4.0.0)
       activesupport (= 4.0.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    raindrops (0.12.0)
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    ruby_parser (3.2.2)
+      sexp_processor (~> 4.1)
     sass (3.2.12)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -107,9 +124,11 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
+    sexp_processor (4.4.0)
     simple_form (3.0.0)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
+    slop (2.1.0)
     soundcloud (0.3.2)
       hashie (~> 2.0)
       httmultiparty (~> 0.3.0)
@@ -139,6 +158,10 @@ GEM
     uglifier (2.3.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicorn (4.7.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     weak_observable (1.0.1)
       ref (~> 1.0.0)
 
@@ -149,14 +172,17 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)
+  dotenv-rails
   ffi
   hallon
-  hallon-openal
   jbuilder (~> 1.2)
   jquery-rails
   libspotify
+  pg
   protected_attributes
+  pry
   rails (= 4.0.0)
+  rails_12factor
   sass-rails (~> 4.0.0)
   sdoc
   simple_form
@@ -165,3 +191,4 @@ DEPENDENCIES
   sqlite3
   turbolinks
   uglifier (>= 1.3.0)
+  unicorn
