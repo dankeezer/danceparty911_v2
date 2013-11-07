@@ -6,7 +6,7 @@ class TracksController < ApplicationController
   end
 
   def user
-        #@tracks = User.find(params[:user]).tracks
+    #@tracks = User.find(params[:user]).tracks
   end
 
   def new
@@ -20,16 +20,50 @@ class TracksController < ApplicationController
   def create
     
     if params[:track][:original_url] == "up down left right a b start"
-
-
       @tracks = Track.set_secret_playlist
-
       if @tracks == "success"
         flash[:notice] = "You found a secret."
         redirect_to tracks_path
       else
         render :new
       end
+
+    else
+      response = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:track][:original_url])
+      if response.kind == 'track'
+        @soundcloud_data = [ Track.get_track(response) ]
+      elsif response.kind == 'playlist'
+        @soundcloud_data = Track.get_tracks(response)
+      end
+      errors = []
+      @soundcloud_data.each do |data|
+        track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
+        unless track.save
+          errors << "Unable to save #{data[:title]}"
+        end
+      end
+
+      if errors.any?
+        flash[:notice] = errors.each.strip
+        redirect_to tracks_path
+      else
+        flash[:notice] = "Added #{@soundcloud_data.count} tracks."
+        redirect_to tracks_path
+      end
+
+      
+
+############
+
+
+      # params.update(artist_name: "Unknown Artist", title: "Unknown Title")
+      # @tracks = Track.get_tracks(@soundcloud_url)
+      # if @tracks = "success"
+      #   redirect_to_tracks_path
+      # else
+      #   render :new
+      # end
+
 
     #   if params[:original_url].include? "soundcloud"
     #     params.update(artist_name: "Unknown Artist", title: "Unknown Title")
