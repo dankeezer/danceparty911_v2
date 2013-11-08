@@ -2,9 +2,11 @@ class TracksController < ApplicationController
 
   def index
     @tracks = params[:q] ? Track.search_for(params[:q]) : Track.all(:order => "created_at DESC")
+    #@tracks = current_user.tracks
   end
 
   def user
+    @tracks = User.find(params[:user]).tracks
   end
 
   def new
