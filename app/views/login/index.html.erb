@@ -1,1 +1,29 @@
-<%= link_to "Sign out", destroy_user_session_path, :method => :delete  %>
+<div id="container">
+	<div id="user_nav">
+		<% if user_signed_in? %>
+			<p>Signed in as <%= current_user.email %>. Not you?
+			<%= link_to "Sign out", destroy_user_session_path, :method => :delete  %>
+		<% else %>
+			<p><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign In", new_user_session_path %></p>
+		<% end %>
+		</div>
+	</div>
+</div>
+
+
+<table>
+	<tr><h5>
+		<td><h5>ID</h5></td>
+		<td><h5>E-mail</h5></td>
+
+	</tr>
+
+
+		<% @users.each do |user| %>
+	<tr>
+			<td width="10%"><h5><%= user.id %></h5></td>
+			<td width="10%"><h5><%= link_to user.email, edit_user_registration_path %></h5></td>
+	</tr>
+		<% end %>
+
+</table>

@@ -2,7 +2,7 @@ class TracksController < ApplicationController
 
   def index
     @tracks = params[:q] ? Track.search_for(params[:q]) : Track.all(:order => "created_at DESC")
-    #@tracks = current_user.tracks
+    @user = current_user.id
   end
 
   def user
@@ -40,9 +40,11 @@ class TracksController < ApplicationController
       errors = []
       @soundcloud_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name], user_id: current_user.id)
+                raise
         unless track.save
           errors << "Unable to save #{data[:title]}"
         end
+
       end
 
       if errors.any?

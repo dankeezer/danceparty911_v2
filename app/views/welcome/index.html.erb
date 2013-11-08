@@ -14,7 +14,7 @@
 		<td><h5>Title</h5></td>
 		<td><h5>Stream URL</h5></td>
 		<td><h5>Original URL</h5></td>
-		<td><h5>BPM</h5></td>
+		<td><h5>User ID</h5></td>
 
 	</tr>
 
@@ -25,6 +25,7 @@
 			<td width="10%"><h5><%= link_to track.title, track_path(@track) %></h5></td>
 			<td width="40%"><h5><%= track.stream_url %></h5></td>
 			<td width="30%"><h5><%= track.original_url %></h5></td>
+			<td width="30%"><h5><%= track.user_id %></h5></td>
 
 	</tr>
 		<% end %>
