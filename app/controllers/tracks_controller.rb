@@ -16,16 +16,17 @@ class TracksController < ApplicationController
   end
 
   def create
-
-    
     if params[:track][:original_url] == "up down left right a b start"
-      @tracks = Track.set_secret_playlist
-      if @tracks == "success"
-        flash[:notice] = "You found a secret."
-        redirect_to tracks_path
-      else
-        render :new
+      @secret_code_data = Track.set_secret_playlist
+      @secret_code_data.each do |data|
+        track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
+        unless track.save
+          errors << "Unable to save #{data[:title]}"
+        end
       end
+      flash[:notice] = "You found a secret."
+      redirect_to tracks_path
+
 
     else
       response = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:track][:original_url])
