@@ -8,16 +8,13 @@ class TracksController < ApplicationController
   end
 
   def new
-  	@track = Track.new
+    @track = Track.new
   end
 
   def show
-  	@track = Track.find(params[:id])
+    @track = Track.find(params[:id])
   end
 
-  def create
-
-    
   def create
     if params[:track][:original_url] == "up down left right a b start"
       @secret_code_data = Track.set_secret_playlist
@@ -29,6 +26,7 @@ class TracksController < ApplicationController
       end
       flash[:notice] = "You found a secret."
       redirect_to tracks_path
+
 
     else
       response = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:track][:original_url])
@@ -56,17 +54,17 @@ class TracksController < ApplicationController
   end
 
   def edit
-  	@track = Track.find(params[:id])
+    @track = Track.find(params[:id])
   end
 
   def update
-  	@track = Track.find(params[:id])
+    @track = Track.find(params[:id])
 
-  	if @track.update_attributes(track_params)
-  		redirect_to track_path(@track)
-  	else
-  		render :edit
-  	end
+    if @track.update_attributes(track_params)
+      redirect_to track_path(@track)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -78,7 +76,7 @@ class TracksController < ApplicationController
   private
 
   def track_params
- 	  params.require('track').permit(:artist_name, :title, :stream_url, :original_url)
+    params.require('track').permit(:artist_name, :title, :stream_url, :original_url)
   end
 
 end
