@@ -4,8 +4,4 @@ rvm:
 deploy:
   provider: heroku
   api_key:
-    secure: B9cKxVEhYyIXO0hFNfeq0lLYpVWe02YhHzNp2GsTHpI/W/heiCdF1tQe0vp/OXnl4feYPoebdIgBsMAO6yiaBycQOIQ55YptgIpFU6U4wSnjUfBAlICFUOctGjWxkrcqiLk2KValW08j67NzTe7imV+fo1Qml5JsWdQfRk4I/50=
-  app: radiant-waters-5926
-  on:
-    repo: dankeezer/danceparty911_v2
-secure: HsJysLImUDG2x1TLsOnGuuzV9FEk1/Ss4A9J+zc2gTW22MHhA04KX9OYRkh65PyYjJ6hWr73LEyvNbLYR7yC+VDLZ8ybTqPIrB8aYqtW4a33B9QVcuFn2uLvM7ENpr4jiw5OJXFNpZ8n4hg5PFHJxAXt+uwg7ZuzrYXaM7CK8uE=
+	secure: HsJysLImUDG2x1TLsOnGuuzV9FEk1/Ss4A9J+zc2gTW22MHhA04KX9OYRkh65PyYjJ6hWr73LEyvNbLYR7yC+VDLZ8ybTqPIrB8aYqtW4a33B9QVcuFn2uLvM7ENpr4jiw5OJXFNpZ8n4hg5PFHJxAXt+uwg7ZuzrYXaM7CK8uE=
