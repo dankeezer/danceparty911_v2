@@ -11,4 +11,4 @@
  *= require page-player-djcopy.css
  *= require bootstrap.css
  *= require_self
- */
+ *= require_tree .

@@ -1,6 +1,7 @@
 Danceparty911V2::Application.routes.draw do
 
-  root 'tracks#index'
+  devise_for :users
+  root 'login#index'
   get 'new' => 'tracks#index'
   resources :tracks
   get 'welcome' => 'welcome#index'
