@@ -1,9 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'libspotify'
-gem 'hallon'
-gem 'spotify'
-gem 'ffi'
 gem 'devise'
 
 gem 'simple_form'
