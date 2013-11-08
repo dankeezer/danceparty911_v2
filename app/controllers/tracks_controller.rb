@@ -36,7 +36,7 @@ class TracksController < ApplicationController
       end
       errors = []
       @soundcloud_data.each do |data|
-        track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
+        track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name], user_id: current_user.id))
         unless track.save
           errors << "Unable to save #{data[:title]}"
         end
