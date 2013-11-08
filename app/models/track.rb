@@ -10,16 +10,16 @@ class Track < ActiveRecord::Base
 		[:original_url] == "up down left right a b start"
   	end
 
-	def self.set_secret_playlist
-
-		@playlist_url = JSON.parse(open("index.json").read)
-		@playlist = @playlist_url["tracks"]
-		@playlist.reverse!
-		@playlist.each do |track|
-			Track.create artist_name: track["artistName"], title: track["title"], stream_url: track["path"]
-		end
-		"success"
-  	end
+  def self.set_secret_playlist
+    tracks = []
+    @playlist_url = JSON.parse(open("index.json").read)
+    @playlist = @playlist_url["tracks"]
+    @playlist.reverse!
+    @playlist.each do |track|
+      tracks << { artist_name: track["artistName"], title: track["title"], stream_url: track["path"] }
+    end
+    tracks
+  end
 
   	def self.get_track(response)
   		if response.purchase_url.nil?
