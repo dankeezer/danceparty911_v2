@@ -5,5 +5,6 @@ rvm:
 deploy:
   provider: heroku
   app: danceparty911_v2
-  api_key:   
-  	secure: "egYEJM5S1nltmAVLY1A2U8RbuYUh1cYF3lzwnEAexWqW6OaCzW46YWQlZXHrsabwxep8fzVgik69v+TXFWnotuzKu/1NL3WqwwtElsND5q9gm83iqe3N5E5EIRxYlqm4+AvwFfH44So+/Gqtton4jkSDKp9kHRHTYDfmyXpo6BI="
+  api_key: 
+  	secure: YIZoqrTkXUJnLKDbtJzbQ2jU/uMKy155cKIDmBOtALgXG60ms4jlbY8+2miAwOil6rXBD89HZqyb0d0s5zKrOAod4aj3/R+H4FyZSJ8nwKjsVFoMP1LJg4TuSbmBje0iuP85O3ay3i1uLq3omm/PXrc/pnii0xevm6OFHwmPnwk=
+  
