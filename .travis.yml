@@ -1,7 +1,9 @@
 language: ruby
 rvm:
-- 2.0.0
+  - "2.0.0"
+
 deploy:
-provider: heroku
-api_key:
-secure: HsJysLImUDG2x1TLsOnGuuzV9FEk1/Ss4A9J+zc2gTW22MHhA04KX9OYRkh65PyYjJ6hWr73LEyvNbLYR7yC+VDLZ8ybTqPIrB8aYqtW4a33B9QVcuFn2uLvM7ENpr4jiw5OJXFNpZ8n4hg5PFHJxAXt+uwg7ZuzrYXaM7CK8uE=
+  provider: heroku
+  api_key:
+    secure: WFwfINp35c9flNM485aH8rIg5VYG90PdcQ4tae9DTvSXl597FDyMWoOIZHA61kYQhsQhX9Vn5glZNKE/hWKVmr9Db6qrAdDUMcHa60vBDEt6vaH4TNu+bdvBrhXLVemzF6s3No++sR+iHtFQD46F62tmtCXYweUOaz/VLF8Vsmk=
+  app: radiant-waters-5926
