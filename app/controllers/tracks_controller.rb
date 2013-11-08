@@ -44,7 +44,7 @@ class TracksController < ApplicationController
       end
 
       if errors.any?
-        flash[:notice] = errors.each.strip
+        flash[:notice] = errors
         redirect_to tracks_path
       else
         flash[:notice] = "Added #{@soundcloud_data.count} tracks."
