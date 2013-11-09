@@ -11,12 +11,6 @@
 
 
 	<%= yield %>
-		<% if current_user %>
-		 Signed in as <%= current_user.name %>!
-		 <%= link_to "Sign out", signout_path %>
-		 <% else %>
-		 <% link_to "Sign in with Twitter", "/auth/Twitter" %>
-		 <% end %>
 
 	   <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>

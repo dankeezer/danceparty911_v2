@@ -1,15 +1,26 @@
+<html>
+<head>
+	<title>Login Page</title>
+	<%= stylesheet_link_tag		"application", media: "all" %>
+	<%= javascript_include_tag	"application" %>
+	<%= csrf_meta_tag %>
+</head>
+
 <body>
 	<div id="container">
 		<div id="user_nav">
+
+
 			<% if user_signed_in? %>
-				<p>Logged in as <strong><%= current_user.email %></strong>. Not you?
+				<p>Logged in as <strong><%= current_user.username.nil? ? current_user.email : current_user.username %></strong>. Not you?
 				<%= link_to "Edit profile", edit_user_registration_path %>
-				<%= link_to "Logout", destroy_user_session_path, :method => :delete  %>
+				<%= link_to "Sign out", destroy_user_session_path, :method => :delete  %>
 			<% else %>
 				<p><%= link_to "Sign up", new_user_registration_path %> |
-				<%= link_to "Login", new_user_session_path %> or 
+				<%= link_to "Sign in", new_user_session_path %> or 
 				<%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %></p>
 			<% end %>
+
 			</div>
 		</div>
 	</div>
