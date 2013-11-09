@@ -47,10 +47,11 @@ class TracksController < ApplicationController
       @soundcloud_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name], original_url: params[:track][:original_url])
           if defined? current_user
-            Track.update(user_id: current_user.id)
+            track.update(user_id: current_user.id)
           else
-            Track.update(user_id: Time.now)
+            track.update(user_id: Time.now)
           end
+          raise
          unless track.save
          errors << "Unable to save #{data[:title]}"
         end
