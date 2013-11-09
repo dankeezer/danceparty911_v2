@@ -1,14 +1,17 @@
 class TracksController < ApplicationController
 
-# create Parties based on sessions? When a User clicks to PLAY a Track that Track is 
-# stored (in order) in a Party playlist that defaults to date.
-# e.g. http://danceparty911.com/tracks/dankeezer/Nov082013
-# then you can determine live playlist building.
+
 
   def index
-    @tracks = params[:q] ? Track.search_for(params[:q]) : Track.all(:order => "created_at DESC")
+    #@users = User.all
+    if current_user.nil? 
+      @tracks = params[:q] ? Track.search_for(params[:q]) : Track.all(:order => "created_at DESC")
+    else
+      @tracks = User.find(current_user).tracks.order("created_at DESC").all
+    end
+    #@tracks = params[:q] ? Track.search_for(params[:q]) : Track.all(:order => "created_at DESC")
     #@track.user_id = current_user.id
-    #@tracks = current_user.tracks
+    #@tracks = @user.tracks
   end
 
   def user
@@ -26,15 +29,22 @@ class TracksController < ApplicationController
   def create
     if params[:track][:original_url] == "up down left right a b start"
       @secret_code_data = Track.set_secret_playlist
+      time = Time.now.to_i
+      if defined? current_user.id
+        user_id = current_user.id
+      else
+        user_id = time
+      end
+
       @secret_code_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
+        track.user_id = user_id        
         unless track.save
           errors << "Unable to save #{data[:title]}"
         end
       end
       flash[:notice] = "You found a secret."
       redirect_to tracks_path
-
 
     else
       response = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:track][:original_url])
@@ -43,19 +53,20 @@ class TracksController < ApplicationController
       elsif response.kind == 'playlist'
         @soundcloud_data = Track.get_tracks(response)
       end
+
       errors = []
+      time = Time.now.to_i
+      if defined? current_user.id
+        user_id = current_user.id
+      else
+        user_id = time
+      end
       @soundcloud_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name], original_url: params[:track][:original_url])
-          if defined? current_user
-            track.update(user_id: current_user.id)
-          else
-            track.update(user_id: Time.now)
-          end
-          raise
-         unless track.save
-         errors << "Unable to save #{data[:title]}"
+        track.user_id = user_id
+        unless track.save
+        errors << "Unable to save #{data[:title]}"
         end
-
       end
 
       if errors.any?

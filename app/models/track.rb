@@ -17,11 +17,6 @@ class Track < ActiveRecord::Base
     @playlist.reverse!
     @playlist.each do |track|
       tracks << { artist_name: track["artistName"], title: track["title"], stream_url: track["path"] }
-      if defined? current_user
-          tracks << { user_id: current_user.id }
-      else
-          tracks << { user_id: Time.now }
-      end
     end
     tracks
   end

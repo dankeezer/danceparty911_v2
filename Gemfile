@@ -1,16 +1,12 @@
 source 'https://rubygems.org'
 
-
-gem 'devise'
-
-gem 'simple_form'
-
-gem 'protected_attributes'
-
-gem 'soundcloud'
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
+gem 'devise'
+gem 'simple_form'
+gem 'protected_attributes'
+gem 'soundcloud'
+gem 'omniauth-soundcloud', '~> 1.0.0'
+gem 'omniauth-twitter'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -45,6 +41,7 @@ end
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
 
 group :production do
   gem 'rails_12factor'
@@ -53,7 +50,7 @@ group :production do
 end
 
 
-end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
