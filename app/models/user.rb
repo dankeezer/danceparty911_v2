@@ -5,13 +5,23 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation
 
+  #twitter version
+  # def self.from_omniauth(auth)
+	 #  where(auth.slice(:provider, :uid)).first_or_create do |user|
+	 #    user.provider = auth.provider
+	 #    user.uid = auth.uid
+	 #    user.username = auth.info.nickname
+	 #  end
+  # end
+
+  #soundcloud version
   def self.from_omniauth(auth)
+
 	  where(auth.slice(:provider, :uid)).first_or_create do |user|
 	    user.provider = auth.provider
 	    user.uid = auth.uid
-	    user.username = auth.info.nickname
+	    user.username = auth.extra.raw_info.username
 	  end
   end
 

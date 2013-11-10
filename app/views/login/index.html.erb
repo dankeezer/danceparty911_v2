@@ -18,7 +18,7 @@
 			<% else %>
 				<p><%= link_to "Sign up", new_user_registration_path %> |
 				<%= link_to "Sign in", new_user_session_path %> or 
-				<%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %></p>
+				<%= link_to "Sign in with SoundCloud", user_omniauth_authorize_path(:soundcloud) %></p>
 			<% end %>
 
 			</div>
@@ -26,12 +26,13 @@
 	</div>
 
 
-	<table>
+	<table class="table table-striped">
 		<tr><h5>
 			<td><h5>ID</h5></td>
 			<td><h5>E-mail</h5></td>
 			<td><h5>Username</h5></td>
 			<td><h5>Provider</h5></td>
+			<td><h5>Oauth UID</h5></td>
 
 		</tr>
 
@@ -42,6 +43,7 @@
 				<td width="10%"><h5><%= link_to user.email, edit_user_registration_path %></h5></td>
 				<td width="10%"><h5><%= link_to user.username, edit_user_registration_path %></h5></td>
 				<td width="10%"><h5><%= user.provider %></h5></td>
+				<td width="10%"><h5><%= user.uid %></h5></td>
 
 		</tr>
 			<% end %>
