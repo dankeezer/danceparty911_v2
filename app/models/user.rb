@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
+	attr_accessible :username, :email, :password, :password_confirmation
 
   #twitter version
   # def self.from_omniauth(auth)

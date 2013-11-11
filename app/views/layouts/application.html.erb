@@ -10,10 +10,25 @@
 <body>
 
 
-	<%= yield %>
-
+	<% if user_signed_in? %>
+					<p>Logged in as <strong><%= current_user.username.nil? ? current_user.email : current_user.username %></strong>. Not you?
+				<%= link_to "Edit profile", edit_user_registration_path %>
+				<%= link_to "Sign out", destroy_user_session_path, :method => :delete  %>
+				<% else %>
+		<%= form_for(resource, :class => "form-signin", :as => resource_name, :url => session_path(resource_name)) do |f| %>
+          <%= f.email_field :email, :class => "form-control", :placeholder => "Email", :autofocus => true %>
+          <%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+          <%= f.submit "Sign in", :class => "btn btn-lg btn-primary btn-block" %>
+			 or 
+		<%= link_to "Sign in with SoundCloud", user_omniauth_authorize_path(:soundcloud) %> |
+		<%= link_to "Sign up", new_user_registration_path %>
+        <% end %>
+    <% end %>
 	   <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
+
+       	<%= yield %>
+
 </body>
 
 </html>
