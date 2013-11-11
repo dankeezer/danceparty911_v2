@@ -1,6 +1,6 @@
 class TracksController < ApplicationController
 
-
+  layout "navbar", except: [:index]
 
   def index
     #@users = User.all

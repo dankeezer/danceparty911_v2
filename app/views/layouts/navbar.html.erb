@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>danceparty911</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+<style type="text/css">
+
+input[type="email"],
+input[type="password"],
+.uneditable-input {
+	margin-bottom: 0px !important;
+}
+
+.btn-sm {
+	margin: 0px !important;
+	font-weight: normal;
+	background-color: #FFFFFF;
+}
+
+.navbar {
+	margin: 0px;
+	padding: 3px;
+	height: 32px;
+	background-color: #FF33cc;
+}
+
+.navbar-brand {
+	padding: 3px;
+}
+
+.navbar-link {
+  color: #FFFFFF !important;
+  padding: 3px;
+}
+
+.navbar-text {
+  line-height: 0px !important;
+}
+
+</style>
+
+</head>
+
+<body>
+
+	<div class="myNav">
+		<div class="navbar">
+		<% if user_signed_in? %>
+			<div class="form-group">
+				<%= link_to image_tag "911logo548.gif", size: "175", :class => "navbar-brand" %>
+				<% if current_user.username.nil? %>
+					<p class="navbar-text pull-right"><%= link_to current_user.email, edit_user_registration_path, :class => "navbar-link" %>
+				<% else %>
+					<p class="navbar-text pull-right"><%= link_to current_user.username, edit_user_registration_path, :class => "navbar-link" %>
+				<% end %>
+				<%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-sm" %></p>	
+			</div>
+		<% else %>
+			<%= simple_form_for(resource, :class => "form-signin", :as => resource_name, :url => session_path(resource_name)) do |f| %>
+			<div class="form-group">
+				<%= link_to image_tag "911logo548.gif", size: "175", :class => "navbar-brand" %>
+				<%= f.email_field :email, :class => "form-control", :placeholder => "Email", :autofocus => true %>
+				<%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+
+				<%= f.submit "Sign in", :class => "btn btn-sm" %>
+				<%= link_to image_tag("btn-connect-sc-l.png"), user_omniauth_authorize_path(:soundcloud) %>
+				<%= link_to "Sign up", new_user_registration_path, :class => "btn btn-sm pull-right" %>
+			</div>
+			<% end %>
+		<% end %>
+	</div>
+
+	<%= yield %>
+</body>
+
+</html>
