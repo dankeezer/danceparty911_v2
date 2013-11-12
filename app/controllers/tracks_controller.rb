@@ -30,13 +30,6 @@ class TracksController < ApplicationController
   def create
     if params[:track][:original_url] == "up down left right a b start"
       @secret_code_data = Track.set_secret_playlist
-      # time = Time.now.to_i
-      # if defined? current_user.id
-      #   user_id = current_user.id
-      # else
-      #   user_id = time
-      # end
-
       @secret_code_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
         track.user_id = current_or_guest_user.id        
@@ -56,27 +49,30 @@ class TracksController < ApplicationController
       end
 
       errors = []
-      # time = Time.now.to_i
-      # if defined? current_user.id
-      #   user_id = current_user.id
-      # else
-      #   user_id = time
-      # end
-      @soundcloud_data.each do |data|
+      if @soundcloud_data
+        @soundcloud_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name], original_url: params[:track][:original_url])
         track.user_id = current_or_guest_user.id
-        unless track.save
-        errors << "Unable to save #{data[:title]}"
+        track.save
+        #unless track.save
+        #errors << "Unable to save #{data[:title]}"
+        #end
         end
       end
 
-      if errors.any?
-        flash[:notice] = errors
-        redirect_to tracks_path
+      errored_track_count = response["tracks"].count - @soundcloud_data.count
+      if errored_track_count > 1
+        flash[:error] = "SoundCloud user disabled streaming for #{errored_track_count} tracks."
       else
-        flash[:notice] = "Added #{@soundcloud_data.count} tracks."
-        redirect_to tracks_path
+        flash[:error] = "SoundCloud user disable streaming for this track."
       end
+
+      if errored_track_count > 1
+        flash[:notice] = "Successfully added #{@soundcloud_data.count} tracks."
+      else
+        flash[:notice] = "Successfully added #{data[:title]}"
+      end
+      redirect_to tracks_path
     end
   end
 

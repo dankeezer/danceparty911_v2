@@ -6,10 +6,6 @@ class Track < ActiveRecord::Base
 		where("artist_name LIKE :query OR title LIKE :query OR stream_url LIKE :query OR original_url LIKE :query", query: "%#{query}%")
 	end
 
-	def skip_validation
-		[:original_url] == "up down left right a b start"
-  	end
-
   def self.set_secret_playlist
     tracks = []
     @playlist_url = JSON.parse(open("index.json").read)
@@ -22,11 +18,15 @@ class Track < ActiveRecord::Base
   end
 
   	def self.get_track(response)
-  		if response.purchase_url.nil?
-  			{ title: response.title, stream_url: response.stream_url, artist_name: 'soundcloud' }
-  		else
-  			{ title: response.title, stream_url: response.stream_url, artist_name: response['user']['username'] }
-  		end
+      if response.streamable?
+        response = []
+      else
+    		if response.purchase_url.nil?
+    			{ streamable: response.streamable, title: response.title, stream_url: response.stream_url, artist_name: 'soundcloud' }
+    		else
+    			{ streamable: response.streamable, title: response.title, stream_url: response.stream_url, artist_name: response['user']['username'] }
+    		end
+      end
   	end
 
   	def self.get_tracks(response)
@@ -34,12 +34,14 @@ class Track < ActiveRecord::Base
   		soundcloud_playlist_array = response["tracks"]
   		soundcloud_playlist_array.reverse!
   		soundcloud_playlist_array.each do |track|
-  			if track.purchase_url.nil?
-  				tracks << { title: track.title, stream_url: track.stream_url, artist_name: "soundcloud" }
-  			elsif !track.purchase_url.nil?
-  				tracks << { title: track.title, stream_url: track.stream_url, artist_name: track["user"]["username"] }	
-  			end
-  		end
+        if track.streamable?
+    			if track.purchase_url.nil?
+    				tracks << { streamable: track.streamable, title: track.title, stream_url: track.stream_url, artist_name: "soundcloud" }
+    			elsif !track.purchase_url.nil?
+    				tracks << { streamable: track.streamable, title: track.title, stream_url: track.stream_url, artist_name: track["user"]["username"] }	
+    			end
+        end
+      end
   		tracks
   	end
 end
