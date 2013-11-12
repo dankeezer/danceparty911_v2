@@ -1,4 +1,7 @@
 class LoginController < ApplicationController
+
+	protect_from_forgery :except => :receive_guest
+
 	layout "navbar"
 
 def index

@@ -1,14 +1,14 @@
 class TracksController < ApplicationController
 
+  protect_from_forgery :except => :receive_guest
+  helper_method :current_or_guest_user
+
   layout "navbar", except: [:index]
 
   def index
     #@users = User.all
-    if current_user.nil? 
-      @tracks = Track.search_for(params[:q]).order("created_at DESC")
-    else
-      @tracks = User.find(current_user).tracks.order("created_at DESC").all
-    end
+      @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
+
     
     #@tracks = params[:q] ? Track.search_for(params[:q]) : Track.all(:order => "created_at DESC")
     #@track.user_id = current_user.id
@@ -30,16 +30,16 @@ class TracksController < ApplicationController
   def create
     if params[:track][:original_url] == "up down left right a b start"
       @secret_code_data = Track.set_secret_playlist
-      time = Time.now.to_i
-      if defined? current_user.id
-        user_id = current_user.id
-      else
-        user_id = time
-      end
+      # time = Time.now.to_i
+      # if defined? current_user.id
+      #   user_id = current_user.id
+      # else
+      #   user_id = time
+      # end
 
       @secret_code_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
-        track.user_id = user_id        
+        track.user_id = current_or_guest_user.id        
         unless track.save
           errors << "Unable to save #{data[:title]}"
         end
@@ -56,15 +56,15 @@ class TracksController < ApplicationController
       end
 
       errors = []
-      time = Time.now.to_i
-      if defined? current_user.id
-        user_id = current_user.id
-      else
-        user_id = time
-      end
+      # time = Time.now.to_i
+      # if defined? current_user.id
+      #   user_id = current_user.id
+      # else
+      #   user_id = time
+      # end
       @soundcloud_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name], original_url: params[:track][:original_url])
-        track.user_id = user_id
+        track.user_id = current_or_guest_user.id
         unless track.save
         errors << "Unable to save #{data[:title]}"
         end

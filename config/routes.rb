@@ -3,7 +3,6 @@ Danceparty911V2::Application.routes.draw do
   #devise_for :users
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"} do get '/users/sign_out' => 'devise/sessions#destroy' end
 
-
   resources :tracks
 
 scope ':username' do  
@@ -17,7 +16,8 @@ end
 
   get 'welcome' => 'welcome#index'
   get 'dj' => 'dj#index'
-  get 'temp' => 'temp#index'
+  get 'login' => 'login#index'
+
   # get 'new' => 'tracks#index'
 
 end
