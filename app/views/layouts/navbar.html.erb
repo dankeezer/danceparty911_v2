@@ -14,6 +14,20 @@ input[type="password"],
 	margin-bottom: 0px !important;
 }
 
+.btn {
+  font-family: Helvetica, sans-serif;
+  background-color: #FFFFFF;
+  *background-color: #FFFFFF;
+  border-color: #FFFFFF #FFFFFF #FFFFFF;
+  color: #666;
+  letter-spacing: .5px;
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+}
+
 .btn-sm {
 	margin: 0px !important;
 	font-weight: normal;
@@ -46,6 +60,12 @@ input[type="password"],
 .myNav {
 }
 
+.soundcloud_image {
+	border-width:1px;
+	border-color: #FF33cc;
+	padding-bottom: 1px;
+}
+
 </style>
 
 </head>
@@ -72,7 +92,7 @@ input[type="password"],
 				<%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
 
 				<%= f.submit "Sign in", :class => "btn btn-sm" %>
-				<%= link_to image_tag("btn-connect-sc-l.png"), user_omniauth_authorize_path(:soundcloud) %>
+				<%= link_to image_tag("btn-connect-sc-l.png"), user_omniauth_authorize_path(:soundcloud), :class => "soundcloud_image" %>
 				<%= link_to "Sign up", new_user_registration_path, :class => "btn btn-sm pull-right" %>
 			</div>
 			<% end %>

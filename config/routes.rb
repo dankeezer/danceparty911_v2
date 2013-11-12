@@ -5,9 +5,9 @@ Danceparty911V2::Application.routes.draw do
 
 
   resources :tracks
-  
+
 scope ':username' do  
-  resources :tracks
+  resources :dj
 end
 
   root 'dj#index'
