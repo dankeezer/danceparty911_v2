@@ -5,10 +5,11 @@ class TracksController < ApplicationController
   def index
     #@users = User.all
     if current_user.nil? 
-      @tracks = params[:q] ? Track.search_for(params[:q]) : Track.all(:order => "created_at DESC")
+      @tracks = Track.search_for(params[:q]).order("created_at DESC")
     else
       @tracks = User.find(current_user).tracks.order("created_at DESC").all
     end
+    
     #@tracks = params[:q] ? Track.search_for(params[:q]) : Track.all(:order => "created_at DESC")
     #@track.user_id = current_user.id
     #@tracks = @user.tracks

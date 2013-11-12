@@ -3,8 +3,13 @@ Danceparty911V2::Application.routes.draw do
   #devise_for :users
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"} do get '/users/sign_out' => 'devise/sessions#destroy' end
 
-  
+
   resources :tracks
+  
+scope ':username' do  
+  resources :tracks
+end
+
   root 'dj#index'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
