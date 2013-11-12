@@ -40,7 +40,7 @@ class TracksController < ApplicationController
       flash[:notice] = "You found a secret."
       redirect_to tracks_path
 
-    else
+    elsif params[:track][:original_url] =~ /\Ahttps?:\/\/soundcloud/
       response = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:track][:original_url])
       if response.kind == 'track'
         @soundcloud_data = [ Track.get_track(response) ]
@@ -60,18 +60,22 @@ class TracksController < ApplicationController
         end
       end
 
+      if @soundcloud_data.count > 1
+        flash[:notice] = "Successfully added #{@soundcloud_data.count} tracks."
+      else
+        flash[:notice] = "Successfully added #{@soundcloud_data[:title]}"
+      end
+
       errored_track_count = response["tracks"].count - @soundcloud_data.count
       if errored_track_count > 1
         flash[:error] = "SoundCloud user disabled streaming for #{errored_track_count} tracks."
-      else
-        flash[:error] = "SoundCloud user disable streaming for this track."
+      elsif errored_track_count == 1
+        flash[:error] = "SoundCloud user disabled streaming for 1 track."
       end
 
-      if errored_track_count > 1
-        flash[:notice] = "Successfully added #{@soundcloud_data.count} tracks."
-      else
-        flash[:notice] = "Successfully added #{data[:title]}"
-      end
+      redirect_to tracks_path
+    else
+      flash[:error] = "Not a valid SoundCloud URL"
       redirect_to tracks_path
     end
   end
