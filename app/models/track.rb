@@ -37,7 +37,7 @@ class Track < ActiveRecord::Base
 		soundcloud_playlist_array.each do |track|
       if track.streamable?
   			if track.purchase_url.nil?
-  				tracks[:info] << { title: track.title, stream_url: track.stream_url + "?client_id=", artist_name: "soundcloud" }
+  				tracks[:info] << { title: track.title, stream_url: track.stream_url + "?client_id=" + SOUNDCLOUD_CLIENT_ID, artist_name: "soundcloud" }
   			elsif !track.purchase_url.nil?
   				tracks[:info] << { title: track.title, stream_url: track.stream_url + "?client_id=" + SOUNDCLOUD_CLIENT_ID, artist_name: track["user"]["username"] }	
   			end
