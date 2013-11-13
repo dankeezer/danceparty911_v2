@@ -1,7 +1,6 @@
 Danceparty911V2::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   
-  #dev Soundcloud variables
   SOUNDCLOUD_REDIRECT_URI = "localhost:3000"
   SOUNDCLOUD_CLIENT_ID = ENV["SOUNDCLOUD_CLIENT_ID_DEV"]
   SOUNDCLOUD_SECRET = ENV["SOUNDCLOUD_SECRET_DEV"]
