@@ -1,7 +1,12 @@
 class Track < ActiveRecord::Base
 	attr_accessible :title, :stream_url, :artist_name, :original_url
 	belongs_to :user
-  
+
+  #validates_format_of :original_url, :with => /\Ahttps?:\/\/soundcloud/, :unless => :skip_validation, :message => "Not a SoundCloud URL"
+  #validates_presence_of :stream_url, :message => " SoundCloud user has disabled streaming for this track."
+
+  #validates_format_of :original_url, :with => URI.regexp(['http']), :unless => :skip_validation, :message => " not a valid URL"
+
   #use new_record? to determine if track has already been saved to database
 
 	def self.search_for(query)
@@ -32,9 +37,9 @@ class Track < ActiveRecord::Base
 		soundcloud_playlist_array.each do |track|
       if track.streamable?
   			if track.purchase_url.nil?
-  				tracks[:info] << { title: track.title, stream_url: track.stream_url, artist_name: "soundcloud" }
+  				tracks[:info] << { title: track.title, stream_url: track.stream_url + "?client_id=", artist_name: "soundcloud" }
   			elsif !track.purchase_url.nil?
-  				tracks[:info] << { title: track.title, stream_url: track.stream_url, artist_name: track["user"]["username"] }	
+  				tracks[:info] << { title: track.title, stream_url: track.stream_url + "?client_id=" + SOUNDCLOUD_CLIENT_ID, artist_name: track["user"]["username"] }	
   			end
         successes << { title: track.title }
       else

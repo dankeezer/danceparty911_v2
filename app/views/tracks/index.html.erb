@@ -72,7 +72,7 @@ form {
 
  <ul class="playlist">
  	<% @tracks.each do |track| %>
-    	<li><a class="sm2_link" type="audio/mp3" href="<%= track.stream_url %>?client_id=284a0193e0651ff008b8d9fe6066e137">
+    	<li><a class="sm2_link" type="audio/mp3" href="<%= track.stream_url %>">
     			<b><%= track.artist_name %></b> - <%= track.title %></a>
 
 
