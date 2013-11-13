@@ -41,22 +41,19 @@ class TracksController < ApplicationController
       redirect_to tracks_path
 
     elsif params[:track][:original_url] =~ /\Ahttps?:\/\/soundcloud/
+      errors = []
       response = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:track][:original_url])
       if response.kind == 'track'
-        @soundcloud_data = [ Track.get_track(response) ]
+        @soundcloud_data = [ Track.get_track(response, errors) ]
       elsif response.kind == 'playlist'
-        @soundcloud_data = Track.get_tracks(response)
+        @soundcloud_data = Track.get_tracks(response, errors)
       end
-
-      errors = []
+      
       if @soundcloud_data
         @soundcloud_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name], original_url: params[:track][:original_url])
         track.user_id = current_or_guest_user.id
         track.save
-        #unless track.save
-        #errors << "Unable to save #{data[:title]}"
-        #end
         end
       end
 
@@ -72,8 +69,6 @@ class TracksController < ApplicationController
       elsif errored_track_count == 1
         flash[:error] = "SoundCloud user disabled streaming for 1 track."
       end
-
-      redirect_to tracks_path
     else
       flash[:error] = "Not a valid SoundCloud URL"
       redirect_to tracks_path

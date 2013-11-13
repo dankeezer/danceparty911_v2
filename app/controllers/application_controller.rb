@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
+  before_filter :update_sanitized_params, if: :devise_controller?
 
+  def update_sanitized_params
+    devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:username, :email, :password, :password_confirmation, :current_password)}
+  end
   # if user is logged in, return current_user, else return guest_user
   def current_or_guest_user
     if current_user
