@@ -10,13 +10,15 @@
 
 input[type="email"],
 input[type="password"],
+input[type="input"],
 .uneditable-input {
 	margin-bottom: 0px !important;
 }
 
 .btn {
+  margin: 0px !important;
   font-family: Helvetica, sans-serif;
-  background-color: #FFFFFF;
+/*  background-color: #FFFFFF;
   *background-color: #FFFFFF;
   border-color: #FFFFFF #FFFFFF #FFFFFF;
   color: #666;de
@@ -25,13 +27,7 @@ input[type="password"],
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ffffff));
   background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
   background-image: -o-linear-gradient(top, #ffffff, #ffffff);
-  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
-}
-
-.btn-sm {
-	margin: 0px !important;
-	font-weight: normal;
-	background-color: #FFFFFF;
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);*/
 }
 
 .navbar {
@@ -94,13 +90,6 @@ input[type="password"],
 			<% end %>
 		<% end %>
 	</div>
-	
-	<% flash.each do |name, msg| %>
-	  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-	    <a class="close" data-dismiss="alert">×</a>
-	    <%= msg %>
-	  </div>
-	<% end %>
 
 
 	<%= yield %>

@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_filter :update_sanitized_params, if: :devise_controller?
 
+  layout "navbar"
+
   def update_sanitized_params
     devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:username, :email, :password, :password_confirmation, :current_password)}
   end
@@ -46,7 +48,7 @@ class ApplicationController < ActionController::Base
   end
 
   def create_guest_user
-    u = User.create(:name => "guest", :email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
+    u = User.create(:username => "guest", :email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
     u.save!(:validate => false)
     session[:guest_user_id] = u.id
     u

@@ -1,6 +1,8 @@
 Danceparty911V2::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  SOUNDCLOUD_REDIRECT_URI = "localhost:3000"
+  SOUNDCLOUD_CLIENT_ID = ENV["SOUNDCLOUD_CLIENT_ID_DEV"]
+  SOUNDCLOUD_SECRET = ENV["SOUNDCLOUD_SECRET_DEV"]
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
