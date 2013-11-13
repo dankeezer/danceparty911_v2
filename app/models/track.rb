@@ -30,34 +30,57 @@ class Track < ActiveRecord::Base
     tracks
   end
 
-	def self.get_track(response, alerts)
+	def self.get_track(response)
+    track = { alerts: [], info: [] }
     if response.streamable?
       if response.purchase_url.nil?
-        { streamable: response.streamable, title: response.title, stream_url: response.stream_url, artist_name: 'soundcloud' }
+        track[:info] << { title: response.title, stream_url: response.stream_url, artist_name: 'soundcloud' }
       else
-        { streamable: response.streamable, title: response.title, stream_url: response.stream_url, artist_name: response['user']['username'] }
+        track[:info] << { title: response.title, stream_url: response.stream_url, artist_name: response['user']['username'] }
       end
-      alerts << { success: "Successfully added #{response.title}." }
+      track[:alerts] << { success: "Successfully added #{response.title}." }
+      track
     else
-      response = []
-      alerts << { error: "SoundCloud user disabled streaming for this track."}
+      track[:alerts] << { error: "SoundCloud user disabled streaming for this track."}
     end
 	end
 
-	def self.get_tracks(response, alerts)
-		tracks = []
-		soundcloud_playlist_array = response["tracks"]
-		soundcloud_playlist_array.reverse!
+	def self.get_tracks(response)
+    errors = []
+    successes = []
+		tracks = { alerts: [], info: [] }
+    if response.kind == 'track'
+        soundcloud_playlist_array = [ response ]
+    elsif response.kind == 'playlist'
+        soundcloud_playlist_array = response["tracks"]
+        soundcloud_playlist_array.reverse!
+    end
 		soundcloud_playlist_array.each do |track|
       if track.streamable?
   			if track.purchase_url.nil?
-  				tracks << { streamable: track.streamable, title: track.title, stream_url: track.stream_url, artist_name: "soundcloud" }
+  				tracks[:info] << { title: track.title, stream_url: track.stream_url, artist_name: "soundcloud" }
   			elsif !track.purchase_url.nil?
-  				tracks << { streamable: track.streamable, title: track.title, stream_url: track.stream_url, artist_name: track["user"]["username"] }	
+  				tracks[:info] << { title: track.title, stream_url: track.stream_url, artist_name: track["user"]["username"] }	
   			end
+        successes << { title: track.title }
+      else
+        errors << { title: track.title }
       end
     end
-    errors << { test: "test" }
+
+    if successes.count > 1
+      tracks[:alerts] << { success: "Successfully added #{successes.count} tracks." }
+    elsif successes.count == 1
+       tracks[:alerts] << { success: "Successfully added 1 track." }
+    end
+
+    if errors.count > 1
+      tracks[:alerts] << { error: "SoundCloud user disabled streaming for #{errors.count} tracks." }
+    elsif errors.count == 1
+      tracks[:alerts] << { error: "SoundCloud user disabled streaming for 1 track." }
+    elsif errors.count == 0
+      nil
+    end
 		tracks
 	end
 end

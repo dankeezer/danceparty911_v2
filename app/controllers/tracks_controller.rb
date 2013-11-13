@@ -43,32 +43,19 @@ class TracksController < ApplicationController
     elsif params[:track][:original_url] =~ /\Ahttps?:\/\/soundcloud/
       errors = []
       response = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:track][:original_url])
-      if response.kind == 'track'
-        @soundcloud_data = [ Track.get_track(response, errors) ]
-      elsif response.kind == 'playlist'
-        @soundcloud_data = Track.get_tracks(response, errors)
-      end
       
-      if @soundcloud_data
-        @soundcloud_data.each do |data|
+      @soundcloud_data = Track.get_tracks(response)
+      
+      @soundcloud_data[:info].each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name], original_url: params[:track][:original_url])
         track.user_id = current_or_guest_user.id
         track.save
-        end
       end
 
-      if @soundcloud_data.count > 1
-        flash[:notice] = "Successfully added #{@soundcloud_data.count} tracks."
-      else
-        flash[:notice] = "Successfully added #{@soundcloud_data[:title]}"
-      end
-
-      errored_track_count = response["tracks"].count - @soundcloud_data.count
-      if errored_track_count > 1
-        flash[:error] = "SoundCloud user disabled streaming for #{errored_track_count} tracks."
-      elsif errored_track_count == 1
-        flash[:error] = "SoundCloud user disabled streaming for 1 track."
-      end
+      @soundcloud_data[:alerts].first[:success].nil? ? nil : flash[:notice] = @soundcloud_data[:alerts].first[:success]
+      @soundcloud_data[:alerts].last[:error].nil? ? nil : flash[:error] = @soundcloud_data[:alerts].last[:error]
+      redirect_to tracks_path
+      
     else
       flash[:error] = "Not a valid SoundCloud URL"
       redirect_to tracks_path
