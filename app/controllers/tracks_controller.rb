@@ -1,18 +1,24 @@
 class TracksController < ApplicationController
 
+  protect_from_forgery :except => :receive_guest
+  helper_method :current_or_guest_user
+
+  layout "navbar", except: [:index]
+
   def index
-    @tracks = params[:q] ? Track.search_for(params[:q]) : Track.all(:order => "created_at DESC")
+      @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
   end
 
   def user
+    @tracks = User.find(params[:user]).tracks
   end
 
   def new
-  	@track = Track.new
+    @track = Track.new
   end
 
   def show
-  	@track = Track.find(params[:id])
+    @track = Track.find(params[:id])
   end
 
   def create
@@ -20,6 +26,7 @@ class TracksController < ApplicationController
       @secret_code_data = Track.set_secret_playlist
       @secret_code_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
+        track.user_id = current_or_guest_user.id        
         unless track.save
           errors << "Unable to save #{data[:title]}"
         end
@@ -27,44 +34,40 @@ class TracksController < ApplicationController
       flash[:notice] = "You found a secret."
       redirect_to tracks_path
 
-
-    else
-      response = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:track][:original_url])
-      if response.kind == 'track'
-        @soundcloud_data = [ Track.get_track(response) ]
-      elsif response.kind == 'playlist'
-        @soundcloud_data = Track.get_tracks(response)
-      end
+    elsif params[:track][:original_url] =~ /\Ahttps?:\/\/soundcloud/
       errors = []
-      @soundcloud_data.each do |data|
-        track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
-        unless track.save
-          errors << "Unable to save #{data[:title]}"
-        end
+      response = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:track][:original_url])
+      
+      @soundcloud_data = Track.get_tracks(response)
+      
+      @soundcloud_data[:info].each do |data|
+        track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name], original_url: params[:track][:original_url])
+        track.user_id = current_or_guest_user.id
+        track.save
       end
 
-      if errors.any?
-        flash[:notice] = errors
-        redirect_to tracks_path
-      else
-        flash[:notice] = "Added #{@soundcloud_data.count} tracks."
-        redirect_to tracks_path
-      end
+      @soundcloud_data[:alerts].first[:success].nil? ? nil : flash[:notice] = @soundcloud_data[:alerts].first[:success]
+      @soundcloud_data[:alerts].last[:error].nil? ? nil : flash[:error] = @soundcloud_data[:alerts].last[:error]
+      redirect_to tracks_path
+      
+    else
+      flash[:error] = "Not a valid SoundCloud URL"
+      redirect_to tracks_path
     end
   end
 
   def edit
-  	@track = Track.find(params[:id])
+    @track = Track.find(params[:id])
   end
 
   def update
-  	@track = Track.find(params[:id])
+    @track = Track.find(params[:id])
 
-  	if @track.update_attributes(track_params)
-  		redirect_to track_path(@track)
-  	else
-  		render :edit
-  	end
+    if @track.update_attributes(track_params)
+      redirect_to track_path(@track)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -76,7 +79,7 @@ class TracksController < ApplicationController
   private
 
   def track_params
- 	  params.require('track').permit(:artist_name, :title, :stream_url, :original_url)
+    params.require('track').permit(:artist_name, :title, :stream_url, :original_url)
   end
 
 end

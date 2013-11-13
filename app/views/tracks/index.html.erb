@@ -34,20 +34,41 @@ var PP_CONFIG = {
 
 </script>
 
+<style type="text/css">
+
+body{
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0 !important;
+}
+
+input[type="text"],
+.uneditable-input {
+  margin-bottom: 0px !important;
+}
+
+form {
+  margin: 0px;
+}
+
+.alert {
+  margin: 2px;
+}
+
+</style>
 
   <center><h5> 
     <%= simple_form_for Track.new do |f| %>
        <%= f.text_field :original_url, :placeholder => 'Enter a SoundCloud URL' %>
     <% end %>
-      <% if flash[:notice] == nil %>
-        <%= nil %>
-      <% else %>
-        <BR><font color="red">
-        <b><%= flash[:notice] %></b>
-        <b><%= flash[:error] %>
-      <% end %></font>
   </center></h5>
 
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">×</a>
+      <%= msg %>
+    </div>
+  <% end %>
 
  <ul class="playlist">
  	<% @tracks.each do |track| %>

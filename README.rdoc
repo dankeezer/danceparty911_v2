@@ -3,4 +3,11 @@
 
 Gonna work on this ¯\_(ツ)_/¯
 
+##TODO
 
+# create Parties based on sessions? When a User clicks to PLAY a Track that Track is 
+# stored (in order) in a Party playlist that defaults to date.
+# e.g. http://danceparty911.com/tracks/dankeezer/Nov082013
+# then you can determine live playlist building.
+
+# anonymous user tracking (metadata)

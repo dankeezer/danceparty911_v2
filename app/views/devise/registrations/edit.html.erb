@@ -1,0 +1,32 @@
+<style type="text/css">
+
+.margin{
+  margin-bottom: 10px;
+}
+
+.pink_h2
+{
+  color: #FF33CC !important;
+  letter-spacing:-1px;
+}
+
+</style>
+
+
+<div class="account-wall center">
+  <center><h2 class="pink_h2">edit your profile</h2></center>
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="margin"><%= f.email_field :email, :class => "form-control", :placeholder => "Email", :autofocus => true %></div>
+    <div class="margin"><%= f.input_field :username, :class => "form-control", :placeholder => "Username" %></div>
+    <div class="margin"><%= f.password_field :password, :class => "form-control", :placeholder => "Change password" %></div>
+    <div class="margin"><%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Confirm new password" %></div>
+    <% if f.object.encrypted_password.present? %>
+      <div class="margin"><%= f.password_field :current_password, :class => "form-control", :placeholder => "Current password to update" %></div>
+      <%= f.submit "Update", :class => "btn btn-default" %>
+      <% end %>
+  <% end %>
+
+<%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %></p>
+
+</div>

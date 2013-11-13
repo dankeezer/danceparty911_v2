@@ -2,19 +2,19 @@
 	<center>
 <h5>TRACKS</h5>
 
-<%= form_tag "/", method: "GET" do %>
+<%= form_tag :class => "form-control" "/", method: "GET" do %>
 	<%= text_field_tag :q, params[:q] %>
 	<%= submit_tag "Search" %>
 <% end %>
 
 <h5>
-<table>
+<table class="table table-striped">
 	<tr><h5>
 		<td><h5>Artist Name</h5></td>
 		<td><h5>Title</h5></td>
 		<td><h5>Stream URL</h5></td>
 		<td><h5>Original URL</h5></td>
-		<td><h5>BPM</h5></td>
+		<td><h5>User ID</h5></td>
 
 	</tr>
 
@@ -22,9 +22,10 @@
 		<% @tracks.each do |track| %>
 	<tr>
 			<td width="10%"><h5><%= track.artist_name %></h5></td>
-			<td width="10%"><h5><%= link_to track.title, track_path(@track) %></h5></td>
-			<td width="40%"><h5><%= track.stream_url %></h5></td>
-			<td width="30%"><h5><%= track.original_url %></h5></td>
+			<td width="20%"><h5><%= link_to track.title, track_path(@track) %></h5></td>
+			<td width="30%"><h5><%= track.stream_url %></h5></td>
+			<td width="20%"><h5><%= track.original_url %></h5></td>
+			<td width="10%"><h5><%= track.user_id > 1000000 ? Time.at(track.user_id) : track.user_id %></h5></td>
 
 	</tr>
 		<% end %>

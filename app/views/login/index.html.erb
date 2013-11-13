@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Login Page</title>
+	<%= stylesheet_link_tag		"application", media: "all" %>
+	<%= javascript_include_tag	"application" %>
+	<%= csrf_meta_tag %>
+</head>
+
+<body>
+
+
+	<table class="table table-striped">
+		<tr><h5>
+			<td><h5>ID</h5></td>
+			<td><h5>E-mail</h5></td>
+			<td><h5>Username</h5></td>
+			<td><h5>Provider</h5></td>
+			<td><h5>Oauth UID</h5></td>
+
+		</tr>
+
+
+			<% @users.each do |user| %>
+		<tr>
+				<td width="10%"><h5><%= user.id %></h5></td>
+				<td width="10%"><h5><%= link_to user.email, edit_user_registration_path %></h5></td>
+				<td width="10%"><h5><%= link_to user.username, edit_user_registration_path %></h5></td>
+				<td width="10%"><h5><%= user.provider %></h5></td>
+				<td width="10%"><h5><%= user.uid %></h5></td>
+
+		</tr>
+			<% end %>
+
+	</table>
+</body>
