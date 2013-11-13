@@ -30,20 +30,20 @@ class Track < ActiveRecord::Base
     tracks
   end
 
-	def self.get_track(response)
-    track = { alerts: [], info: [] }
-    if response.streamable?
-      if response.purchase_url.nil?
-        track[:info] << { title: response.title, stream_url: response.stream_url, artist_name: 'soundcloud' }
-      else
-        track[:info] << { title: response.title, stream_url: response.stream_url, artist_name: response['user']['username'] }
-      end
-      track[:alerts] << { success: "Successfully added #{response.title}." }
-      track
-    else
-      track[:alerts] << { error: "SoundCloud user disabled streaming for this track."}
-    end
-	end
+	# def self.get_track(response)
+ #    track = { alerts: [], info: [] }
+ #    if response.streamable?
+ #      if response.purchase_url.nil?
+ #        track[:info] << { title: response.title, stream_url: response.stream_url, artist_name: 'soundcloud' }
+ #      else
+ #        track[:info] << { title: response.title, stream_url: response.stream_url, artist_name: response['user']['username'] }
+ #      end
+ #      track[:alerts] << { success: "Successfully added #{response.title}." }
+ #      track
+ #    else
+ #      track[:alerts] << { error: "SoundCloud user disabled streaming for this track."}
+ #    end
+	# end
 
 	def self.get_tracks(response)
     errors = []

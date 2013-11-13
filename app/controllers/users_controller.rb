@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
   	super
   end
   
