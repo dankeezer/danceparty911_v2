@@ -13,6 +13,12 @@
  *= require bootstrap_and_overrides
  */
 
+.pink_h2
+{
+  color: #FF33CC !important;
+  letter-spacing:-1px;
+}
+
 
 .form-signin
 {

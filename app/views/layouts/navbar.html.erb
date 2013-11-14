@@ -14,10 +14,10 @@ input[type="input"],
 	margin-bottom: 0px !important;
 }
 
-.btn {
+.btn.my_nav {
   margin: 0px !important;
   font-family: Helvetica, sans-serif;
-/*  background-color: #FFFFFF;
+  background-color: #FFFFFF;
   *background-color: #FFFFFF;
   border-color: #FFFFFF #FFFFFF #FFFFFF;
   color: #666;de
@@ -26,7 +26,7 @@ input[type="input"],
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ffffff));
   background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
   background-image: -o-linear-gradient(top, #ffffff, #ffffff);
-  background-image: linear-gradient(to bottom, #ffffff, #ffffff);*/
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
 }
 
 .navbar {
@@ -73,7 +73,7 @@ input[type="input"],
 				<% else %>
 					<p class="navbar-text pull-right"><%= link_to current_user.username, edit_user_registration_path, :class => "navbar-link" %>
 				<% end %>
-				<%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-sm" %></p>	
+				<%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-sm my_nav" %></p>	
 			</div>
 		<% else %>
 			<%= simple_form_for(resource, :class => "form-signin", :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -82,9 +82,9 @@ input[type="input"],
 				<%= f.email_field :email, :class => "form-control", :placeholder => "Email", :autofocus => true %>
 				<%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
 
-				<%= f.submit "Sign in", :class => "btn btn-sm" %>
+				<%= f.submit "Sign in", :class => "btn btn-sm my_nav" %>
 				<%= link_to image_tag("btn-connect-sc-l.png"), user_omniauth_authorize_path(:soundcloud), :class => "soundcloud_image" %>
-				<%= link_to "Sign up", new_user_registration_path, :class => "btn btn-sm pull-right" %>
+				<%= link_to "Sign up", new_user_registration_path, :class => "btn btn-sm pull-right my_nav" %>
 			</div>
 			<% end %>
 		<% end %>
