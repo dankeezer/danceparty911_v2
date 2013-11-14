@@ -5,10 +5,6 @@ Danceparty911V2::Application.routes.draw do
 
   resources :tracks
 
-scope ':username' do  
-  resources :dj
-end
-
   root 'dj#index'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
@@ -19,5 +15,5 @@ end
   get 'login' => 'login#index'
 
   # get 'new' => 'tracks#index'
-
+  get ':username', to: 'dj#user'
 end

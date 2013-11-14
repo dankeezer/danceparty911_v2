@@ -23,8 +23,8 @@
     <div class="margin"><%= f.password_field :password_confirmation, :class => "form-control", :placeholder => "Confirm new password" %></div>
     <% if f.object.encrypted_password.present? %>
       <div class="margin"><%= f.password_field :current_password, :class => "form-control", :placeholder => "Current password to update" %></div>
-      <%= f.submit "Update", :class => "btn btn-default" %>
       <% end %>
+            <%= f.submit "Update", :class => "btn btn-default" %>
   <% end %>
 
 <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %></p>

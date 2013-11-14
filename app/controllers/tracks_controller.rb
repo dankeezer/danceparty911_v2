@@ -9,10 +9,6 @@ class TracksController < ApplicationController
       @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
   end
 
-  def user
-    @tracks = User.find(params[:user]).tracks
-  end
-
   def new
     @track = Track.new
   end
