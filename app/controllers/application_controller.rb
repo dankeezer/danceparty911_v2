@@ -1,36 +1,7 @@
 class ApplicationController < ActionController::Base
-  before_filter :store_location
-
   before_filter :update_sanitized_params, if: :devise_controller?
+
   layout "navbar"
-
-
-  def store_location
-    # store last url - this is needed for post-login redirect to whatever the user last visited.
-    if (request.fullpath != "/users/sign_in" &&
-        request.fullpath != "/users/sign_up" &&
-        request.fullpath != "/users/password" &&
-        !request.xhr?) # don't store ajax calls
-      session[:previous_url] = request.fullpath 
-    end
-  end
-
-  def after_sign_in_path_for(resource)
-    if resource.provider.nil?
-      sign_in_url = url_for(:action => 'new', :controller => 'sessions', :only_path => false, :protocol => 'http')
-      if request.referer == sign_in_url
-        super
-      else
-        stored_location_for(resource) || request.referer || root_path
-      end
-    else
-       request.env['omniauth.origin'] || stored_location_for(resource) || root_path
-    end
-  end
-
-  def after_sign_out_path_for(resource_or_scope)
-    request.referrer
-  end
 
   def update_sanitized_params
     devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:username, :email, :password, :password_confirmation, :current_password)}
