@@ -5,13 +5,17 @@ Danceparty911V2::Application.routes.draw do
 
   resources :tracks
 
-  root 'dj#index'
+  root 'old_page#index'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
+  namespace :user do
+    root :to => "dj#index"
+  end
+
   get 'welcome' => 'welcome#index'
-  get 'dj' => 'dj#index'
+  get 'beta' => 'dj#index'
   get 'login' => 'login#index'
 
   # get 'new' => 'tracks#index'
