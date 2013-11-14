@@ -1,8 +1,6 @@
 Danceparty911V2::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  SOUNDCLOUD_REDIRECT_URI = "danceparty911.herokuapp.com"
-  SOUNDCLOUD_CLIENT_ID = ENV["SOUNDCLOUD_CLIENT_ID_PROD"]
-  SOUNDCLOUD_SECRET = ENV["SOUNDCLOUD_SECRET_PROD"]
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

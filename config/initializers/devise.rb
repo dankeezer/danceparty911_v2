@@ -230,10 +230,10 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
   #SHOULD WORK
-  #config.omniauth :soundcloud, SOUNDCLOUD_CLIENT_ID, SOUNDCLOUD_SECRET, client_options: { redirect_uri: 'SOUNDCLOUD_REDIRECT_URI' + '/users/auth/soundcloud/callback' }
+  config.omniauth :soundcloud, ENV["SOUNDCLOUD_CLIENT_ID"], ENV["SOUNDCLOUD_SECRET"], client_options: { redirect_uri: ENV["SOUNDCLOUD_REDIRECT_URL"] }
   
   #PROD
-  config.omniauth :soundcloud, "284a0193e0651ff008b8d9fe6066e137", "49133daad484fe46028a9c11f7aba625", client_options: { redirect_uri: 'danceparty911.herokuapp.com/users/auth/soundcloud/callback' }
+  #config.omniauth :soundcloud, "284a0193e0651ff008b8d9fe6066e137", "49133daad484fe46028a9c11f7aba625", client_options: { redirect_uri: 'danceparty911.herokuapp.com/users/auth/soundcloud/callback' }
   
   #DEV
   #config.omniauth :soundcloud, "310e867035eacd04d104cedd5705b31e", "30c337abd2f1fe135c1b6e9ef1b08009", client_options: { redirect_uri: 'localhost:3000/users/auth/soundcloud/callback' }
