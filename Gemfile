@@ -7,7 +7,6 @@ gem 'protected_attributes'
 
 gem 'soundcloud'
 gem 'omniauth-soundcloud', '~> 1.0.0'
-gem 'omniauth-twitter'
 
 # group :assets do
   # For styles
