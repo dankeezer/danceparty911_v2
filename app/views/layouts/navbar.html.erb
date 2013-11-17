@@ -12,6 +12,7 @@ input[type="password"],
 input[type="input"],
 .uneditable-input {
 	margin-bottom: 0px !important;
+	width: 175px;
 }
 
 .btn.my_nav {
@@ -84,7 +85,8 @@ input[type="input"],
 
 				<%= f.submit "Sign in", :class => "btn btn-sm my_nav" %>
 				<%= link_to image_tag("btn-connect-sc-l.png"), user_omniauth_authorize_path(:soundcloud), :class => "soundcloud_image" %>
-				<%= link_to "Sign up", new_user_registration_path, :class => "btn btn-sm pull-right my_nav" %>
+				<p class="navbar-text pull-right"><%= link_to "Looking for the old site?", "/old", :class => "navbar-link" %>
+				<%= link_to "Sign up", new_user_registration_path, :class => "btn btn-sm my_nav" %></p>
 			</div>
 			<% end %>
 		<% end %>
