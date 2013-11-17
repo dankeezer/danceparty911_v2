@@ -30,6 +30,22 @@ input[type="input"],
   background-image: linear-gradient(to bottom, #ffffff, #ffffff);
 }
 
+.btn.sign_up {
+  margin: 0px !important;
+  font-family: Helvetica, sans-serif;
+  background-color: #FFFFFF;
+  *background-color: #FFFFFF;
+  border-color: #FFFFFF #FFFFFF #FFFFFF;
+  color: #FF3300;
+  font-weight: bold;
+  letter-spacing: .5px;
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+}
+
 .navbar {
 	margin: 0px;
 	padding: 3px;
@@ -53,6 +69,11 @@ input[type="input"],
   line-height: 0px !important;
 }
 
+.navbar-text.other {
+  line-height: 30px !important;
+
+}
+
 .soundcloud_image {
 	border-width:1px;
 	border-color: #FF33cc;
@@ -68,25 +89,25 @@ input[type="input"],
 	<div class="navbar">
 		<% if user_signed_in? %>
 			<div class="form-group">
-				<%= link_to image_tag "911logo548.gif", size: "175", :class => "navbar-brand" %>
+				<%= link_to(image_tag("911logo548.gif", size: "175", :class => "navbar-brand"), "/") %>
 				<% if current_user.username.nil? %>
 					<p class="navbar-text pull-right"><%= link_to current_user.email, edit_user_registration_path, :class => "navbar-link" %>
 				<% else %>
 					<p class="navbar-text pull-right"><%= link_to current_user.username, edit_user_registration_path, :class => "navbar-link" %>
 				<% end %>
-				<%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-sm my_nav" %></p>	
+				<%= link_to "sign out", destroy_user_session_path, :method => :delete, :class => "btn btn-sm my_nav" %></p>	
 			</div>
 		<% else %>
 			<%= simple_form_for(resource, :class => "form-signin", :as => resource_name, :url => session_path(resource_name)) do |f| %>
 			<div class="form-group">
-				<%= link_to image_tag "911logo548.gif", size: "175", :class => "navbar-brand" %>
-				<%= f.email_field :email, :class => "form-control", :placeholder => "Email", :autofocus => true %>
-				<%= f.password_field :password, :class => "form-control", :placeholder => "Password" %>
+				<%= link_to(image_tag("911logo548.gif", size: "175", :class => "navbar-brand"), "/") %>
+				<%= f.email_field :email, :class => "form-control", :placeholder => "email", :autofocus => true %>
+				<%= f.password_field :password, :class => "form-control", :placeholder => "password" %>
 
-				<%= f.submit "Sign in", :class => "btn btn-sm my_nav" %>
+				<%= f.submit "sign in", :class => "btn btn-sm my_nav" %>
+				<%= link_to "sign up", new_user_registration_path, :class => "btn btn-sm sign_up" %>
 				<%= link_to image_tag("btn-connect-sc-l.png"), user_omniauth_authorize_path(:soundcloud), :class => "soundcloud_image" %>
-				<p class="navbar-text pull-right"><%= link_to "Looking for the old site?", "/old", :class => "navbar-link" %>
-				<%= link_to "Sign up", new_user_registration_path, :class => "btn btn-sm my_nav" %></p>
+				<p class="navbar-text other pull-right"><%= link_to "looking for the old site?", "/old", :class => "navbar-link" %></p>
 			</div>
 			<% end %>
 		<% end %>
