@@ -8,6 +8,8 @@ gem 'protected_attributes'
 gem 'soundcloud'
 gem 'omniauth-soundcloud', '~> 1.0.0'
 
+gem 'google-analytics-rails'
+
 # group :assets do
   # For styles
   gem 'therubyracer'
