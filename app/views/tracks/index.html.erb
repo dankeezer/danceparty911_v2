@@ -61,12 +61,23 @@ form {
 
   <center><h5> 
     <%= simple_form_for Track.new do |f| %>
-       <%= f.text_field :original_url, :value => 'https://soundcloud.com/youngdaniel/sets/dp911' %>
+      <% if User.find(current_or_guest_user).tracks.empty? %>
+        <%= f.text_field :original_url, :value => 'https://soundcloud.com/youngdaniel/sets/dp911' %>
+      <% else %>
+        <%= f.text_field :original_url, :placeholder => 'enter a soundcloud track or playlist url' %>
+      <% end %>
     <% end %>
   </center></h5>
 
   <% flash.each do |name, msg| %>
-    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+    <% if name == :notice %>
+      <% color = "success" %>
+    <% elsif name == :info %>
+      <% color = "info" %>
+    <% else %>
+      <% color = "error" %>
+    <% end %>
+    <div class="alert alert-<%= color %>">
       <a class="close" data-dismiss="alert">×</a>
       <%= msg %>
     </div>
@@ -76,8 +87,6 @@ form {
  	<% @tracks.each do |track| %>
     	<li><a class="sm2_link" type="audio/mp3" href="<%= track.stream_url %>">
     			<b><%= track.artist_name %></b> - <%= track.title %></a>
-
-
 		</li>
 	<% end %>
 </ul>
