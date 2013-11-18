@@ -10,7 +10,9 @@
  *
  *= require page-player-djcopy.css
  *= require_self
+ *= require bootstrap
  *= require bootstrap_and_overrides
+ *= require font-awesome
  */
 
 .pink_h2
