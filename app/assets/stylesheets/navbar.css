@@ -4,8 +4,8 @@ input[type="password"],
 input[type="input"],
 .uneditable-input {
   margin-top: 3px;
-	margin-bottom: 0px !important;
-	width: 175px;
+  margin-bottom: 0px !important;
+  width: 175px;
   vertical-align: middle;
 
   /* not sure why but 30px works in production but not in dev */
@@ -47,20 +47,20 @@ input[type="input"],
 }
 
 .navbar {
-	margin: 0px;
-	padding: 0px;
-	height: 43px;
-	background-color: #FF33cc;
+  margin: 0px;
+  padding: 0px;
+  height: 43px;
+  background-color: #FF33cc;
   border-bottom: 3px solid #f9f9f9;
   z-index: 10;
-	/*border-bottom:solid;
-	border-width:2px;
-	border-color: #555555;*/
+  /*border-bottom:solid;
+  border-width:2px;
+  border-color: #555555;*/
 }
 
 .navbar-brand {
   margin-top: 3px;
-	padding: 5px;
+  padding: 5px;
 }
 
 .navbar-link {
@@ -80,19 +80,25 @@ input[type="input"],
 }
 
 .soundcloud_image {
-	border-width:1px;
-	border-color: #FF33cc;
+  border-width:1px;
+  border-color: #FF33cc;
   vertical-align: middle;
 }
 
 .menu_trigger {
   position: fixed;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 6px;
+  padding-right: 6px;
+  line-height: 10px;
   background-color: #f9f9f9;
   color: #FF33cc;
-  width: 60px;
-  border: 1px solid #f9f9f9;
-  right: 0px;
-  top: 4px;
+  border: 5px solid #f9f9f9;
+  border-top: 10px solid #f9f9f9;
+  border-radius: 5px;
+  right: -1px;
+  top: 0px;
   z-index: 8 !important;
 }
 
@@ -124,4 +130,8 @@ input[type="input"],
    position: fixed;
    _position: absolute;
 
+}
+
+h5 {
+  margin: 0px;
 }
