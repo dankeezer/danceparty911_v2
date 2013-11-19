@@ -8,6 +8,45 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 
+<script>
+var myMessages = ['navbar']; // define the messages types    
+function hideAllMessages()
+{
+     var messagesHeights = new Array(); // this array will store height for each
+   
+     for (i=0; i<myMessages.length; i++)
+     {
+          messagesHeights[i] = $('.' + myMessages[i]).outerHeight();
+          $('.' + myMessages[i]).css('top', -messagesHeights[i]); //move element outside viewport   
+     }
+}
+
+function showMessage(type)
+{
+  $('.trigger').click(function(){
+      hideAllMessages();          
+      $('.'+type).animate({top:"0"}, 500);
+  });
+}
+
+$(document).ready(function(){
+     
+     // Initially, hide them all
+     hideAllMessages();
+     
+     // Show message
+     for(var i=0;i<myMessages.length;i++)
+     {
+      showMessage(myMessages[i]);
+     }
+     
+     // When message is clicked, hide it
+     $('.message').click(function(){        
+          $(this).animate({top: -$(this).outerHeight()}, 500);
+      });    
+     
+});       
+</script>
 
   
 <style type="text/css">
@@ -16,15 +55,20 @@ input[type="email"],
 input[type="password"],
 input[type="input"],
 .uneditable-input {
+  margin-top: 3px;
 	margin-bottom: 0px !important;
 	width: 175px;
+  vertical-align: middle;
 
   /* not sure why but 30px works in production but not in dev */
-  height: 30px !important;
+  height: 20px !important;
 }
-
-.btn.my_nav {
+.form-group {
+  height: 0px !important;
   margin: 0px !important;
+}
+.btn.my_nav {
+  margin-top: 3px !important;
   font-family: Helvetica, sans-serif;
   background-color: #FFFFFF;
   *background-color: #FFFFFF;
@@ -39,7 +83,7 @@ input[type="input"],
 }
 
 .btn.sign_up {
-  margin: 0px !important;
+  margin-top: 3px !important;
   font-family: Helvetica, sans-serif;
   background-color: #FFFFFF;
   *background-color: #FFFFFF;
@@ -56,16 +100,18 @@ input[type="input"],
 
 .navbar {
 	margin: 0px;
-	padding: 3px;
-	height: 31px;
+	padding: 0px;
+	height: 43px;
 	background-color: #FF33cc;
+  z-index: 10;
 	/*border-bottom:solid;
 	border-width:2px;
 	border-color: #555555;*/
 }
 
 .navbar-brand {
-	padding: 3px;
+  margin-top: 3px;
+	padding: 5px;
 }
 
 .navbar-link {
@@ -74,41 +120,49 @@ input[type="input"],
 }
 
 .navbar-text {
-  line-height: 0px !important;
+  line-height: 40px !important;
 }
 
 .navbar-text.other {
-  line-height: 30px !important;
-
+  margin-right: 5px;
+  vertical-align: middle;
 }
 
 .soundcloud_image {
 	border-width:1px;
 	border-color: #FF33cc;
-	padding-bottom: 1px;
+  vertical-align: middle;
 }
 
 .menu_trigger {
   color: #000000;
   position: fixed;
-  color: black;
-  width: 20px;
+  color: #FF33cc;
+  width: 100px;
   height: 20px;
-  right: 10px;
-  bottom: 20px;
+  right: 7px;
+  top: 4px;
   z-index: 8 !important;
 }
 
 #menu_trigger a:link,
   a:visited,
   a:hover {
-  color:#000000;
+  color:#FF33cc;
   text-decoration: none;
 }
 
 #menu_trigger a:active {
-  color:#000000;
+  color:#FF33cc;
   text-decoration: none;
+}
+
+.message
+{
+   width: 100%;
+   position: fixed;
+   _position: absolute;
+
 }
 
 </style>
@@ -122,7 +176,7 @@ input[type="input"],
       <tr>
         <td border=0 valign="middle">
         <center>
-        <h4 id="menu_trigger"><a href="#" class="trigger" style="text-decoration: none;"><i class="fa fa-chevron-down"></i></a></h4>
+        <h5 id="menu_trigger"><a href="#" class="trigger" style="text-decoration: none;">login <i class="fa fa-chevron-down"></i></a></h5>
         </center>
         </td>
       </tr>
@@ -130,7 +184,7 @@ input[type="input"],
 </div>
 
 
-	<div class="navbar">
+	<div class="navbar message">
 		<% if user_signed_in? %>
 			<div class="form-group">
 				<%= link_to(image_tag("911logo548.gif", size: "175", :class => "navbar-brand"), "/") %>

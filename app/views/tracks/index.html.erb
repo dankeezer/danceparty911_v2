@@ -45,7 +45,9 @@ body{
 input[type="text"],
 .uneditable-input {
   margin-bottom: 0px !important;
-  height: 25px;
+  margin-left: 10px;
+  height: 20px;
+  width: 75% !important;
 }
 
 form {
@@ -59,7 +61,7 @@ form {
 
 </style>
 
-  <center><h5> 
+  <h5> 
     <%= simple_form_for Track.new do |f| %>
       <% if User.find(current_or_guest_user).tracks.empty? %>
         <%= f.text_field :original_url, :value => 'https://soundcloud.com/youngdaniel/sets/dp911' %>
@@ -67,7 +69,7 @@ form {
         <%= f.text_field :original_url, :placeholder => 'enter a soundcloud track or playlist url' %>
       <% end %>
     <% end %>
-  </center></h5>
+  </h5>
 
   <% flash.each do |name, msg| %>
     <% if name == :notice %>
