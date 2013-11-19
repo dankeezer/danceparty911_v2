@@ -1,5 +1,9 @@
+<!DOCTYPE html>
+
 <%= javascript_include_tag "soundmanager2-dj" %>
 <%= javascript_include_tag "page-playerDJ" %>
+<%= javascript_include_tag "http://code.jquery.com/jquery-latest.min.js" %>
+<%= javascript_include_tag "bootstrap" %>
 
 <script>
 
@@ -44,10 +48,11 @@ body{
 
 input[type="text"],
 .uneditable-input {
-  margin-bottom: 0px !important;
   margin-left: 10px;
+  margin-bottom: 0px !important;
   height: 20px;
   width: 75% !important;
+    vertical-align: middle;
 }
 
 form {
@@ -59,7 +64,25 @@ form {
   margin-bottom: 2px;
 }
 
+.playlist_cog {
+  font-size: 20pt;
+  vertical-align: middle;
+  color: #999;
+}
+
+.caret {
+  vertical-align: bottom;
+  color: #999;
+}
+
+.dropdown {
+  display: inline;
+  width: 5px;
+}
+
 </style>
+
+
 
   <h5> 
     <%= simple_form_for Track.new do |f| %>
@@ -68,7 +91,17 @@ form {
       <% else %>
         <%= f.text_field :original_url, :placeholder => 'enter a soundcloud track or playlist url' %>
       <% end %>
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="drop3" role="button"><i class="fa fa-cog playlist_cog"></i></a>
+          <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
+            <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-indent"></i> Play Thru</a></li>
+            <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-dropbox"></i> Add Dropbox</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, :method => :get, :confirm => "The other side will reset upon refresh", :role => "menuitem", :tabindex => "-1" %>
+          </ul>
+        </div>
     <% end %>
+
   </h5>
 
   <% flash.each do |name, msg| %>

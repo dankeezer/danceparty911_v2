@@ -75,6 +75,19 @@ class TracksController < ApplicationController
     redirect_to tracks_path
   end
 
+  def remove_all
+    @track = User.find(current_or_guest_user).tracks
+    @count = @track.count
+    if @track.empty?
+      flash[:error] = "Nothing to remove!"
+    else
+      @track.delete_all
+      flash[:error] = "Removed #{@count} tracks!"
+    end
+    redirect_to tracks_path
+  end
+  helper_method :remove_all
+
   private
 
   def track_params
