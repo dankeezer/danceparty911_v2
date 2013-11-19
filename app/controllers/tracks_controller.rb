@@ -86,7 +86,6 @@ class TracksController < ApplicationController
     end
     redirect_to tracks_path
   end
-  helper_method :remove_all
 
   private
 

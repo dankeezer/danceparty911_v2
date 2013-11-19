@@ -97,11 +97,14 @@ form {
             <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-indent"></i> Play Thru</a></li>
             <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-dropbox"></i> Add Dropbox</a></li>
             <li role="presentation" class="divider"></li>
-            <li role="presentation"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, :method => :get, :confirm => "The other side will reset upon refresh", :role => "menuitem", :tabindex => "-1" %>
+            <% if @tracks.empty? %>
+              <li role="presentation" class="disabled"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, :method => :get, :role => "menuitem", :tabindex => "-1" %>
+            <% else %>
+              <li role="presentation"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, :method => :get, :confirm => "The other side will reset upon refresh", :role => "menuitem", :tabindex => "-1" %>
+            <% end %>
           </ul>
         </div>
     <% end %>
-
   </h5>
 
   <% flash.each do |name, msg| %>
