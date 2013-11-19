@@ -1,9 +1,10 @@
+
+
 <!--Force IE6 into quirks mode with this comment tag-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
@@ -19,7 +20,7 @@ height: 100%;
 max-height: 100%; 
 }
 
-#leftside{
+.leftside{
 position: absolute;
 top: 0;
 bottom: 0; 
@@ -31,7 +32,7 @@ background: #fff;
 color: white;
 }
 
-#rightside{
+.rightside{
 position: absolute;
 top: 0; 
 left: 50%; /*Set left value to WidthOfFrameDiv*/
@@ -49,7 +50,7 @@ margin: 0px; /*Margins for inner DIV inside each DIV (to provide padding)*/
 padding: 0 0 0 200px; /*Set value to (0 0 0 WidthOfFrameDiv)*/
 }
 
-* html #rightside{ /*IE6 hack*/
+* html .rightside{ /*IE6 hack*/
 height: 100%; 
 width: 100%; 
 }
@@ -60,7 +61,7 @@ width: 100%;
 
 <body>
 
-<div id="leftside">
+<div class="leftside">
 
 <iframe src="../tracks" frameborder="0" width=100% height=100%></iframe>
 
@@ -68,7 +69,7 @@ width: 100%;
 </div>
 
 
-<div id="rightside">
+<div class="rightside">
 
 <iframe src="../tracks" frameborder="0" width=100% height=100%></iframe>
 
