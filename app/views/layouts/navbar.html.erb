@@ -64,11 +64,8 @@ input[type="input"],
   padding: 0px;
   height: 43px;
   background-color: #FF33cc;
-  border-bottom: 3px solid #f9f9f9;
   z-index: 10;
-  /*border-bottom:solid;
-  border-width:2px;
-  border-color: #555555;*/
+  border-bottom: none;
 }
 
 .navbar-brand {
@@ -78,17 +75,13 @@ input[type="input"],
 
 .navbar-link {
   color: #FFFFFF !important;
-  padding: 3px;
 }
 
 .navbar-text {
-  margin-right: 11px;
   line-height: 40px !important;
 }
 
 .navbar-text.other {
-  margin-right: 8px;
-  padding: 2px !important;
   vertical-align: middle;
 }
 
@@ -99,38 +92,42 @@ input[type="input"],
 }
 
 .menu_trigger {
+  opacity: 0.4;
   position: fixed;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 3px;
+  padding-right: 3px;
   line-height: 10px;
-  background-color: #f9f9f9;
-  color: #FF33cc;
-  border: 5px solid #f9f9f9;
-  border-top: 10px solid #f9f9f9;
+  background-color: #FF33cc;
+  color: #FFFFFF;
+  border: 5px solid #FF33cc;
   border-radius: 5px;
-  right: -1px;
-  top: 0px;
+  right: -3px;
+  top: 11px;
   z-index: 8 !important;
+}
+.menu_trigger:hover {
+  opacity: 1;
 }
 
 .menu_trigger a:link,
   a:visited,
   a:hover {
-  color:#FF33cc;
+  color:#FFFFFF;
   text-decoration: none;
 }
 
 .menu_trigger a:active {
-  color:#FF33cc;
+  color:#FFFFFF;
   text-decoration: none;
 }
 
 
 .hide_trigger {
-  padding-left: 10px;
+  text-align: right;
   position: relative;
+  padding-left: 1px !important;
   color: #FFFFFF;
   display: inline;
   z-index: 11 !important;
@@ -147,6 +144,12 @@ input[type="input"],
 
 h5 {
   margin: 0px;
+  font-weight: normal !important;
+  letter-spacing: 1pt;
+}
+
+.pull-right{
+	margin-right: 5px !important;
 }
 
 </style>
@@ -156,7 +159,11 @@ h5 {
 <body>
 
 <div class="menu_trigger">
-        <h5><a href="#" class="trigger">login <i class="fa fa-chevron-down"></i></a></h5>
+	<% if user_signed_in? %>
+		<h5 id="menu_trigger"><a href="#" class="trigger"><i class="fa fa-chevron-down"></i></a></h5>
+	<% else %>
+		<h5 id="menu_trigger"><a href="#" class="trigger">login <i class="fa fa-chevron-down"></i></a></h5>
+	<% end %>
 </div>
 
 
