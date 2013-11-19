@@ -21,7 +21,7 @@ class TracksController < ApplicationController
   end
 
   def create
-    if params[:track][:original_url] == "up down left right a b start"
+    if params[:track][:original_url] == "up down left right a b start" || "keezer"
       @secret_code_data = Track.set_secret_playlist
       @secret_code_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
