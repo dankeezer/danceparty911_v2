@@ -6,7 +6,7 @@ class TracksController < ApplicationController
   layout "navbar", except: [:index]
 
   def index
-    if User.find(current_or_guest_user).tracks.empty?
+    if User.find(current_or_guest_user).tracks.empty? && current_user.nil?
       flash.now[:info] = "Enter a soundcloud URL. Here's one to get you started!"
     end
     @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
