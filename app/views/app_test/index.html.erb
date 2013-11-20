@@ -83,34 +83,6 @@ width: 100%;
 			function hideURLbar(){window.scrollTo(0,1);}
 		</script>
 
-		<style type="text/css">
-			/* gallery styles */
-			.gallery {width: 100%;overflow: hidden;}
-			.gallery div.holder {width: 100%;position: relative;overflow: hidden;}
-			.gallery div.list {margin: 0;padding: 0;list-style: none;width: 99999px;overflow: hidden;}
-			.gallery div.item {float: left;}
-
-			/* page styles */
-			html, body {width: 100%;height: 100%;}
-			body {margin: 0;padding: 0;font: 16px/22px Helvetica, Arial, sans-serif;color: #333;}
-			a {color: #333;text-decoration: none;}
-			#container {padding-top:0px;height: 100%;}
-			#container div {display: block;height: 100%;}
-			figure {height: 100%;display: block;margin: 0;padding:0 0px;text-align: center;vertical-align: middle;}
-			#container div.item {vertical-align: middle;}
-			img {max-height: 100%;max-width: 100%;vertical-align: middle;border: 0px solid #FFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
-			#container div.gallery {height: 100%;padding-top: 0px;padding-bottom: 0px;position: relative;}
-			a.prev, a.next {position: absolute;bottom: 4px;width: 48px;height:48px;background: url(buttons.png) no-repeat;text-indent:-9999px;overflow: hidden;}
-			a.prev {left: 5px;}
-			a.next {right: 5px;background-position: -48px 0;}
-			.item {min-width:300px;}
-			@media all and (min-width: 768px) {
-				#container {padding-top: 0;}
-			}
-			@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-				a.prev, a.next {background-image:url(buttons2x.png);background-size:96px 48px;}
-			}
-		</style>
 <script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-8133783-1']);
@@ -122,6 +94,34 @@ _gaq.push(['_trackPageview']);
   })();
 </script>
 
+<style type="text/css">
+			/* gallery styles */
+			.gallery {width: 100%;overflow: hidden;}
+			.gallery div.holder {width: 100%;position: relative;overflow: hidden;}
+			.gallery div.list {margin: 0;padding: 0;list-style: none;width: 99999px;overflow: hidden;}
+			.gallery div.item {float: left;}
+
+			/* page styles */
+			html, body {width: 100%;height: 100%;}
+			body {margin: 0;padding: 0;font: 16px/22px Helvetica, Arial, sans-serif;color: #333;}
+			a {color: #333;text-decoration: none;}
+			#container {padding-top:26px;height: 100%;}
+			#container div {display: block;height: 100%;}
+			figure {height: 100%;display: block;margin: 0;padding:0 10px;text-align: center;vertical-align: middle;}
+			#container div.item {vertical-align: middle;}
+			img {max-height: 100%;max-width: 100%;vertical-align: middle;border: 1px solid #FFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
+			#container div.gallery {height: 90%;padding-top:10px;padding-bottom: 60px;position: relative;}
+			a.prev, a.next {position: absolute;bottom: 4px;width: 48px;height:48px;text-indent:-9999px;overflow: hidden; z-index: 100; background-color: #FF33CC;}
+			a.prev {left: 5px;}
+			a.next {right: 5px;background-position: -48px 0;}
+			.item {min-width:300px;}
+			@media all and (min-width: 768px) {
+				#container {padding-top: 0;}
+			}
+			@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+				a.prev, a.next {background-size:96px 48px;}
+			}
+		</style>
 
 
 </head>
@@ -132,12 +132,12 @@ _gaq.push(['_trackPageview']);
 				<div class="gallery" id="gallery">
 					<div class="holder">
 						<div class="list">
-								<div class="item"><figure><iframe src="../tracks" frameborder="0" width=100% height=100%></iframe></figure></div>
-								<div class="item"><figure><iframe src="../tracks" frameborder="0" width=100% height=100%></iframe></figure></div>
+								<div class="item"><figure>LEFT<!-- <iframe src="../tracks" frameborder="0" width=100% height=100%></iframe> --></figure></div>
+								<div class="item"><figure>RIGHT<!-- <iframe src="../tracks" frameborder="0" width=100% height=100%></iframe> --></figure></div>
 						</div>
 					</div>
-					<a href="#" class="prev">&laquo;</a>
-					<a href="#" class="next">&raquo;</a>
+					<a href="#" class="prev">PREV</a>
+					<a href="#" class="next">NEXT</a>
 				</div>
 			</div>
 		</div>
