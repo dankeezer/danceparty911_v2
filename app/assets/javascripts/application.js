@@ -17,4 +17,3 @@
 //= require soundmanager2-dj
 //= require twitter/bootstrap
 //= require bootstrap
-//= require jquery.touchSlider
