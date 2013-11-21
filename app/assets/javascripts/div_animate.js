@@ -13,8 +13,9 @@ function hideAllMessages()
 function showMessage(type)
 {
   $('.trigger').click(function(){
-      hideAllMessages();          
-      $('.'+type).animate({top:"0"}, 500);
+      hideAllMessages();
+      $('.message').css("z-index", 10);
+      $('.'+type).stop().animate({top:"0"}, 500);
   });
 }
 
@@ -31,7 +32,9 @@ $(document).ready(function(){
      
      // When message is clicked, hide it
      $('.hide_trigger').click(function(){        
-          $('.message').animate({top: -$('.message').outerHeight()}, 500);
+          $('.message').stop().animate({top: -$('.message').outerHeight()}, 500, function() { 
+            $('.message').css("z-index", -1);
+          });
       });    
      
 });       
