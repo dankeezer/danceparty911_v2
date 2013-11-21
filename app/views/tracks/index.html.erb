@@ -100,6 +100,7 @@ form {
           <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
             <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-indent"></i> Play Thru</a></li>
             <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-dropbox"></i> Add Dropbox</a></li>
+            <li role="presentation"><%= link_to '<i class="fa fa-refresh"></i> Refresh'.html_safe, tracks_path, :method => :get, :role => "menuitem", :tabindex => "-1" %>
             <li role="presentation" class="divider"></li>
             <% if @tracks.empty? %>
               <li role="presentation" class="disabled"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, :method => :get, :role => "menuitem", :tabindex => "-1" %>
