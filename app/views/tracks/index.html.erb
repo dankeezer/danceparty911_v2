@@ -90,7 +90,7 @@ form {
 
   <h5> 
     <%= simple_form_for Track.new do |f| %>
-      <% if User.find(current_or_guest_user).tracks.empty? && current_user.nil? %>
+      <% if User.find(current_or_guest_user).tracks.empty? %>
         <%= f.text_field :original_url, :value => 'https://soundcloud.com/youngdaniel/sets/dp911' %>
       <% else %>
         <%= f.text_field :original_url, :placeholder => 'enter a soundcloud track or playlist url' %>
