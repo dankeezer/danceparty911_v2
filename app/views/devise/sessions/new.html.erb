@@ -1,4 +1,19 @@
+<!-- 1E90FF -->
+
 <style type="text/css">
+
+body a:link,
+  a:visited {
+  color: #FFFFFF;
+  background-color:#FF33CC;
+  padding: 3px;
+}
+
+body  a:hover {
+  color: #FFFFFF;
+  background-color:#1E90FF;
+  padding: 3px;
+}
 
 .margin{
   margin-bottom: 10px;
@@ -29,4 +44,5 @@
     <% end -%>
     <%= f.submit "Sign in", :class => "btn btn-sm" %>
   <% end %>
+  <%= render "devise/shared/links" %>
 </div>
