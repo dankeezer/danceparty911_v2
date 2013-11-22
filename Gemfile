@@ -5,6 +5,8 @@ gem 'devise'
 gem 'simple_form'
 gem 'protected_attributes'
 
+gem 'dropbox-api'
+
 gem 'soundcloud'
 gem 'omniauth-soundcloud', '~> 1.0.0'
 
