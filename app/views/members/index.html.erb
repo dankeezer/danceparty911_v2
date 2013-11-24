@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<%= javascript_include_tag "soundmanager2-dj" %>
+<%= javascript_include_tag "page-playerDJ" %>
+<%= javascript_include_tag "http://code.jquery.com/jquery-latest.min.js" %>
+<%= javascript_include_tag "http://code.jquery.com/ui/1.10.3/jquery-ui.js" %>
+<%= javascript_include_tag "bootstrap" %>
+
+<script>
+
+/* --------
+
+  Config override: This demo uses shiny flash 9 stuff, overwriting Flash 8-based defaults
+  Alternate PP_CONFIG object must be defined before soundManager.onready()/onload() fire.
+  Alternately, edit the config in page-player.js to simply use the values below by default
+
+-------- */
+
+// demo only, but you can use these settings too..
+soundManager.setup({
+  flashVersion: 9,
+  preferFlash: false, // for visualization effects
+  useHighPerformance: true, // keep flash on screen, boost performance
+  wmode: 'transparent', // transparent SWF, if possible
+  url: 'swf/'
+});
+
+// custom page player configuration
+
+var PP_CONFIG = {
+  autoStart: false,      // begin playing first sound when page loads
+  playNext: false,        // stop after one sound, or play through list until end
+  useThrottling: false,  // try to rate-limit potentially-expensive calls (eg. dragging position around)</span>
+  usePeakData: true,     // [Flash 9 only] whether or not to show peak data (left/right channel values)</b> - nor noticable on CPU
+  useWaveformData: false,// [Flash 9 only] show raw waveform data</b> - WARNING: LIKELY VERY CPU-HEAVY
+  useEQData: false,      // [Flash 9 only] show EQ (frequency spectrum) data
+  useFavIcon: false     // try to apply peakData to address bar (Firefox + Opera)</b> - performance note: appears to make Firefox 3 do some temporary, heavy disk access/swapping/garbage collection at first(?)</b> - may be too heavy on CPU
+}
+
+</script>
+
+<style type="text/css">
+
+body{
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0 !important;
+}
+
+input[type="text"],
+.uneditable-input {
+  margin-left: 10px;
+  margin-bottom: 0px !important;
+  height: 20px;
+  width: 75% !important;
+    vertical-align: middle;
+}
+
+form {
+  margin: 0px;
+}
+
+.alert {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.playlist_cog {
+  font-size: 20pt;
+  vertical-align: middle;
+  color: #999;
+}
+
+.playlist_cog:hover {
+  color: #FF33CC;
+}
+
+.caret {
+  vertical-align: bottom;
+  color: #999;
+}
+
+.dropdown {
+  display: inline;
+  width: 5px;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #ff60d7;
+  background-image: -moz-linear-gradient(top, #ff60d7, #ff33cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ff60d7), to(#ff33cc));
+  background-image: -webkit-linear-gradient(top, #ff60d7, #ff33cc);
+  background-image: -o-linear-gradient(top, #ff60d7, #ff33cc);
+  background-image: linear-gradient(to bottom, #ff60d7, #ff33cc);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #ff60d7;
+  background-image: -moz-linear-gradient(top, #ff60d7, #ff33cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ff60d7), to(#ff33cc));
+  background-image: -webkit-linear-gradient(top, #ff60d7, #ff33cc);
+  background-image: -o-linear-gradient(top, #ff60d7, #ff33cc);
+  background-image: linear-gradient(to bottom, #ff60d7, #ff33cc);
+  background-repeat: repeat-x;
+  outline: 0;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+}
+
+</style>
+
+<h5>
+<%= simple_form_for(@member, remote: true) do |f| %>
+  <%= f.text_field :name %>
+      <div class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="drop3" role="button"><i class="fa fa-cog playlist_cog"></i></a>
+          <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
+            <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-indent"></i> Play Thru</a></li>
+            <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-dropbox"></i> Add Dropbox</a></li>
+            <li role="presentation"><%= link_to '<i class="fa fa-refresh"></i> Refresh'.html_safe, tracks_path, :method => :get, :role => "menuitem", :tabindex => "-1" %>
+            <li role="presentation" class="divider"></li>
+            <% if @members.empty? %>
+              <li role="presentation" class="disabled"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, :method => :get, :role => "menuitem", :tabindex => "-1" %>
+            <% else %>
+              <li role="presentation"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, :method => :get, :confirm => "The other side will reset upon refresh", :role => "menuitem", :tabindex => "-1" %>
+            <% end %>
+          </ul>
+        </div>
+<% end %>
+</h5>
+ 
+<% flash.each do |name, msg| %>
+  <% if name == :notice %>
+    <% color = "success" %>
+  <% elsif name == :info %>
+    <% color = "info" %>
+  <% else %>
+    <% color = "error" %>
+  <% end %>
+  <div class="alert alert-<%= color %>">
+    <a class="close" data-dismiss="alert">×</a>
+    <%= msg %>
+  </div>
+<% end %>
+
+<ul class="playlist" id="members">
+	<%= render @members %>
+</ul>
+ 

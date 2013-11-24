@@ -1,0 +1,3 @@
+<% @tracks.each do |t| %>
+$("<%= escape_javascript(render t) %>").prependTo("#tracks");
+<% end %>
