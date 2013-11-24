@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-
+  respond_to :html, :js, :json
   protect_from_forgery :except => :receive_guest
   helper_method :current_or_guest_user
 
@@ -10,6 +10,8 @@ class TracksController < ApplicationController
       flash.now[:info] = "Enter a soundcloud URL. Here's one to get you started!"
     end
     @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
+    @track = Track.new
+    respond_with(@tracks)
   end
 
   def new
@@ -21,20 +23,20 @@ class TracksController < ApplicationController
   end
 
   def create
+    @tracks = []
     if params[:track][:original_url] == "up down left right a b start"
       @secret_code_data = Track.set_secret_playlist
       @secret_code_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
         track.user_id = current_or_guest_user.id        
-        unless track.save
-          errors << "Unable to save #{data[:title]}"
-        end
+        track.save
+        @tracks << track
       end
-      flash[:notice] = "You found a secret."
-      redirect_to tracks_path
+      respond_with(@tracks.reverse!)
 
     elsif params[:track][:original_url] =~ /\Ahttps?:\/\/soundcloud/
       errors = []
+      @tracks = []
       response = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:track][:original_url])
       
       @soundcloud_data = Track.get_tracks(response)
@@ -43,11 +45,12 @@ class TracksController < ApplicationController
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name], original_url: params[:track][:original_url])
         track.user_id = current_or_guest_user.id
         track.save
+        @tracks << track
       end
 
       @soundcloud_data[:alerts].first[:success].nil? ? nil : flash[:notice] = @soundcloud_data[:alerts].first[:success]
       @soundcloud_data[:alerts].last[:error].nil? ? nil : flash[:error] = @soundcloud_data[:alerts].last[:error]
-      redirect_to tracks_path
+      respond_with(@tracks.reverse!)
       
     else
       flash[:error] = "Not a valid SoundCloud URL"

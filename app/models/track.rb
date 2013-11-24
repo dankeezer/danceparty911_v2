@@ -2,11 +2,6 @@ class Track < ActiveRecord::Base
 	attr_accessible :title, :stream_url, :artist_name, :original_url
 	belongs_to :user
 
-  #validates_format_of :original_url, :with => /\Ahttps?:\/\/soundcloud/, :unless => :skip_validation, :message => "Not a SoundCloud URL"
-  #validates_presence_of :stream_url, :message => " SoundCloud user has disabled streaming for this track."
-
-  #validates_format_of :original_url, :with => URI.regexp(['http']), :unless => :skip_validation, :message => " not a valid URL"
-
   #use new_record? to determine if track has already been saved to database
 
 	def self.search_for(query)
