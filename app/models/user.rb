@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
+  attr_accessible :username, :email, :password, :password_confirmation
   has_many :tracks
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
-
-	attr_accessible :username, :email, :password, :password_confirmation
 
   #twitter version
   # def self.from_omniauth(auth)

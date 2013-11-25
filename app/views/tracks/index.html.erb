@@ -6,6 +6,18 @@
 <%= javascript_include_tag "http://code.jquery.com/ui/1.10.3/jquery-ui.js" %>
 <%= javascript_include_tag "bootstrap" %>
 
+<script = "text/javascript">
+$('#loadingDiv')
+    .hide()  // hide it initially
+    .ajaxStart(function() {
+        $(this).show();
+    })
+    .ajaxStop(function() {
+        $(this).hide();
+    })
+;
+</script>
+
 <script>
 
 /* --------
@@ -117,14 +129,31 @@ form {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
 }
 
+#loadingDiv {
+  position: relative !important;
+  display: none;
+  width: 5px;
+
+}
+
+.fa-li.fa.fa-spinner.fa-spin {
+  top: 0px;
+  left: 0px;
+  font-size: 22px;
+  color: #999;
+  margin-left: -7px;
+}
+
 </style>
 
 <script>
   $(function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
+    $( ".sortable" ).sortable();
+    $( ".sortable" ).disableSelection();
   });
 </script>
+
+
   <h5> 
     <%= simple_form_for(@track, remote: true) do |f| %>
       <% if User.find(current_or_guest_user).tracks.empty? %>
@@ -139,13 +168,13 @@ form {
             <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-dropbox"></i> Add Dropbox</a></li>
             <li role="presentation"><%= link_to '<i class="fa fa-refresh"></i> Refresh'.html_safe, tracks_path, :method => :get, :role => "menuitem", :tabindex => "-1" %>
             <li role="presentation" class="divider"></li>
-            <% if @tracks.empty? %>
-              <li role="presentation" class="disabled"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, :method => :get, :role => "menuitem", :tabindex => "-1" %>
-            <% else %>
-              <li role="presentation"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, :method => :get, :confirm => "The other side will reset upon refresh", :role => "menuitem", :tabindex => "-1" %>
-            <% end %>
+            <li role="presentation"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, :method => :get, :confirm => "The other side will reset upon refresh", :role => "menuitem", :tabindex => "-1" %>
           </ul>
         </div>
+        <div id="loadingDiv">
+          <i class="fa-li fa fa-spinner fa-spin"></i>
+        </div>
+ 
     <% end %>
   </h5>
 
@@ -163,6 +192,6 @@ form {
     </div>
   <% end %>
 
-<ul class="playlist" id="tracks">
+<ul class="playlist sortable" id="tracks">
   <%= render @tracks %>
 </ul>

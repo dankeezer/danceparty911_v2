@@ -24,13 +24,15 @@ class TracksController < ApplicationController
 
   def create
     @tracks = []
-    if params[:track][:original_url] == "up down left right a b start"
+    if params[:track][:original_url] == "keezer"
       @secret_code_data = Track.set_secret_playlist
       @secret_code_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
         track.user_id = current_or_guest_user.id        
-        track.save
         @tracks << track
+        if Track.last.new_record?
+          track.save
+        end
       end
       respond_with(@tracks.reverse!)
 
@@ -50,7 +52,7 @@ class TracksController < ApplicationController
 
       @soundcloud_data[:alerts].first[:success].nil? ? nil : flash[:notice] = @soundcloud_data[:alerts].first[:success]
       @soundcloud_data[:alerts].last[:error].nil? ? nil : flash[:error] = @soundcloud_data[:alerts].last[:error]
-      respond_with(@tracks.reverse!)
+      respond_with(@tracks)
       
     else
       flash[:error] = "Not a valid SoundCloud URL"
@@ -89,8 +91,10 @@ class TracksController < ApplicationController
     end
     redirect_to tracks_path
   end
+  
 
   private
+
 
   def track_params
     params.require('track').permit(:artist_name, :title, :stream_url, :original_url)

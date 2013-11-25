@@ -1,6 +1,6 @@
 class Track < ActiveRecord::Base
 	attr_accessible :title, :stream_url, :artist_name, :original_url
-	belongs_to :user
+	has_and_belongs_to_many :user
 
   #use new_record? to determine if track has already been saved to database
 
