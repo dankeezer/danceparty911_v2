@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131123214203) do
-
-  create_table "members", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "original_url"
-  end
+ActiveRecord::Schema.define(version: 20131113231817) do
 
   create_table "tracks", force: true do |t|
     t.string   "artist_name"

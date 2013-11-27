@@ -7,15 +7,21 @@
 <%= javascript_include_tag "bootstrap" %>
 
 <script = "text/javascript">
-$('#loadingDiv')
-    .hide()  // hide it initially
-    .ajaxStart(function() {
-        $(this).show();
-    })
-    .ajaxStop(function() {
-        $(this).hide();
-    })
-;
+$(function(){
+
+    // hide it first
+    $("#spinner").hide();
+
+    // when an ajax request starts, show spinner
+    $.ajaxStart(function(){
+        $("#spinner").show();
+    });
+
+    // when an ajax request complets, hide spinner    
+    $.ajaxStop(function(){
+        $("#spinner").hide();
+    });
+});
 </script>
 
 <script>
@@ -129,10 +135,10 @@ form {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
 }
 
-#loadingDiv {
+#spinner {
   position: relative !important;
-  display: none;
   width: 5px;
+  display: inline;
 
 }
 
@@ -171,26 +177,15 @@ form {
             <li role="presentation"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, :method => :get, :confirm => "The other side will reset upon refresh", :role => "menuitem", :tabindex => "-1" %>
           </ul>
         </div>
-        <div id="loadingDiv">
+        <div id="spinner">
           <i class="fa-li fa fa-spinner fa-spin"></i>
         </div>
  
     <% end %>
   </h5>
 
-  <% flash.each do |name, msg| %>
-    <% if name == :notice %>
-      <% color = "success" %>
-    <% elsif name == :info %>
-      <% color = "info" %>
-    <% else %>
-      <% color = "error" %>
-    <% end %>
-    <div class="alert alert-<%= color %>">
-      <a class="close" data-dismiss="alert">×</a>
-      <%= msg %>
-    </div>
-  <% end %>
+  <%= render "layouts/flash_notices" %>
+
 
 <ul class="playlist sortable" id="tracks">
   <%= render @tracks %>

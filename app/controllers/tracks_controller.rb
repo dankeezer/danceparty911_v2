@@ -28,12 +28,11 @@ class TracksController < ApplicationController
       @secret_code_data = Track.set_secret_playlist
       @secret_code_data.each do |data|
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
-        track.user_id = current_or_guest_user.id        
+        track.user_id = current_or_guest_user.id
         @tracks << track
-        if Track.last.new_record?
-          track.save
-        end
+        track.save
       end
+      flash[:success] = "You found a secret"
       respond_with(@tracks.reverse!)
 
     elsif params[:track][:original_url] =~ /\Ahttps?:\/\/soundcloud/
@@ -50,9 +49,9 @@ class TracksController < ApplicationController
         @tracks << track
       end
 
-      @soundcloud_data[:alerts].first[:success].nil? ? nil : flash[:notice] = @soundcloud_data[:alerts].first[:success]
+      @soundcloud_data[:alerts].first[:success].nil? ? nil : flash[:success] = @soundcloud_data[:alerts].first[:success]
       @soundcloud_data[:alerts].last[:error].nil? ? nil : flash[:error] = @soundcloud_data[:alerts].last[:error]
-      respond_with(@tracks)
+      respond_with(@tracks.reverse!)
       
     else
       flash[:error] = "Not a valid SoundCloud URL"
@@ -81,6 +80,7 @@ class TracksController < ApplicationController
   end
 
   def remove_all
+    @tracks = []
     @track = User.find(current_or_guest_user).tracks
     @count = @track.count
     if @track.empty?
