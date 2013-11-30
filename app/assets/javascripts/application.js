@@ -19,22 +19,6 @@
 //= require bootstrap
 
 
-$(function() { 
-
-    // hide it first
-    $("#spinner").hide();
-
-    // when an ajax request starts, show spinner
-    $(document).ajaxStart(function(){
-        $("#spinner").show();
-    });
-
-    // when an ajax request complets, hide spinner    
-    $(document).ajaxStop(function(){
-        $("#spinner").hide();
-    });
-});
-
 
 var fade_flash = function() {
     $("#flash_notice").delay(5000).fadeOut("slow");
