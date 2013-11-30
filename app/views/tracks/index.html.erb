@@ -6,23 +6,6 @@
 <%= javascript_include_tag "http://code.jquery.com/ui/1.10.3/jquery-ui.js" %>
 <%= javascript_include_tag "bootstrap" %>
 
-<script = "text/javascript">
-$(function(){
-
-    // hide it first
-    $("#spinner").hide();
-
-    // when an ajax request starts, show spinner
-    $.ajaxStart(function(){
-        $("#spinner").show();
-    });
-
-    // when an ajax request complets, hide spinner    
-    $.ajaxStop(function(){
-        $("#spinner").hide();
-    });
-});
-</script>
 
 <script>
 

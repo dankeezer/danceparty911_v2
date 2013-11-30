@@ -1,3 +1,4 @@
+$('#dropdown').find('li:first > a').focus();
 $('[data-toggle="dropdown"]').parent().removeClass('open');
 $("#tracks").empty();
 $("<%= escape_javascript(render @tracks) %>")

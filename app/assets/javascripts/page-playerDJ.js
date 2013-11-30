@@ -936,7 +936,7 @@ function PagePlayer() {
     this.cssBase = []; // optional features added to ul.playlist
 
     // apply some items to SM2
-    sm.useFlashBlock = true;
+    sm.useFlashBlock = false;
 
     if (sm.flashVersion >= 9) {
 
