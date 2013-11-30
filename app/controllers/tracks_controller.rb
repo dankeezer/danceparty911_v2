@@ -30,7 +30,6 @@ class TracksController < ApplicationController
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
         track.user_id = current_or_guest_user.id
         @tracks << track
-        track.save
       end
       flash[:success] = "You found a secret"
       respond_with(@tracks.reverse!)
