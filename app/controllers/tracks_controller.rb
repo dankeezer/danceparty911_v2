@@ -55,7 +55,7 @@ class TracksController < ApplicationController
       
     else
       flash[:error] = "Not a valid SoundCloud URL"
-      redirect_to tracks_path
+      respond_with(@tracks)
     end
   end
 
@@ -80,16 +80,15 @@ class TracksController < ApplicationController
   end
 
   def remove_all
-    @tracks = []
-    @track = User.find(current_or_guest_user).tracks
-    @count = @track.count
-    if @track.empty?
+    @tracks = User.find(current_or_guest_user).tracks
+    @count = @tracks.count
+    if @tracks.empty?
       flash[:error] = "Nothing to remove!"
     else
-      @track.delete_all
+      @tracks.delete_all
       flash[:error] = "Removed #{@count} tracks!"
     end
-    redirect_to tracks_path
+    respond_with(@tracks)
   end
   
 

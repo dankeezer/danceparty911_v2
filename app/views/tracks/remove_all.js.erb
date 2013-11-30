@@ -1,0 +1,3 @@
+$("#tracks").empty();
+$("<%= escape_javascript(render @tracks) %>")
+$('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
