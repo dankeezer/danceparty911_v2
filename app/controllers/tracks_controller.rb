@@ -30,6 +30,7 @@ class TracksController < ApplicationController
         track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name])
         track.user_id = current_or_guest_user.id
         @tracks << track
+        track.save
       end
       flash[:success] = "You found a secret"
       respond_with(@tracks.reverse!)
@@ -88,6 +89,12 @@ class TracksController < ApplicationController
       flash[:error] = "Removed #{@count} tracks!"
     end
     respond_with(@tracks)
+  end
+
+  def play_thru
+    @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
+    respond_with(@tracks)
+    flash[:info] = "Playlist will play through automatically."
   end
   
 

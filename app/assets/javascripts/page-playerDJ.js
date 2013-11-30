@@ -44,7 +44,7 @@ function PagePlayer() {
     allowRightClick: false,  // let users right-click MP3 links ("save as...", etc.) or discourage (can't prevent.)
     useThrottling: true,    // try to rate-limit potentially-expensive calls (eg. dragging position around)
     autoStart: true,       // begin playing first sound when page loads
-    playNext: false,         // stop after one sound, or play through list until end
+    playNext: true,         // stop after one sound, or play through list until end
     updatePageTitle: false,  // change the page title while playing sounds
     emptyTime: '-:--',      // null/undefined timer values (before data is available)
     useFavIcon: false       // try to show peakData in address bar (Firefox + Opera) - may be too CPU heavy
