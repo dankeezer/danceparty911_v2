@@ -1,3 +1,4 @@
+$('[data-toggle="dropdown"]').parent().removeClass('open');
 $("#tracks").empty();
 $("<%= escape_javascript(render @tracks) %>").prependTo("#tracks");
 $('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
