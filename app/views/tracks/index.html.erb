@@ -13,12 +13,12 @@ $(function() {
     $("#spinner").hide();
 
     // when an ajax request starts, show spinner
-    $(document).ajaxStart(function(){
+    $('.url_field').ajaxStart(function(){
         $("#spinner").show();
     });
 
     // when an ajax request complets, hide spinner    
-    $(document).ajaxStop(function(){
+    $('.url_field').ajaxStop(function(){
         $("#spinner").hide();
     });
 });
@@ -152,20 +152,12 @@ form {
 
 </style>
 
-<script>
-  $(function() {
-    $( ".sortable" ).sortable();
-    $( ".sortable" ).disableSelection();
-  });
-</script>
-
-
   <h5> 
     <%= simple_form_for(@track, remote: true) do |f| %>
       <% if User.find(current_or_guest_user).tracks.empty? %>
-        <%= f.text_field :original_url, :value => 'https://soundcloud.com/youngdaniel/sets/dp911' %>
+        <%= f.text_field :original_url, :class => 'url_field', :value => 'https://soundcloud.com/youngdaniel/sets/dp911' %>
       <% else %>
-        <%= f.text_field :original_url, :placeholder => 'enter a soundcloud track or playlist url' %>
+        <%= f.text_field :original_url, :class => 'url_field', :placeholder => 'enter a soundcloud track or playlist url' %>
       <% end %>
         <div class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="drop3" role="button"><i class="fa fa-cog playlist_cog"></i></a>

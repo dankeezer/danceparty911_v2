@@ -2,7 +2,7 @@ $('#dropdown').find('li:first > a').focus();
 $('[data-toggle="dropdown"]').parent().removeClass('open');
 $('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
 
-function PagePlayer() {
+var PP_CONFIG = {
 	this.config = {
 	  autoStart: true,      // begin playing first sound when page loads
 	  playNext: true 		 // stop after one sound, or play through list until end 
