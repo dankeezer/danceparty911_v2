@@ -192,7 +192,7 @@ h5 {
 			<%= simple_form_for(resource, :class => "form-signin", :as => resource_name, :url => session_path(resource_name)) do |f| %>
 			<div class="form-group">
 				<%= link_to(image_tag("911logo548.gif", size: "175", :class => "navbar-brand"), "/") %>
-				<%= f.email_field :email, :class => "form-control", :placeholder => "email", :autofocus => true %>
+				<%= f.email_field :email, :class => "form-control", :placeholder => "email" %>
 				<%= f.password_field :password, :class => "form-control", :placeholder => "password" %>
 
 				<%= f.submit "sign in", :class => "btn btn-sm my_nav" %>
