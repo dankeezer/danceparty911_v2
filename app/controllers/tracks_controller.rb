@@ -93,13 +93,11 @@ class TracksController < ApplicationController
 
   def play_thru
     User.find(current_or_guest_user).update(play_thru: true)
-    flash.now[:info] = "Playlist will play through automatically."
     respond_with(@tracks)
   end
 
   def click_pause
     User.find(current_or_guest_user).update(play_thru: false)
-    flash.now[:info] = "Playlist will click to pause and load."
     respond_with(@tracks)
   end
   

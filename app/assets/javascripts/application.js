@@ -12,14 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.turbolinks
+//= require_directory .
 //= require twitter/bootstrap
 //= require bootstrap
 
-$(function() {
-    $( ".sortable" ).sortable();
-    $( ".sortable" ).disableSelection();
-});
+
 
 var fade_flash = function() {
     $("#flash_notice").delay(5000).fadeOut("slow");
