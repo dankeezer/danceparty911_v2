@@ -1,61 +1,10 @@
 <!DOCTYPE html>
 
-<%= javascript_include_tag "soundmanager2-dj" %>
-<%= javascript_include_tag "page-playerDJ" %>
 <%= javascript_include_tag "http://code.jquery.com/jquery-latest.min.js" %>
 <%= javascript_include_tag "http://code.jquery.com/ui/1.10.3/jquery-ui.js" %>
 <%= javascript_include_tag "bootstrap" %>
 
-<script>
-$(function() { 
-
-    // hide it first
-    $("#spinner").hide();
-
-    // when an ajax request starts, show spinner
-    $(document).ajaxStart(function(){
-        $("#spinner").show();
-    });
-
-    // when an ajax request complets, hide spinner    
-    $(document).ajaxStop(function(){
-        $("#spinner").hide();
-    });
-});
-</script>
-
-<script>
-
-/* --------
-
-  Config override: This demo uses shiny flash 9 stuff, overwriting Flash 8-based defaults
-  Alternate PP_CONFIG object must be defined before soundManager.onready()/onload() fire.
-  Alternately, edit the config in page-player.js to simply use the values below by default
-
--------- */
-
-// demo only, but you can use these settings too..
-soundManager.setup({
-  flashVersion: 9,
-  preferFlash: false, // for visualization effects
-  useHighPerformance: true, // keep flash on screen, boost performance
-  wmode: 'transparent', // transparent SWF, if possible
-  url: 'swf/'
-});
-
-// custom page player configuration
-
-var PP_CONFIG = {
-  autoStart: false,      // begin playing first sound when page loads
-  playNext: false,        // stop after one sound, or play through list until end
-  useThrottling: false,  // try to rate-limit potentially-expensive calls (eg. dragging position around)</span>
-  usePeakData: true,     // [Flash 9 only] whether or not to show peak data (left/right channel values)</b> - nor noticable on CPU
-  useWaveformData: false,// [Flash 9 only] show raw waveform data</b> - WARNING: LIKELY VERY CPU-HEAVY
-  useEQData: false,      // [Flash 9 only] show EQ (frequency spectrum) data
-  useFavIcon: false     // try to apply peakData to address bar (Firefox + Opera)</b> - performance note: appears to make Firefox 3 do some temporary, heavy disk access/swapping/garbage collection at first(?)</b> - may be too heavy on CPU
-}
-
-</script>
+<%= render "pp_config_override" %>
 
 <style type="text/css">
 
@@ -101,6 +50,7 @@ form {
 .dropdown {
   display: inline;
   width: 5px;
+  text-decoration: none;
 }
 
 .dropdown-menu > li > a:hover,
@@ -152,35 +102,27 @@ form {
 
 </style>
 
-<script>
-  $(function() {
-    $( ".sortable" ).sortable();
-    $( ".sortable" ).disableSelection();
-  });
-</script>
-
-
   <h5> 
     <%= simple_form_for(@track, remote: true) do |f| %>
       <% if User.find(current_or_guest_user).tracks.empty? %>
-        <%= f.text_field :original_url, :value => 'https://soundcloud.com/youngdaniel/sets/dp911' %>
+        <%= f.text_field :original_url, :class => 'url_field', :value => 'https://soundcloud.com/youngdaniel/sets/dp911' %>
       <% else %>
-        <%= f.text_field :original_url, :placeholder => 'enter a soundcloud track or playlist url' %>
+        <%= f.text_field :original_url, :class => 'url_field', :placeholder => 'enter a soundcloud track or playlist url' %>
       <% end %>
         <div class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="drop3" role="button"><i class="fa fa-cog playlist_cog"></i></a>
           <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
-            <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-indent"></i> Play Thru</a></li>
+            <% if User.find(current_or_guest_user).play_thru == true %>
+              <li role="presentation"><%= link_to '<i class="fa fa-exchange"></i> Click Pause'.html_safe, click_pause_tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>              
+            <% else %>
+              <li role="presentation"><%= link_to '<i class="fa fa-indent"></i> Play Thru'.html_safe, play_thru_tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>
+            <% end %>
             <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-dropbox"></i> Add Dropbox</a></li>
             <li role="presentation"><%= link_to '<i class="fa fa-refresh"></i> Refresh'.html_safe, tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %>
             <li role="presentation" class="divider"></li>
             <li role="presentation"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, remote: true, method: :get, :confirm => "The other side will reset upon refresh", :role => "menuitem", :tabindex => "-1" %>
           </ul>
         </div>
-        <div id="spinner">
-          <i class="fa-li fa fa-spinner fa-spin"></i>
-        </div>
- 
     <% end %>
   </h5>
 

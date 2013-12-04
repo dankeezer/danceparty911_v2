@@ -91,6 +91,17 @@ class TracksController < ApplicationController
     respond_with(@tracks)
   end
 
+  def play_thru
+    User.find(current_or_guest_user).update(play_thru: true)
+    respond_with(@tracks)
+  end
+
+  def click_pause
+    User.find(current_or_guest_user).update(play_thru: false)
+    respond_with(@tracks)
+  end
+  
+
   private
 
 
