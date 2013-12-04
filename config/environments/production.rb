@@ -32,7 +32,7 @@ Danceparty911V2::Application.configure do
   # config.assets.css_compressor = :sass
 
   # trying to get asset pipeline to work
-  config.assets.precompile += ['click_pause/page-playerDJ.js', 'click_pause/soundmanager2-dj.js']
+  config.assets.precompile += ['bootstrap.js', 'play_thru/soundmanager2.js', 'play_thru/page-player.js', 'click_pause/page-playerDJ.js', 'click_pause/soundmanager2-dj.js']
 
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
