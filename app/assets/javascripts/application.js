@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
-//= require soundmanager2-dj
 //= require twitter/bootstrap
 //= require bootstrap
 

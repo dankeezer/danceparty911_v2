@@ -9,6 +9,7 @@ Danceparty911V2::Application.routes.draw do
     collection do
       get 'remove_all'
       get 'play_thru'
+      get 'click_pause'
     end
   end
 

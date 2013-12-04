@@ -3,9 +3,3 @@ $('[data-toggle="dropdown"]').parent().removeClass('open');
 $("#tracks").empty();
 $("<%= escape_javascript(render @tracks) %>").prependTo("#tracks");
 $('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
-
-
-var PP_CONFIG = {
-  autoStart: true,      // begin playing first sound when page loads
-  playNext: true,        // stop after one sound, or play through list until end
-}
