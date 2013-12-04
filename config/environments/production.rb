@@ -31,8 +31,12 @@ Danceparty911V2::Application.configure do
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
-  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  # trying to get asset pipeline to work
   config.assets.precompile += ['click_pause/page-playerDJ.js', 'click_pause/soundmanager2-dj.js']
+
+
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = false
 
   # Generate digests for assets URLs.
   config.assets.digest = true
