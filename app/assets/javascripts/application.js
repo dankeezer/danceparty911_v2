@@ -13,9 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
-//= require_directory .
 //= require twitter/bootstrap
 //= require bootstrap
+//= require_directory .
 
 
 
