@@ -1,8 +1,13 @@
 class Track < ActiveRecord::Base
 	attr_accessible :title, :stream_url, :artist_name, :original_url
 	has_and_belongs_to_many :user
+  after_initialize :init
 
   #use new_record? to determine if track has already been saved to database
+
+  def init
+    @determine_dj ||= false
+  end
 
 	def self.search_for(query)
 		where("artist_name LIKE :query OR title LIKE :query OR stream_url LIKE :query OR original_url LIKE :query", query: "%#{query}%")

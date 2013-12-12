@@ -102,7 +102,7 @@ class TracksController < ApplicationController
   end
   
   def dj_this_list
-    # User.find(current_or_guest_user).update_column("dj_this_list", true)
+    # User.find(current_or_guest_user).update(dj_this_list: true)
     @determine_dj == true
     @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
     @track = Track.new
@@ -110,8 +110,7 @@ class TracksController < ApplicationController
   end
 
   def single_list
-    @determine_dj == false
-    # User.find(current_or_guest_user).update_column("dj_this_list", false)
+    # User.find(current_or_guest_user).update(dj_this_list: false)
     @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
     @track = Track.new
     respond_with(@tracks)

@@ -10,11 +10,10 @@ Danceparty911V2::Application.routes.draw do
       get 'remove_all'
       get 'play_thru'
       get 'click_pause'
+      get 'dj_this_list'
+      get 'single_list'
     end
   end
-
-  get 'dj_this_list' => 'tracks#dj_this_list'
-  get 'single_list' => 'tracks#single_list'
 
   root 'dj#index'
   get 'auth/:provider/callback', to: 'sessions#create'

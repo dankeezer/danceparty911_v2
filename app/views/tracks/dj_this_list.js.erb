@@ -1,10 +1,10 @@
 $(window.parent.document).contents().find('#right_side_frame' ).contents().find("#tracks").empty();
 $(window.parent.document).contents().find('#right_side_frame' ).contents().find("#tracks").prepend("<%= escape_javascript(render @tracks) %>")
 
-$("<%= escape_javascript(@determine_dj == true) %>")
 $('#dropdown').find('li:first > a').focus();
 $('[data-toggle="dropdown"]').parent().removeClass('open');
-$(window.parent.document).contents().find('.controlsWrapper').html("<%= j(render partial: 'playlist_controls') %>");
+$(window.parent.document).contents().find('#right_side_frame' ).html("<%= j(render partial: 'playlist_controls') %>");
+$(window.parent.document).contents().find('#left_side_frame' ).html("<%= j(render partial: 'playlist_controls') %>");
 
 // var input_box = "input[type='text'],
 // .uneditable-input {"
@@ -29,7 +29,6 @@ $(window.parent.document).contents().find('.rightside').animate({top:"0"}, 500, 
         $(window.parent.document).contents().find('.menu_trigger').css("display", "inherit");
         $(window.parent.document).contents().find('.menu_trigger').stop().animate({ top: "11"}, 500);
 });
-
 
 // $('.navbar').animate({ width: "200%"}, 500);
 
