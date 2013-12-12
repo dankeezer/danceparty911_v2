@@ -23,7 +23,6 @@ Danceparty911V2::Application.routes.draw do
   get 'welcome' => 'welcome#index'
   get 'dj' => 'dj#index'
   get 'login' => 'login#index'
-  get 'old' => 'old_page#index'
 
   # get 'new' => 'tracks#index'
   get ':username', to: 'dj#user'
