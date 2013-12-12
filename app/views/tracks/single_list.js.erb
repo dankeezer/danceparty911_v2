@@ -11,10 +11,8 @@ $(window.parent.document).contents().find(".menu_trigger").animate({ top: "-30"}
         $(this).css("display", "none");
 });
 
-// $(window.parent.document).contents().find('ul.playlist li').animate({
-//         fontSize:"1.75em"
-// }, 500);
-
+$(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").stop().animate({ fontSize:"1.75em"}, 500);
+$(window.parent.document).contents().find('#left_side_frame' ).contents().find(".new_track").stop().animate({width:"126%"}, 500);
 
 $(window.parent.document).contents().find('.rightside').animate({top:"165"}, 500, function(){
   $(window.parent.document).contents().find('#right_side_frame' ).contents().find("#tracks").empty();

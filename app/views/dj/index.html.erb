@@ -10,7 +10,7 @@
 
 ul.playlist li {
   font-size: 1.7em !important;
-  line-height: 1.1em;
+  line-height: 1.3em !important;
 }
 
 body{
@@ -111,7 +111,10 @@ width: 100%;
 
 </div>
 </div>
-
+<script>
+$(window.parent.document).contents().find('#left_side_frame' ).contents().find(".new_track").stop().animate({width:"119%"}, 500);
+</script>
 
 </body>
+
 </html>
