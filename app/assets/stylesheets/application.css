@@ -71,6 +71,7 @@ form {
   display: inline;
   width: 5px;
   text-decoration: none;
+  z-index: 10;
 }
 
 

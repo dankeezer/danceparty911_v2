@@ -6,12 +6,13 @@
 <% User.find(current_or_guest_user).update(play_thru: true) %>
 
 <title>DANCEPARTY911</title>
+
 <style type="text/css">
 
-ul.playlist li {
+/*ul.playlist li {
   font-size: 1.7em !important;
   line-height: 1.3em !important;
-}
+}*/
 
 body{
 margin: 0;
@@ -111,9 +112,6 @@ width: 100%;
 
 </div>
 </div>
-<script>
-$(window.parent.document).contents().find('#left_side_frame' ).contents().find(".new_track").stop().animate({width:"119%"}, 500);
-</script>
 
 </body>
 

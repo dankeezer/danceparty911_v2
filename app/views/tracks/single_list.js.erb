@@ -1,3 +1,4 @@
+ $("<%= escape_javascript(@determine_dj == false) %>")
 $('#dropdown').find('li:first > a').focus();
 $('[data-toggle="dropdown"]').parent().removeClass('open');
 // $('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
@@ -24,3 +25,4 @@ $(window.parent.document).contents().find('.rightside').animate({top:"165"}, 500
 $(window.parent.document).contents().find('.navbar').css("display", "none");
 
 $(window.parent.document).contents().find('.controlsWrapper').html("<%= j(render partial: 'playlist_controls') %>");
+

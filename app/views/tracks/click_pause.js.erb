@@ -1,6 +1,16 @@
 $(window).ready(function() { 
 	location.reload(); 
 });
+
 $('#dropdown').find('li:first > a').focus();
 $('[data-toggle="dropdown"]').parent().removeClass('open');
 $('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
+
+$(window.parent.document).contents().find('#left_side_frame' ).contents().find(".new_track").css("width","119%");
+$(window.parent.document).contents().find('#right_side_frame' ).contents().find(".new_track").css("width","106%");
+
+
+	if ($(window.parent.document).contents().find(".left_side").width() < 1000) { 
+		$(window.parent.document).contents().find('#right_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
+		$(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
+	}
