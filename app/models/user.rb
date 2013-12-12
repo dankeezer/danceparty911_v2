@@ -1,11 +1,17 @@
 class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :play_thru
   has_many :tracks
+  after_initialize :init
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def init
+        # self.play_thru ||= true
+        # self.dj_this_list ||= false
+  end
 
   #twitter version
   # def self.from_omniauth(auth)

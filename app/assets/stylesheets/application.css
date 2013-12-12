@@ -15,6 +15,10 @@
  *= require font-awesome
  */
 
+.alert {
+  margin-bottom: 0px !important;
+}
+
 html {
   background-color: #f9f9f9;
 }
@@ -22,11 +26,6 @@ html {
  .controlsWrapper {
   background-color: #f9f9f9;
  }
-
- ul.playlist li {
-  font-size: 2em !important;
-  line-height: 1.1em;
-}
 
 body{
   background-color: #f9f9f9;
@@ -45,6 +44,7 @@ input[type="text"],
 
 form {
   margin: 0px;
+  margin-bottom: 0px !important;
 }
 
 .alert {

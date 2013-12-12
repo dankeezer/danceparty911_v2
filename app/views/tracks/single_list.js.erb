@@ -18,8 +18,7 @@ $(window.parent.document).contents().find(".menu_trigger").animate({ top: "-30"}
 
 $(window.parent.document).contents().find('.rightside').animate({top:"165"}, 500, function(){
   $(window.parent.document).contents().find('#right_side_frame' ).contents().find("#tracks").empty();
-  var rightside = $(window.parent.document).contents().find('#right_side_frame')
-  rightside.contents().find('#tracks').prepend("<%= escape_javascript(render @tracks) %>")
+  $(window.parent.document).contents().find('#right_side_frame').attr( 'src', function ( i, val ) { return val; });
 
   // $(window.parent.document).contents().find('#left_side_frame' ).contents().find("#tracks").empty();
 });
