@@ -1,6 +1,5 @@
 $('#dropdown').find('li:first > a').focus();
 $('[data-toggle="dropdown"]').parent().removeClass('open');
-$('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
 
 
 var rightside = $(window.parent.document).contents().find('#right_side_frame')
@@ -9,6 +8,7 @@ rightside.contents().find('#tracks').prepend("<%= escape_javascript(render @trac
 var leftside = $(window.parent.document).contents().find('#left_side_frame')
 leftside.contents().find('#tracks').prepend("<%= escape_javascript(render @tracks) %>")
 
+$('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
 
 	if ($(window.parent.document).contents().find(".left_side").width() < 1000) { 
 		$(window.parent.document).contents().find('#right_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
