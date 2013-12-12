@@ -46,8 +46,8 @@
 
 </style>
 
-
   <%= render "playlist_controls" %>
+
 
   <%= render "layouts/flash_notices" %>
 
@@ -55,13 +55,3 @@
 <ul class="playlist sortable" id="tracks">
   <%= render @tracks %>
 </ul>
-<script = "text/javascript">
-  if ($(window.parent.document).contents().find(".leftside").width() < 1000) { 
-    $(window.parent.document).contents().find('#right_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
-    $(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
-    $(window.parent.document).contents().find('#left_side_frame' ).contents().find(".new_track").css("width","119%");
-    $(window.parent.document).contents().find('#right_side_frame' ).contents().find(".new_track").css("width","104%");
-  }else{
-    $(window.parent.document).contents().find('#left_side_frame' ).contents().find(".new_track").stop().animate({width:"126%"}, 500);
-  }
-</script>

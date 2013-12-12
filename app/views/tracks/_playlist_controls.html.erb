@@ -1,4 +1,13 @@
-
+<script = "text/javascript">
+  if ($(window.parent.document).contents().find(".leftside").width() < 1000) { 
+    $(window.parent.document).contents().find('#right_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
+    $(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
+    $(window.parent.document).contents().find('#left_side_frame' ).contents().find(".new_track").css("width","119%");
+    $(window.parent.document).contents().find('#right_side_frame' ).contents().find(".new_track").css("width","104%");
+  }else{
+    $(window.parent.document).contents().find('#left_side_frame' ).contents().find(".new_track").stop().animate({width:"126%"}, 500);
+  }
+</script>
 
 <div class="controlsWrapper">
   <h5> 
@@ -15,12 +24,12 @@
 
             <li role="presentation"><%= link_to '<i class="fa fa-exchange"></i> DJ This List</a>'.html_safe, dj_this_list_tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>
 
-            <li role="presentation"><%= link_to '<i class="fa fa-exchange"></i> Single List'.html_safe, single_list_tracks_path, remote: true, method: :get, :class => ".single_trigger", :role => "menuitem", :tabindex => "-1" %></li>         
+            <li role="presentation"><%= link_to '<i class="fa fa-caret-square-o-right"></i> Single List'.html_safe, single_list_tracks_path, remote: true, method: :get, :class => ".single_trigger", :role => "menuitem", :tabindex => "-1" %></li>         
 
             <% if User.find(current_or_guest_user).play_thru == true %>
-              <li role="presentation"><%= link_to '<i class="fa fa-exchange"></i> Click Pause'.html_safe, click_pause_tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>              
+              <li role="presentation"><%= link_to '<i class="fa fa-pause"></i> Click Pause'.html_safe, click_pause_tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>              
             <% else %>
-              <li role="presentation"><%= link_to '<i class="fa fa-indent"></i> Play Thru'.html_safe, play_thru_tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>
+              <li role="presentation"><%= link_to '<i class="fa fa-play"></i> Play Thru'.html_safe, play_thru_tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>
             <% end %>
 
 
@@ -33,3 +42,4 @@
     <% end %>
   </h5>
 </div>
+
