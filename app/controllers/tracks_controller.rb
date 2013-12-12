@@ -101,7 +101,20 @@ class TracksController < ApplicationController
     respond_with(@tracks)
   end
   
+  def dj_this_list
+    User.find(current_or_guest_user).update_column("dj_this_list", true)
+    @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
+    @track = Track.new
+    respond_with(@tracks)
+  end
 
+  def single_list
+    User.find(current_or_guest_user).update_column("dj_this_list", false)
+    @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
+    @track = Track.new
+    respond_with(@tracks)
+  end
+  
   private
 
 

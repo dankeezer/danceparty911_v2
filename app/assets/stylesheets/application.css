@@ -15,6 +15,57 @@
  *= require font-awesome
  */
 
+ ul.playlist li {
+  font-size: 2em !important;
+  line-height: 1.1em;
+}
+
+body{
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0 !important;
+}
+
+input[type="text"],
+.uneditable-input {
+  margin-left: 10px;
+  margin-bottom: 0px !important;
+  height: 20px;
+  width: 75% !important;
+  vertical-align: middle;
+}
+
+form {
+  margin: 0px;
+}
+
+.alert {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.playlist_cog {
+  font-size: 20pt;
+  vertical-align: middle;
+  color: #999;
+}
+
+.playlist_cog:hover {
+  color: #FF33CC;
+}
+
+.caret {
+  vertical-align: bottom;
+  color: #999;
+}
+
+.dropdown {
+  display: inline;
+  width: 5px;
+  text-decoration: none;
+}
+
+
 .pink_h2
 {
   color: #FF33CC !important;

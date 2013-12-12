@@ -16,6 +16,34 @@ max-height: 100%;
 background-repeat:repeat-y;
 }
 
+ul.playlist li {
+  font-size: 2em !important;
+  line-height: 1.1em;
+}
+
+div.headerwrap {
+    position:fixed;
+    width:1920px;
+    top:0px;
+    left:0;
+    background:white;
+    padding-top:25px;
+    padding-bottom:25px;
+    z-index: 1;
+    background: #f9f9f9;
+  }
+
+  h1 {
+  font-size: 1450%;
+  margin:0;
+  padding:0;
+  color: #FF33cc;
+  line-height:0.6;
+  margin:50px 0 0;
+  letter-spacing: -3px;
+  display: inline
+}
+
 .leftside{
 position: absolute;
 top: 0;
@@ -28,6 +56,7 @@ background: #fff;
 color: white;
 background-image:url('images/play.png');
 background-repeat:repeat-y;
+z-index: 3;
 }
 
 .rightside{
@@ -40,6 +69,7 @@ overflow: hidden;
 background: #fff;
 background-image:url('images/loud.png');
 background-repeat:repeat-y;
+z-index: 2;
 }
 
 .innertube{
@@ -61,9 +91,13 @@ width: 100%;
 
 <body>
 
+<div class="headerwrap">
+  <h1>PLAY LOUD</h1>
+</div>
+
 <div class="leftside">
 
-<iframe src="../tracks" frameborder="0" width=100% height=100%></iframe>
+<iframe id="left_side_frame" src="../tracks" frameborder="0" width=100% height=100%></iframe>
 
 </div>
 </div>
@@ -71,7 +105,7 @@ width: 100%;
 
 <div class="rightside">
 
-<iframe src="../tracks" frameborder="0" width=100% height=100%></iframe>
+<iframe id="right_side_frame" src="../tracks" frameborder="0" width=100% height=100%></iframe>
 
 </div>
 </div>

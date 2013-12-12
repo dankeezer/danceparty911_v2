@@ -1,6 +1,322 @@
 {
   "title": "PLAY LOUD",
   "tracks": [
+  
+  {
+    "artistName":"M83",
+    "title":"Where The Boats Go",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Where The Boats Go.mp3"
+  },
+  {
+    "artistName":"Grimes",
+    "title":"Oblivion",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Oblivion.mp3"
+  },
+  {
+    "artistName":"Strawberry Switchblade",
+    "title":"Since yesterday",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Since yesterday.mp3"
+  },
+  {
+    "artistName":"Lindsey Buckingham",
+    "title":"Countdown",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Countdown.mp3"
+  },
+  {
+    "artistName":"Kanye West",
+    "title":"Gone",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Gone.m4a"
+  },
+  {
+    "artistName":"Iggy Azalea",
+    "title":"Work",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Work.mp3"
+  },
+  {
+    "artistName":"A$AP Rocky",
+    "title":"Fuckin' Problems feat. Drake, 2 Chainz & Kendrick Lamar",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/F__kin' Problems feat. Drake, 2 Chainz & Kendrick Lamar.mp3"
+  },
+  {
+    "artistName":"Baby Boy Da Prince",
+    "title":"The Way I Live",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/The Way I Live.mp3"
+  },
+  {
+    "artistName":"The Exploding Hearts",
+    "title":"I'm a Pretender",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/I'm a Pretender.mp3"
+  },
+  {
+    "artistName":"Paul McCartney",
+    "title":"Coming Up",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Coming Up.mp3"
+  },
+  {
+    "artistName":"Ann Steel",
+    "title":"My Time",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/My Time.mp3"
+  },
+  {
+    "artistName":"Ween",
+    "title":"Voodoo Lady",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Voodoo Lady.mp3"
+  },
+  {
+    "artistName":"Arcade Fire",
+    "title":"Reflektor",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Reflektor.mp3"
+  },
+  {
+    "artistName":"Fleetwood Mac",
+    "title":"Everywhere",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Everywhere.mp3"
+  },
+  {
+    "artistName":"Aaliyah",
+    "title":"Back And Forth",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Back And Forth.mp3"
+  },
+  {
+    "artistName":"Midnight Magic",
+    "title":"Beam Me Up (Jacques Renault Remix)",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Beam Me Up (Jacques Renault Remix).mp3"
+  },
+  {
+    "artistName":"Beyonce",
+    "title":"Love On Top",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Love On Top.mp3"
+  },
+  {
+    "artistName":"Billy Joel",
+    "title":"All For Leyna",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/All For Leyna.mp3"
+  },
+  {
+    "artistName":"Jay-Z",
+    "title":"Holy Grail (Feat. Justin Timberlake) (Produced By The-Dream & Timbaland)",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Holy Grail (Feat. Justin Timberlake) (Produced By The-Dream & Timbaland).mp3"
+  },
+  {
+    "artistName":"Sky Ferreira",
+    "title":"Nobody Asked Me (If I Was Okay)",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Nobody Asked Me (If I Was Okay).mp3"
+  },
+  {
+    "artistName":"Miley Cyrus",
+    "title":"We Can't Stop",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/We Can't Stop.mp3"
+  },
+  {
+    "artistName":"Lil Wayne",
+    "title":"Bitches Love Me (Feat. Drake, Future)",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Bitches Love Me (Feat. Drake, Future).mp3"
+  },
+  {
+    "artistName":"TLC",
+    "title":"Red Light Special",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Red Light Special.mp3"
+  },
+  {
+    "artistName":"Janet Jackson",
+    "title":"If",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/If.mp3"
+  },
+  {
+    "artistName":"Fat Joe",
+    "title":"What's Luv? (Feat. Ja Rule & Ashanti)",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/What's Luv (Feat. Ja Rule & Ashanti).mp3"
+  },
+  {
+    "artistName":"Annie Lennox",
+    "title":"Walking On Broken Glass",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Walking On Broken Glass.mp3"
+  },
+  {
+    "artistName":"2Pac",
+    "title":"Changes",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Changes.mp3"
+  },
+  {
+    "artistName":"The Cure",
+    "title":"Just Like Heaven",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Just Like Heaven.mp3"
+  },
+  {
+    "artistName":"Taylor Swift",
+    "title":"We Are Never Ever Getting Back Together",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/We Are Never Ever Getting Back Together.mp3"
+  },
+  {
+    "artistName":"Chief Keef",
+    "title":"I Don't Like",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/I Don't Like.mp3"
+  },
+  {
+    "artistName":"G.O.O.D. Music",
+    "title":"Mercy (feat. Kanye West, Big Sean, Pusha T & 2 Chainz)",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Mercy (feat. Kanye West, Big Sean, Pusha T & 2 Chainz).m4a"
+  },
+  {
+    "artistName":"Kendrick Lamar",
+    "title":"Bitch, Don't Kill My Vibe",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Bitch Dont Kill My Vibe.mp3"
+  },
+  {
+    "artistName":"Ke$ha",
+    "title":"C'mon",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/C'mon.mp3"
+  },
+  {
+    "artistName":"Katy Perry",
+    "title":"Firework",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Firework.mp3"
+  },
+  {
+    "artistName":"Britney Spears",
+    "title":"Toxic",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Toxic.mp3"
+  },
+  {
+    "artistName":"Nicki Minaj",
+    "title":"Starships",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Starships.mp3"
+  },
+  {
+    "artistName":"Miley Cyrus",
+    "title":"Wrecking Ball",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Wrecking Ball.mp3"
+  },
+  {
+    "artistName":"Frank Ocean",
+    "title":"Lost",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Lost.mp3"
+  },
+  {
+    "artistName":"Spice Girls",
+    "title":"Say You'll Be There",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Say You'll Be There.mp3"
+  },
+  {
+    "artistName":"Jay-Z & Kanye West",
+    "title":"Why I Love You (Feat. Mr Hudson)",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Why I Love You (Feat. Mr Hudson).mp3"
+  },
+  {
+    "artistName":"Pixies",
+    "title":"Where Is My Mind?",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Where Is My Mind-.mp3"
+  },
+  {
+    "artistName":"Ciara",
+    "title":"Body Party",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Body Party.mp3"
+  },
+  {
+    "artistName":"Jeremih",
+    "title":"Birthday Sex",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Birthday Sex.mp3"
+  },
+  {
+    "artistName":"Rihanna",
+    "title":"Diamonds",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Diamonds.mp3"
+  },
+  {
+    "artistName":"Kanye West",
+    "title":"Heartless",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Heartless.mp3"
+  },
+  {
+    "artistName":"Blackstreet",
+    "title":"No Diggity (Featuring Dr. Dre)",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/No Diggity (Featuring Dr. Dre).mp3"
+  },
+  {
+    "artistName":"Nelly",
+    "title":"Dilemma (ft. Kelly Rowland)",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Dilemma (ft. Kelly Rowland).mp3"
+  },
+  {
+    "artistName":"Solange",
+    "title":"Losing You",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Losing You.mp3"
+  },
+  {
+    "artistName":"Sky Ferreira",
+    "title":"Everything Is Embarrassing",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Everything Is Embarrassing.mp3"
+  },
+  {
+    "artistName":"Gin Blossoms",
+    "title":"Follow You Down",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Follow You Down.mp3"
+  },
+  {
+    "artistName":"Positive K",
+    "title":"I Got A Man",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/I Got A Man.mp3"
+  },
+  {
+    "artistName":"Mapei",
+    "title":"Don't Wait",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Don't Wait.mp3"
+  },
+  {
+    "artistName":"Paul Simon",
+    "title":"The Boy In The Bubble",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/The Boy In The Bubble.mp3"
+  },
+  {
+    "artistName":"Hall & Oates",
+    "title":"Private Eyes",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Private Eyes.mp3"
+  },
+  {
+    "artistName":"Michael Jackson",
+    "title":"The Way You Make Me Feel",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/The Way You Make Me Feel.mp3"
+  },
+  {
+    "artistName":"Juicy J",
+    "title":"Bandz A Make Her Dance (feat. Lil Wayne & 2 Chainz)",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Bandz A Make Her Dance (feat. Lil Wayne & 2 Chainz).mp3"
+  },
+  {
+    "artistName":"Major Lazer",
+    "title":"Pon de Floor (feat. VYBZ Kartel)",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Pon de Floor (feat. VYBZ Kartel).mp3"
+  },
+  {
+    "artistName":"Rihanna",
+    "title":"Where Have You Been",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Where Have You Been.mp3"
+  },
+  {
+    "artistName":"Daft Punk",
+    "title":"Lose Yourself To Dance",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Lose Yourself To Dance.mp3"
+  },
+  {
+    "artistName":"Crystal Castles",
+    "title":"Baptism",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Baptism.mp3"
+  },
+  {
+    "artistName":"Prince",
+    "title":"7",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/7.mp3"
+  },
+  {
+    "artistName":"Queen",
+    "title":"I Was Born To Love You",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/I Was Born To Love You.mp3"
+  },
+  {
+    "artistName":"Piebald",
+    "title":"Where Have All the Classics Gone",
+    "path": "http://dankeezer.com/dp911/xyz/ohwherefrom/Where Have All the Classics Gone.mp3"
+  },
   {
     "artistName": "New Order",
     "path": "http://dankeezer.com/dp911/xyz/dreamjob/Dreams Never End.mp3",

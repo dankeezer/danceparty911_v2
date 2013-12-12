@@ -1,5 +1,12 @@
 $('#dropdown').find('li:first > a').focus();
 $('[data-toggle="dropdown"]').parent().removeClass('open');
-$("<%= escape_javascript(render @tracks) %>").prependTo("#tracks");
 $('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
 
+
+var rightside = $(window.parent.document).contents().find('#right_side_frame')
+rightside.contents().find('#tracks').prepend("<%= escape_javascript(render @tracks) %>")
+
+var leftside = $(window.parent.document).contents().find('#left_side_frame')
+leftside.contents().find('#tracks').prepend("<%= escape_javascript(render @tracks) %>")
+
+if ($(window.parent.document).contents().find(".left_side").width() < 1000) { $(window.parent.document).contents().find("ul.playlist li").css("font-size", "1.15em"); }

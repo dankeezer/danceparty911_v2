@@ -1,0 +1,29 @@
+$('#dropdown').find('li:first > a').focus();
+$('[data-toggle="dropdown"]').parent().removeClass('open');
+// $('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
+
+$(window.parent.document).contents().find(".leftside").stop().animate({
+  width:"100%",
+  top:"165"
+}, 500);
+
+$(window.parent.document).contents().find(".menu_trigger").animate({ top: "-30"}, 500, function(){
+        $(this).css("display", "none");
+});
+
+// $(window.parent.document).contents().find('ul.playlist li').animate({
+//         fontSize:"1.75em"
+// }, 500);
+
+
+$(window.parent.document).contents().find('.rightside').animate({top:"165"}, 500, function(){
+  $(window.parent.document).contents().find('#right_side_frame' ).contents().find("#tracks").empty();
+  var rightside = $(window.parent.document).contents().find('#right_side_frame')
+  rightside.contents().find('#tracks').prepend("<%= escape_javascript(render @tracks) %>")
+
+  // $(window.parent.document).contents().find('#left_side_frame' ).contents().find("#tracks").empty();
+});
+
+$(window.parent.document).contents().find('.navbar').css("display", "none");
+
+$(window.parent.document).contents().find('.controlsWrapper').html("<%= j(render partial: 'playlist_controls') %>");

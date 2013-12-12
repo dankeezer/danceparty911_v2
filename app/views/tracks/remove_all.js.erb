@@ -1,5 +1,10 @@
 $('#dropdown').find('li:first > a').focus();
 $('[data-toggle="dropdown"]').parent().removeClass('open');
-$("#tracks").empty();
-$("<%= escape_javascript(render @tracks) %>")
+
+var rightside = $(window.parent.document).contents().find('#right_side_frame')
+rightside.contents().find("#tracks").empty();
+
+var leftside = $(window.parent.document).contents().find('#left_side_frame')
+leftside.contents().find("#tracks").empty();
+
 $('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");

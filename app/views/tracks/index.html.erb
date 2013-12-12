@@ -20,7 +20,7 @@ input[type="text"],
   margin-bottom: 0px !important;
   height: 20px;
   width: 75% !important;
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 form {
@@ -102,29 +102,8 @@ form {
 
 </style>
 
-  <h5> 
-    <%= simple_form_for(@track, remote: true) do |f| %>
-      <% if User.find(current_or_guest_user).tracks.empty? %>
-        <%= f.text_field :original_url, :class => 'url_field', :value => 'https://soundcloud.com/youngdaniel/sets/dp911' %>
-      <% else %>
-        <%= f.text_field :original_url, :class => 'url_field', :placeholder => 'enter a soundcloud track or playlist url' %>
-      <% end %>
-        <div class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="drop3" role="button"><i class="fa fa-cog playlist_cog"></i></a>
-          <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
-            <% if User.find(current_or_guest_user).play_thru == true %>
-              <li role="presentation"><%= link_to '<i class="fa fa-exchange"></i> Click Pause'.html_safe, click_pause_tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>              
-            <% else %>
-              <li role="presentation"><%= link_to '<i class="fa fa-indent"></i> Play Thru'.html_safe, play_thru_tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>
-            <% end %>
-            <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="http://twitter.com/fat"><i class="fa fa-dropbox"></i> Add Dropbox</a></li>
-            <li role="presentation"><%= link_to '<i class="fa fa-refresh"></i> Refresh'.html_safe, tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %>
-            <li role="presentation" class="divider"></li>
-            <li role="presentation"><%= link_to '<i class="fa fa-minus-square"></i> Reset List'.html_safe, remove_all_tracks_path, remote: true, method: :get, :confirm => "The other side will reset upon refresh", :role => "menuitem", :tabindex => "-1" %>
-          </ul>
-        </div>
-    <% end %>
-  </h5>
+
+  <%= render "playlist_controls" %>
 
   <%= render "layouts/flash_notices" %>
 

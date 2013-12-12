@@ -13,6 +13,9 @@ Danceparty911V2::Application.routes.draw do
     end
   end
 
+  get 'dj_this_list' => 'tracks#dj_this_list'
+  get 'single_list' => 'tracks#single_list'
+
   root 'dj#index'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
