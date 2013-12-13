@@ -116,6 +116,7 @@ class TracksController < ApplicationController
     # User.find(current_or_guest_user).update(dj_this_list: false)
     @tracks = User.find(params[:id]).tracks.order("created_at DESC").all
     @track = Track.new
+    flash.discard(:notice)
     respond_with(@tracks)
   end
   
