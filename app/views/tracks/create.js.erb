@@ -10,7 +10,10 @@ leftside.contents().find('#tracks').prepend("<%= escape_javascript(render @track
 
 $('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
 
-	if ($(window.parent.document).contents().find(".left_side").width() < 1000) { 
-		$(window.parent.document).contents().find('#right_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
-		$(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
-	}
+if ($(window.parent.document).contents().find(".left_side").width() < 1000) { 
+	$(window.parent.document).contents().find('#right_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
+	$(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
+}else if ($(window.parent.document).contents().find(".left_side").width() > 1000) {
+	$(window.parent.document).contents().find('#right_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.75em");
+	$(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.75em");
+}

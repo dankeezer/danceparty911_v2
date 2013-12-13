@@ -14,8 +14,12 @@
 			<td><h5>ID</h5></td>
 			<td><h5>E-mail</h5></td>
 			<td><h5>Username</h5></td>
+			<td><h5># of Tracks</h5></td>
 			<td><h5>Provider</h5></td>
 			<td><h5>Oauth UID</h5></td>
+			<td><h5>Sign In Count</h5></td>
+			<td><h5>Last Sign In</h5></td>
+			<td><h5>Sign In IP</h5></td>
 
 		</tr>
 
@@ -25,8 +29,12 @@
 				<td width="10%"><h5><%= user.id %></h5></td>
 				<td width="10%"><h5><%= link_to user.email, edit_user_registration_path %></h5></td>
 				<td width="10%"><h5><%= link_to user.username, edit_user_registration_path %></h5></td>
+				<td width="10%"><h5><%= user.tracks.count %></h5></td>
 				<td width="10%"><h5><%= user.provider %></h5></td>
 				<td width="10%"><h5><%= user.uid %></h5></td>
+				<td width="10%"><h5><%= user.sign_in_count %></h5></td>
+				<td width="10%"><h5><%= user.last_sign_in_at %></h5></td>
+				<td width="10%"><h5><%= user.last_sign_in_ip %></h5></td>
 
 		</tr>
 			<% end %>

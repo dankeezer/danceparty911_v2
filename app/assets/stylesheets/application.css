@@ -27,6 +27,7 @@ body{
   background-color: #f9f9f9 !important;
   margin: 0;
   padding: 0 !important;
+  overflow-x: hidden;
 }
 
 input[type="text"],

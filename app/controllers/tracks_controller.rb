@@ -83,8 +83,8 @@ class TracksController < ApplicationController
     redirect_to tracks_path
   end
 
-  def remove_all(user)
-    @tracks = User.find(user).tracks
+  def remove_all
+    @tracks = User.find(current_or_guest_user).tracks
     @count = @tracks.count
     if @tracks.empty?
       flash[:error] = "Nothing to remove!"
@@ -112,7 +112,7 @@ class TracksController < ApplicationController
     respond_with(@tracks)
   end
 
-  def single_list(user)
+  def single_list
     # User.find(current_or_guest_user).update(dj_this_list: false)
     @tracks = User.find(params[:id]).tracks.order("created_at DESC").all
     @track = Track.new

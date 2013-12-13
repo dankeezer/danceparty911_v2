@@ -32,8 +32,11 @@
     <% end %>
   </h5>
 </div>
+
 <script = "text/javascript">
   if ($(window.parent.document).contents().find(".leftside").width() > 1000) { 
     $(window.parent.document).contents().find('#left_side_frame' ).contents().find(".new_track").css("width","126%");
-    }
+    }else{
+    $(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.75em");
+  }
 </script>

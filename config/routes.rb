@@ -7,11 +7,11 @@ Danceparty911V2::Application.routes.draw do
 
   resources :tracks do
     collection do
-      get 'remove_all'
+      get 'remove_all/:id' => 'tracks#remove_all', as: 'remove_all'
       get 'play_thru'
       get 'click_pause'
       get 'dj_this_list/:id' => 'tracks#dj_this_list', as: 'dj_this_list'
-      get 'single_list'
+      get 'single_list/:id' => 'tracks#single_list', as: 'single_list'
     end
   end
 
