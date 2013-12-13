@@ -10,7 +10,7 @@ Danceparty911V2::Application.routes.draw do
       get 'remove_all'
       get 'play_thru'
       get 'click_pause'
-      get 'dj_this_list'
+      get 'dj_this_list/:id' => 'tracks#dj_this_list', as: 'dj_this_list'
       get 'single_list'
     end
   end
@@ -24,7 +24,7 @@ Danceparty911V2::Application.routes.draw do
   get 'dj' => 'dj#index'
   get 'login' => 'login#index'
 
-  # get 'new' => 'tracks#index'
-  get ':username', to: 'dj#user'
+  match '/:username' => "dj#show", :via => :get
+  match '/tracks/:username' => "tracks#show", :via => :get
 
 end

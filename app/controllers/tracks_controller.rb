@@ -3,12 +3,13 @@ class TracksController < ApplicationController
   protect_from_forgery :except => :receive_guest
   helper_method :current_or_guest_user
 
-  layout "navbar", except: [:index]
+  layout "navbar", except: [:index, :show]
 
   def index
     if User.find(current_or_guest_user).tracks.empty?
       flash.now[:info] = "Enter a soundcloud URL. Here's one to get you started!"
     end
+    @user = User.find(current_or_guest_user)
     @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
     @track = Track.new
     respond_with(@tracks)
@@ -19,7 +20,10 @@ class TracksController < ApplicationController
   end
 
   def show
-    @track = Track.find(params[:id])
+    @user = User.find_by_username!(params[:id])
+    @tracks = User.find(@user).tracks.order("created_at DESC").all
+    @track = Track.new
+    respond_with(@tracks)
   end
 
   def create
@@ -79,8 +83,8 @@ class TracksController < ApplicationController
     redirect_to tracks_path
   end
 
-  def remove_all
-    @tracks = User.find(current_or_guest_user).tracks
+  def remove_all(user)
+    @tracks = User.find(user).tracks
     @count = @tracks.count
     if @tracks.empty?
       flash[:error] = "Nothing to remove!"
@@ -103,15 +107,14 @@ class TracksController < ApplicationController
   
   def dj_this_list
     # User.find(current_or_guest_user).update(dj_this_list: true)
-    @determine_dj == true
-    @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
+    @tracks = User.find(params[:id]).tracks.order("created_at DESC").all
     @track = Track.new
     respond_with(@tracks)
   end
 
-  def single_list
+  def single_list(user)
     # User.find(current_or_guest_user).update(dj_this_list: false)
-    @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
+    @tracks = User.find(params[:id]).tracks.order("created_at DESC").all
     @track = Track.new
     respond_with(@tracks)
   end

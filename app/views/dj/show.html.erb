@@ -1,0 +1,119 @@
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<% User.find(current_or_guest_user).update(play_thru: true) %>
+
+<title>DANCEPARTY911</title>
+
+<style type="text/css">
+
+/*ul.playlist li {
+  font-size: 1.7em !important;
+  line-height: 1.3em !important;
+}*/
+
+body{
+margin: 0;
+padding: 0;
+border: 0;
+overflow: hidden;
+height: 100%; 
+max-height: 100%;
+background-repeat:repeat-y;
+}
+
+div.headerwrap {
+    position:fixed;
+    width:1920px;
+    top:0px;
+    left:0;
+    background:white;
+    padding-top:25px;
+    padding-bottom:25px;
+    z-index: 1;
+    background: #f9f9f9;
+  }
+
+  h1 {
+  font-size: 1450%;
+  margin:0;
+  padding:0;
+  color: #FF33cc;
+  line-height:0.6;
+  margin:50px 0 0;
+  letter-spacing: -3px;
+  display: inline
+}
+
+.leftside{
+position: absolute;
+top: 165px;
+bottom: 0; 
+left: 0;
+width: 100%; /*Width of frame div*/
+height: 100%;
+overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+background: #fff;
+color: white;
+/*background-image:url('images/play.png');
+background-repeat:repeat-y;*/
+z-index: 3;
+}
+
+.rightside{
+position: absolute;
+top: 165px; 
+left: 50%; /*Set left value to WidthOfFrameDiv*/
+right: 0;
+bottom: 0;
+overflow: hidden; 
+background: #fff;
+/*background-image:url('images/loud.png');
+background-repeat:repeat-y;*/
+z-index: 2;
+}
+
+.innertube{
+margin: 0px; /*Margins for inner DIV inside each DIV (to provide padding)*/
+}
+
+* html body{ /*IE6 hack*/
+padding: 0 0 0 200px; /*Set value to (0 0 0 WidthOfFrameDiv)*/
+}
+
+* html .rightside{ /*IE6 hack*/
+height: 100%; 
+width: 100%; 
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ############################# MADE IT TO THE SHOW PAGE ##################### -->
+
+<div class="headerwrap">
+  <h1>PLAY LOUD</h1>
+</div>
+
+<div class="leftside">
+<iframe id="left_side_frame" src="/tracks/<%= @user.username %>" frameborder="0" width=100% height=100%></iframe>
+
+</div>
+</div>
+
+
+<div class="rightside">
+
+<iframe id="right_side_frame" src="/tracks/<%= @user.username %>" frameborder="0" width=100% height=100%></iframe>
+
+</div>
+</div>
+
+</body>
+
+</html>
