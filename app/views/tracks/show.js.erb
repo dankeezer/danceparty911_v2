@@ -3,3 +3,11 @@ $('[data-toggle="dropdown"]').parent().removeClass('open');
 $("#tracks").empty();
 $("<%= escape_javascript(render @tracks) %>").prependTo("#tracks");
 $('.noticesWrapper').html("<%= j(render partial: 'layouts/flash_notices') %>");
+
+if ($(window.parent.document).contents().find(".leftside").width() < 1000) { 
+	$(window.parent.document).contents().find('#right_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
+	$(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.15em");
+} else if ($(window.parent.document).contents().find(".leftside").width() > 1000) {
+	$(window.parent.document).contents().find('#right_side_frame' ).contents().find("ul.playlist li").css("font-size", "2.2em");
+	$(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").css("font-size", "2.2em");
+}
