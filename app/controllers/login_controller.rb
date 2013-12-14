@@ -18,6 +18,7 @@ def remove_all_guest
   		track.delete
   	end
   end
+end
 
   redirect_to login_path
 end
