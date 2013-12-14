@@ -12,9 +12,9 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="drop3" role="button"><i class="fa fa-cog playlist_cog"></i></a>
           <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
 
-            <li role="presentation"><%= link_to '<i class="fa fa-exchange"></i> DJ This List</a>'.html_safe, dj_this_list_tracks_path(@user), remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>
+            <li role="presentation"><%= link_to '<i class="fa fa-exchange"></i> DJ This List</a>'.html_safe, dj_this_list_tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>
 
-            <li role="presentation"><%= link_to '<i class="fa fa-caret-square-o-right"></i> Single List'.html_safe, single_list_tracks_path(@user), remote: true, method: :get, :class => ".single_trigger", :role => "menuitem", :tabindex => "-1" %></li>         
+            <li role="presentation"><%= link_to '<i class="fa fa-caret-square-o-right"></i> Single List'.html_safe, single_list_tracks_path, remote: true, method: :get, :class => ".single_trigger", :role => "menuitem", :tabindex => "-1" %></li>         
 
             <% if User.find(current_or_guest_user).play_thru == true %>
               <li role="presentation"><%= link_to '<i class="fa fa-pause"></i> Click Pause'.html_safe, click_pause_tracks_path, remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>              
@@ -37,6 +37,6 @@
   if ($(window.parent.document).contents().find(".leftside").width() > 1000) { 
     $(window.parent.document).contents().find('#left_side_frame' ).contents().find(".new_track").css("width","126%");
     }else{
-    $(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").css("font-size", "1.75em");
+    $(window.parent.document).contents().find('#left_side_frame' ).contents().find("ul.playlist li").css("font-size", "2em");
   }
 </script>
