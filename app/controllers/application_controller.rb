@@ -50,7 +50,6 @@ class ApplicationController < ActionController::Base
 
 	helper_method :oauth_user
 
-
   private
 
   # called (once) when the user logs in, insert any code your application needs

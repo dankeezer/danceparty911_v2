@@ -118,7 +118,7 @@ class TracksController < ApplicationController
     @track = Track.new
     respond_with(@tracks)
   end
-  
+
   private
 
 

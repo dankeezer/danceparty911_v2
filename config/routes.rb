@@ -1,9 +1,9 @@
 Danceparty911V2::Application.routes.draw do
 
   #devise_for :users
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"} do get '/users/sign_out' => 'devise/sessions#destroy' end
-
-  resources :members
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"} do 
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
 
   resources :tracks do
     collection do
@@ -26,5 +26,11 @@ Danceparty911V2::Application.routes.draw do
 
   match '/:username' => "dj#show", :via => :get
   match '/tracks/:username' => "tracks#show", :via => :get
+
+  resources :login, only: [:remove_all_guest] do
+    collection do
+      get 'remove_all_guest' => 'login#remove_all_guest', as: 'remove_all_guest'
+    end
+  end
 
 end
