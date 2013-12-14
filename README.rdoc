@@ -1,28 +1,28 @@
 {<img src="https://travis-ci.org/dankeezer/danceparty911_v2.png" />}[https://travis-ci.org/dankeezer/danceparty911_v2.png]
 
-#DANCEPARTY911
+DANCEPARTY911
 =============
 
 A simple DJ app that loads two playlists simultaneously with music sourced from the Internet.
 
-**Current Services**:
+Current Services:
 - Soundcloud
 
-**Future Services**:
+Future Services:
 - Spotify
 - Local Files
 - YouTube
 - Rdio
 
-##TODO
+TODO
 
-# create Parties based on sessions? When a User clicks to PLAY a Track that Track is 
-# stored (in order) in a Party playlist that defaults to date.
-# e.g. http://danceparty911.com/tracks/dankeezer/Nov082013
-# then you can determine live playlist building.
-# anonymous user tracking (metadata)
+- create Parties based on sessions? When a User clicks to PLAY a Track that Track is 
+- stored (in order) in a Party playlist that defaults to date.
+- e.g. http://danceparty911.com/tracks/dankeezer/Nov082013
+- then you can determine live playlist building.
+- anonymous user tracking (metadata)
 
-##WISH LIST
+WISH LIST
 
 Here are several features that I'd like to include beyond basic functionality.
 
