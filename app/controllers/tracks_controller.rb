@@ -10,7 +10,7 @@ class TracksController < ApplicationController
       flash.now[:info] = "Enter a soundcloud URL. Here's one to get you started!"
     end
     @user = User.find(current_or_guest_user)
-    @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC").all
+    @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC")
     @track = Track.new
     respond_with(@tracks)
   end
@@ -21,7 +21,7 @@ class TracksController < ApplicationController
 
   def show
     @user = User.find_by_username!(params[:id])
-    @tracks = User.find(@user).tracks.order("created_at DESC").all
+    @tracks = User.find(@user).tracks.order("created_at DESC")
     @track = Track.new
     respond_with(@tracks)
   end
@@ -90,7 +90,7 @@ class TracksController < ApplicationController
       flash[:error] = "Nothing to remove!"
     else
       @tracks.delete_all
-      flash[:error] = "Removed #{@count} tracks!"
+      flash[:error] = "Removed #{@count} tracks!" 
     end
     respond_with(@tracks)
   end
@@ -107,14 +107,14 @@ class TracksController < ApplicationController
   
   def dj_this_list
     # User.find(current_or_guest_user).update(dj_this_list: true)
-    @tracks = User.find(params[:id]).tracks.order("created_at DESC").all
+    @tracks = User.find(params[:id]).tracks.order("created_at DESC")
     @track = Track.new
     respond_with(@tracks)
   end
 
   def single_list
     # User.find(current_or_guest_user).update(dj_this_list: false)
-    @tracks = User.find(params[:id]).tracks.order("created_at DESC").all
+    @tracks = User.find(params[:id]).tracks.order("created_at DESC")
     @track = Track.new
     respond_with(@tracks)
   end

@@ -3,7 +3,7 @@
 <div class="controlsWrapper">
   <h5> 
     <%= simple_form_for(@track, remote: true) do |f| %>
-      <% if User.find(current_or_guest_user).tracks.empty? %>
+      <% if @tracks.empty? %>
         <%= f.text_field :original_url, :class => 'url_field', :value => 'https://soundcloud.com/youngdaniel/sets/dp911' %>
       <% else %>
         <%= f.text_field :original_url, :class => 'url_field', :placeholder => 'enter a soundcloud track or playlist url' %>
