@@ -15,6 +15,10 @@
  *= require font-awesome
  */
 
+#single_list {
+  display: none;
+}
+
 html {
   background-color: #f9f9f9;
 }

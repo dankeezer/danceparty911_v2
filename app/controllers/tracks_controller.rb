@@ -106,14 +106,14 @@ class TracksController < ApplicationController
   end
   
   def dj_this_list
-    # User.find(current_or_guest_user).update(dj_this_list: true)
+    # User.find(current_or_guest_user).update_attributes(:dj_this_list => true)
     @tracks = User.find(params[:id]).tracks.order("created_at DESC")
     @track = Track.new
     respond_with(@tracks)
   end
 
   def single_list
-    # User.find(current_or_guest_user).update(dj_this_list: false)
+    # User.find(current_or_guest_user).update_attributes(:dj_this_list => false)
     @tracks = User.find(params[:id]).tracks.order("created_at DESC")
     @track = Track.new
     respond_with(@tracks)

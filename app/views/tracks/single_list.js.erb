@@ -47,6 +47,11 @@ $('[data-toggle="dropdown"]').parent().removeClass('open');
 
 $(window.parent.document).contents().find('.navbar').css("display", "none");
 
+$(window.parent.document).contents().find('#left_side_frame' ).contents().find("#single_list").css("display","none");
+$(window.parent.document).contents().find('#right_side_frame' ).contents().find("#single_list").css("display","none");
+$(window.parent.document).contents().find('#left_side_frame' ).contents().find("#dj_this_list").css("display","inherit");
+$(window.parent.document).contents().find('#right_side_frame' ).contents().find("#dj_this_list").css("display","inherit");
+
 $(window.parent.document).contents().find('#right_side_frame' ).html("<%= j(render partial: 'playlist_controls') %>");
 $(window.parent.document).contents().find('#left_side_frame' ).html("<%= j(render partial: 'playlist_controls') %>");
 

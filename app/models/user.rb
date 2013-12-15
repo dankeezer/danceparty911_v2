@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :password, :password_confirmation, :play_thru
+  attr_accessible :username, :email, :password, :password_confirmation, :play_thru, :dj_this_list
   has_many :tracks
   after_initialize :init
   

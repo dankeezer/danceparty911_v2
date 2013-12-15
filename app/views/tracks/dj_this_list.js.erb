@@ -1,6 +1,11 @@
 $(window.parent.document).contents().find('#right_side_frame' ).contents().find("#tracks").empty();
 $(window.parent.document).contents().find('#right_side_frame' ).contents().find("#tracks").prepend("<%= escape_javascript(render @tracks) %>")
 
+$(window.parent.document).contents().find('#left_side_frame' ).contents().find("#dj_this_list").css("display","none");
+$(window.parent.document).contents().find('#right_side_frame' ).contents().find("#dj_this_list").css("display","none");
+$(window.parent.document).contents().find('#left_side_frame' ).contents().find("#single_list").css("display","inherit");
+$(window.parent.document).contents().find('#right_side_frame' ).contents().find("#single_list").css("display","inherit");
+
 $('#dropdown').find('li:first > a').focus();
 $('[data-toggle="dropdown"]').parent().removeClass('open');
 $(window.parent.document).contents().find('#right_side_frame' ).html("<%= j(render partial: 'playlist_controls') %>");
