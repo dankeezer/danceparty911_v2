@@ -1,15 +1,9 @@
 <div class="noticesWrapper">
-  <% flash.each do |name, msg| %>
-    <% if name == :success %>
-      <% color = "success" %>
-    <% elsif name == :info %>
-      <% color = "info" %>
-    <% else %>
-      <% color = "error" %>
-    <% end %>
+  <% flash.each do |msg| %>
     <div class="alert alert-<%= color %>">
       <a class="close" data-dismiss="alert">×</a>
       <%= msg %>
+      <% pry %>
     </div>
   <% end %>
 </div>
