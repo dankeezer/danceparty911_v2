@@ -9,10 +9,14 @@ class DjController < ApplicationController
 	end
 
 	def show
-	  @user = User.find_by_username!(params[:username])
-	  @tracks = @user.tracks.order("created_at DESC").all
+		@user = User.where(username: params[:username]).first
+		if @user.nil?
+			redirect_to "/"
+		else
+	  	@tracks = @user.tracks.order("created_at DESC").all
       @track = Track.new
-	  respond_with(@user)
+	  	respond_with(@user)
+	  end
 	end
 
 

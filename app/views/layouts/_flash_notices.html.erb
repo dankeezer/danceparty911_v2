@@ -1,9 +1,22 @@
 <div class="noticesWrapper">
+<<<<<<< HEAD
   <% flash.each do |msg| %>
+    <div class="alert alert-<%= msg.first %>">
+      <a class="close" data-dismiss="alert">×</a>
+      <%= msg.last %>
+=======
+  <% flash.each do |name, msg| %>
+    <% if name == :success %>
+      <% color = "success" %>
+    <% elsif name == :info %>
+      <% color = "info" %>
+    <% else %>
+      <% color = "error" %>
+    <% end %>
     <div class="alert alert-<%= color %>">
       <a class="close" data-dismiss="alert">×</a>
       <%= msg %>
-      <% pry %>
+>>>>>>> parent of 8db8ac9... add to homescreen popup for ipads
     </div>
   <% end %>
 </div>

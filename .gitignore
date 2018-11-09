@@ -16,5 +16,5 @@
 /tmp
 
 # Ignore sensitive data
-/.env
-/index.json
+.env
+index.json

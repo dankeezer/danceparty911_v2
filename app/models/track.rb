@@ -19,7 +19,11 @@ class Track < ActiveRecord::Base
     @playlist = @playlist_url["tracks"]
     @playlist.reverse!
     @playlist.each do |track|
-      tracks << { artist_name: track["artistName"], title: track["title"], stream_url: track["path"] }
+      tracks << {
+        artist_name: track["artistName"],
+        title: track["title"],
+        stream_url: "#{ENV["ASSET_BASE_PATH"]}#{track["path"]}"
+      }
     end
     tracks
   end

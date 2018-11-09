@@ -13,20 +13,20 @@ gem 'omniauth-soundcloud', '~> 1.0.0'
 gem 'google-analytics-rails'
 
 # group :assets do
-  # For styles
-  gem 'therubyracer'
-  gem 'less-rails'
-  gem 'twitter-bootstrap-rails'
-  gem 'font-awesome-less'
+# For styles
+gem 'therubyracer'
+gem 'twitter-bootstrap-rails', '~>  2.2.8'
+gem 'font-awesome-less'
+gem 'less-rails'
 
-  # Use SCSS for stylesheets
-  gem 'sass-rails', '~> 4.0.0'
+# Use SCSS for stylesheets
+# gem 'sass-rails', '~> 4.0.0'
 
-  # Use Uglifier as compressor for JavaScript assets
-  gem 'uglifier', '>= 1.3.0'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
 
-  # Use CoffeeScript for .js.coffee assets and views
-  gem 'coffee-rails', '~> 4.0.0'
+# Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.0.0'
 
 # end
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -39,7 +39,7 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'
 
 group :development, :test do
   gem 'pry'
