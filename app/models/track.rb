@@ -14,18 +14,12 @@ class Track < ActiveRecord::Base
 	end
 
   def self.set_secret_playlist
-    tracks = []
-    @playlist_url = JSON.parse(open("index.json").read)
-    @playlist = @playlist_url["tracks"]
-    @playlist.reverse!
-    @playlist.each do |track|
-      tracks << {
-        artist_name: track["artistName"],
-        title: track["title"],
-        stream_url: "#{ENV["ASSET_BASE_PATH"]}#{track["path"]}"
-      }
-    end
-    tracks
+    playlist_index = JSON.parse(open("#{ENV['ASSET_BASE_PATH']}index.json").read)["tracks"].reverse
+    playlist_index.map { |track| {
+      artist_name: track["artistName"],
+      title: track["title"],
+      stream_url: "#{ENV['ASSET_BASE_PATH']}#{track["path"]}" }
+    }
   end
 
 	def self.get_tracks(response)

@@ -1,6 +1,10 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
-gem 'rails', '4.0.0'
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+gem 'rails', '4.2.10'
 gem 'devise'
 gem 'simple_form'
 gem 'protected_attributes'
