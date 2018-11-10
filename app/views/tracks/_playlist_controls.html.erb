@@ -11,7 +11,6 @@
         <div class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="drop3" role="button"><i class="fa fa-cog playlist_cog"></i></a>
           <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="drop3">
-
               <li role="presentation" id="single_list"><%= link_to '<i class="fa fa-caret-square-o-right"></i> Single List'.html_safe, single_list_tracks_path(@user), remote: true, method: :get, :class => ".single_trigger", :role => "menuitem", :tabindex => "-1" %></li>
 
               <li role="presentation" id="dj_this_list"><%= link_to '<i class="fa fa-exchange"></i> DJ This List</a>'.html_safe, dj_this_list_tracks_path(@user), remote: true, method: :get, :role => "menuitem", :tabindex => "-1" %></li>

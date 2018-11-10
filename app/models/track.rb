@@ -1,4 +1,6 @@
 class Track < ActiveRecord::Base
+  require 'open-uri'
+
 	attr_accessible :title, :stream_url, :artist_name, :original_url
 	has_and_belongs_to_many :user
   after_initialize :init
@@ -14,6 +16,7 @@ class Track < ActiveRecord::Base
 	end
 
   def self.set_secret_playlist
+    binding.pry
     playlist_index = JSON.parse(open("#{ENV['ASSET_BASE_PATH']}index.json").read)["tracks"].reverse
     playlist_index.map { |track| {
       artist_name: track["artistName"],
