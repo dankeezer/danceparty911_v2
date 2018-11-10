@@ -16,7 +16,6 @@ class Track < ActiveRecord::Base
 	end
 
   def self.set_secret_playlist
-    binding.pry
     playlist_index = JSON.parse(open("#{ENV['ASSET_BASE_PATH']}index.json").read)["tracks"].reverse
     playlist_index.map { |track| {
       artist_name: track["artistName"],
