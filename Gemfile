@@ -42,6 +42,8 @@ gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 
+gem 'pg'
+
 group :development, :test do
   gem 'pry'
   gem 'better_errors'
@@ -58,7 +60,7 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
+  
   gem 'unicorn'
 end
 
