@@ -53,7 +53,7 @@ form {
 }
 
 .playlist_cog {
-  font-size: 20pt;
+  font-size: 20pt !important;
   vertical-align: middle;
   color: #999;
 }
