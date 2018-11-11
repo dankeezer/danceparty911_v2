@@ -19,7 +19,7 @@ gem 'google-analytics-rails'
 # For styles
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails', '~>  2.2.8'
-gem 'font-awesome-less'
+gem 'font-awesome-rails'
 gem 'less-rails'
 
 # Use SCSS for stylesheets
