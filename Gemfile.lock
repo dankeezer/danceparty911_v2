@@ -146,6 +146,7 @@ GEM
     pry (0.12.0)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    puma (3.12.0)
     rack (1.6.11)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -240,6 +241,7 @@ DEPENDENCIES
   pg (~> 0.20)
   protected_attributes
   pry
+  puma
   rails (= 4.2.10)
   rails_12factor
   sdoc
@@ -254,4 +256,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.17.1
+   2.0.0.pre.1

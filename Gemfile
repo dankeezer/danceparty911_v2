@@ -2,6 +2,8 @@ source "https://rubygems.org"
 ruby '2.4.0'
 
 gem 'rails', '4.2.10'
+gem 'puma'
+
 gem 'devise'
 gem 'simple_form'
 gem 'protected_attributes'
