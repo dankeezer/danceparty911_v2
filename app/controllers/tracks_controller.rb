@@ -58,9 +58,9 @@ class TracksController < ApplicationController
         title: data[:title],
         stream_url: data[:stream_url],
         artist_name: data[:artist_name],
-        original_url: params[:track][:original_url],
-        user_id: current_or_guest_user.id
+        original_url: params[:track][:original_url]
       )
+      track.user_id = current_or_guest_user.id
       track.save
       @tracks << track
     end
@@ -75,8 +75,8 @@ class TracksController < ApplicationController
         artist_name: data[:artist_name]
       )
       track.user_id = current_or_guest_user.id
-      @tracks << track
       track.save
+      @tracks << track
     end
     flash[:success] = 'You found a secret'.freeze
 
@@ -144,6 +144,11 @@ class TracksController < ApplicationController
   private
 
   def track_params
-    params.require('track').permit(:artist_name, :title, :stream_url, :original_url)
+    params.require('track').permit(
+      :artist_name,
+      :title,
+      :stream_url,
+      :original_url
+    )
   end
 end

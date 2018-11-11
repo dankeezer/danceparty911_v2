@@ -2,7 +2,7 @@ class Track < ActiveRecord::Base
   require 'open-uri'
 
 	attr_accessible :title, :stream_url, :artist_name, :original_url
-	has_and_belongs_to_many :user
+	belongs_to :user
   after_initialize :init
 
   #use new_record? to determine if track has already been saved to database

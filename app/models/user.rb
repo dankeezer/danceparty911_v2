@@ -2,11 +2,13 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :play_thru, :dj_this_list
   has_many :tracks
   after_initialize :init
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  before_destroy :destroy_tracks
 
   def init
         # self.play_thru ||= true
@@ -27,6 +29,9 @@ class User < ActiveRecord::Base
   	username
   end
 
+  def destroy_tracks
+    self.tracks.destroy_all
+  end
 
   #soundcloud version
   def self.from_omniauth(auth)
