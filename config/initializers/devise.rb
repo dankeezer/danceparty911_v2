@@ -41,12 +41,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -95,7 +95,8 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '97e4d1a62d0f248a33a5e1818bbdf0ab65c23d4cb2d97c4c129b0c7c65fde2848b79e21f7c92fd52e9605823599a6751c05385f6bf00c93ed0d169da182fa39d'
+  # config.pepper = '97e4d1a62d0f248a33a5e1818bbdf0ab65c23d4cb2d97c4c129b0c7c65fde2848b79e21f7c9' \
+  #                 '2fd52e9605823599a6751c05385f6bf00c93ed0d169da182fa39d'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -229,15 +230,11 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
-  #SHOULD WORK
-  config.omniauth :soundcloud, ENV["SOUNDCLOUD_CLIENT_ID"], ENV["SOUNDCLOUD_SECRET"], client_options: { redirect_uri: ENV["SOUNDCLOUD_REDIRECT_URL"] }
-  
-  #PROD
-  #config.omniauth :soundcloud, "284a0193e0651ff008b8d9fe6066e137", "49133daad484fe46028a9c11f7aba625", client_options: { redirect_uri: 'danceparty911.herokuapp.com/users/auth/soundcloud/callback' }
-  
-  #DEV
-  #config.omniauth :soundcloud, "310e867035eacd04d104cedd5705b31e", "30c337abd2f1fe135c1b6e9ef1b08009", client_options: { redirect_uri: 'localhost:3000/users/auth/soundcloud/callback' }
-  
+  # SHOULD WORK
+  config.omniauth :soundcloud,
+                  ENV['SOUNDCLOUD_CLIENT_ID'],
+                  ENV['SOUNDCLOUD_SECRET'],
+                  client_options: { redirect_uri: ENV['SOUNDCLOUD_REDIRECT_URL'] }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

@@ -1,5 +1,5 @@
 Danceparty911V2::Application.configure do
-  GA.tracker = "UA-6691099-1"
+  GA.tracker = 'UA-6691099-1'
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -18,20 +18,23 @@ Danceparty911V2::Application.configure do
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
-  # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
+  # For large-scale production use, consider using a caching reverse proxy like nginx
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   # But Heroku won't see my asset pipline!
-  config.serve_static_assets = true
+  config.serve_static_files = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # trying to get asset pipeline to work
-  config.assets.precompile += ['bootstrap.js', 'play_thru/soundmanager2.js', 'play_thru/page-player.js', 'click_pause/page-playerDJ.js', 'click_pause/soundmanager2-dj.js']
-
+  config.assets.precompile += ['bootstrap.js',
+                               'play_thru/soundmanager2.js',
+                               'play_thru/page-player.js',
+                               'click_pause/page-playerDJ.js',
+                               'click_pause/soundmanager2-dj.js']
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
