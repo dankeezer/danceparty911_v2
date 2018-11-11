@@ -9,20 +9,22 @@ class ApplicationController < ActionController::Base
     return unless request.xhr?
 
     # add different flashes to header
-    response.headers['X-Flash-Error'] = flash[:error] unless flash[:error].blank?
-    response.headers['X-Flash-Warning'] = flash[:warning] unless flash[:warning].blank?
-    response.headers['X-Flash-Info'] = flash[:info] unless flash[:info].blank?
-    response.headers['X-Flash-Message'] = flash[:message] unless flash[:message].blank?
+    %i[error warning info message].each do |type|
+      response.headers["X-Flash-#{type.capitalize}"] = flash[type] unless flash[type].blank?
+    end
 
     # make sure flash does not appear on the next page
     flash.discard
   end
 
-  layout "navbar"
+  layout 'navbar'
 
   def update_sanitized_params
-    devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:username, :email, :password, :password_confirmation, :current_password)}
+    devise_parameter_sanitizer.for(:account_update) do |u|
+      u.permit(:username, :email, :password, :password_confirmation, :current_password)
+    end
   end
+
   # if user is logged in, return current_user, else return guest_user
   def current_or_guest_user
     if current_user
@@ -42,13 +44,12 @@ class ApplicationController < ActionController::Base
   def guest_user
     # Cache the value the first time it's gotten.
     @cached_guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
-
   rescue ActiveRecord::RecordNotFound # if session[:guest_user_id] invalid
-     session[:guest_user_id] = nil
-     guest_user
+    session[:guest_user_id] = nil
+    guest_user
   end
 
-	helper_method :oauth_user
+  helper_method :oauth_user
 
   private
 
@@ -58,19 +59,19 @@ class ApplicationController < ActionController::Base
     # For example:
     guest_tracks = guest_user.tracks.all
     guest_tracks.each do |track|
-       track.user_id = current_user.id
-       track.save!
-     end
+      track.user_id = current_user.id
+      track.save!
+    end
   end
 
   def create_guest_user
-    u = User.create(:username => "guest", :email => "guest_#{Time.now.to_i}#{rand(99)}@example.com")
-    u.save!(:validate => false)
+    u = User.create(username: 'guest', email: "guest_#{Time.now.to_i}#{rand(99)}@example.com")
+    u.save!(validate: false)
     session[:guest_user_id] = u.id
     u
   end
 
-	def oauth_user
-	  @oauth_user ||= User.find(session[:user_id]) if session[:user_id]
-	end
+  def oauth_user
+    @oauth_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
 end

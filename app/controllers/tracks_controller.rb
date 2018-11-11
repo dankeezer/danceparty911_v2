@@ -7,10 +7,10 @@ class TracksController < ApplicationController
 
   def index
     if User.find(current_or_guest_user).tracks.empty?
-      flash.now[:info] = "Enter a soundcloud URL. Here's one to get you started!".freeze
+      flash.now[:info] = 'Enter a soundcloud URL. Here\'s one to get you started!'.freeze
     end
     @user = User.find(current_or_guest_user)
-    @tracks = User.find(current_or_guest_user).tracks.order("created_at DESC")
+    @tracks = User.find(current_or_guest_user).tracks.order('created_at DESC')
     @track = Track.new
     respond_with(@tracks)
   end
@@ -21,48 +21,57 @@ class TracksController < ApplicationController
 
   def show
     @user = User.find_by_username!(params[:id])
-    @tracks = User.find(@user).tracks.order("created_at DESC")
+    @tracks = User.find(@user).tracks.order('created_at DESC')
     @track = Track.new
     respond_with(@tracks)
   end
 
   def create
     @tracks = []
-    if params[:track][:original_url] == ENV["PLAYLIST_PASSWORD"]
+    if params[:track][:original_url] == ENV['PLAYLIST_PASSWORD']
       @secret_code_data = Track.set_secret_playlist
       @secret_code_data.each do |data|
         track = Track.new(
-          title: data[:title], 
+          title: data[:title],
           stream_url: data[:stream_url],
-          artist_name: data[:artist_name])
+          artist_name: data[:artist_name]
+        )
         track.user_id = current_or_guest_user.id
         @tracks << track
         track.save
       end
-      flash[:success] = "You found a secret".freeze
+      flash[:success] = 'You found a secret'.freeze
       respond_with(@tracks.reverse!)
 
-    elsif params[:track][:original_url] =~ /\Ahttps?:\/\/soundcloud/
-      errors = []
+    elsif %r{/\Ahttps?:\/\/soundcloud/}.match?(params[:track][:original_url])
       @tracks = []
-      response = SOUNDCLOUD_CLIENT.get('/resolve', :url => params[:track][:original_url])
+      response = SOUNDCLOUD_CLIENT.get('/resolve', url: params[:track][:original_url])
 
-      @soundcloud_data = Track.get_tracks(response)
+      soundcloud_data = Track.get_tracks(response)
 
-      @soundcloud_data[:info].each do |data|
-        track = Track.new(title: data[:title], stream_url: data[:stream_url], artist_name: data[:artist_name], original_url: params[:track][:original_url])
-        track.user_id = current_or_guest_user.id
-        track.save
-        @tracks << track
-      end
+      collect_tracks(soundcloud_data)
 
-      @soundcloud_data[:alerts].first[:success].nil? ? nil : flash[:success] = @soundcloud_data[:alerts].first[:success]
-      @soundcloud_data[:alerts].last[:error].nil? ? nil : flash[:error] = @soundcloud_data[:alerts].last[:error]
+      flash[:success] = soundcloud_data[:alerts].try(first[:success])
+      flash[:error] = soundcloud_data[:alerts].try(last[:error])
+
       respond_with(@tracks.reverse!)
-
     else
-      flash[:error] = "Not a valid SoundCloud URL".freeze
+      flash[:error] = 'Not a valid SoundCloud URL'.freeze
       respond_with(@tracks)
+    end
+  end
+
+  def collect_tracks(soundcloud_data)
+    soundcloud_data[:info].each do |data|
+      track = Track.new(
+        title: data[:title],
+        stream_url: data[:stream_url],
+        artist_name: data[:artist_name],
+        original_url: params[:track][:original_url]
+      )
+      track.user_id = current_or_guest_user.id
+      track.save
+      @tracks << track
     end
   end
 
@@ -90,10 +99,10 @@ class TracksController < ApplicationController
     @tracks = User.find(current_or_guest_user).tracks
     @count = @tracks.count
     if @tracks.empty?
-      flash[:error] = "Nothing to remove!".freeze
+      flash[:error] = 'Nothing to remove!'.freeze
     else
       @tracks.delete_all
-      flash[:error] = "Removed #{@count} tracks!".freeze
+      flash[:error] = "Removed #{@count} tracks!"
     end
     respond_with(@tracks)
   end
@@ -111,7 +120,7 @@ class TracksController < ApplicationController
   def dj_this_list
     # User.find(current_or_guest_user).update_attributes(:dj_this_list => true)
     @user = User.find(params[:id])
-    @tracks = @user.tracks.order("created_at DESC")
+    @tracks = @user.tracks.order('created_at DESC')
     @track = Track.new
     respond_with(@tracks)
   end
@@ -119,16 +128,14 @@ class TracksController < ApplicationController
   def single_list
     # User.find(current_or_guest_user).update_attributes(:dj_this_list => false)
     @user = User.find(params[:id])
-    @tracks = @user.tracks.order("created_at DESC")
+    @tracks = @user.tracks.order('created_at DESC')
     @track = Track.new
     respond_with(@tracks)
   end
 
   private
 
-
   def track_params
     params.require('track').permit(:artist_name, :title, :stream_url, :original_url)
   end
-
 end
