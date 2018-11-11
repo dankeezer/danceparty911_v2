@@ -2,7 +2,7 @@ class DjController < ApplicationController
 	respond_to :html, :js, :json
 	protect_from_forgery :except => :receive_guest
 	helper_method :current_or_guest_user
-	layout "navbar" 
+	layout "navbar"
 
 	def index
 	  @user = User.find(current_or_guest_user)
@@ -18,7 +18,6 @@ class DjController < ApplicationController
 	  	respond_with(@user)
 	  end
 	end
-
 
   def user
     #@tracks = User.find(params[:user]).tracks
