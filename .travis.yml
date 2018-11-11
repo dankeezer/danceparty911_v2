@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+  - "2.5.3"
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: ENV["TRAVIS_SECRET"]
+  app: danceparty911
+  strategy: git
