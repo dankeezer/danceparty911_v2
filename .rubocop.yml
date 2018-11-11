@@ -15,3 +15,7 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - 'config/routes.rb'
+
+
+Metrics/BlockLength:
+  Max: 15    

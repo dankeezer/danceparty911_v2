@@ -28,37 +28,28 @@ class TracksController < ApplicationController
 
   def create
     @tracks = []
-    if params[:track][:original_url] == ENV['PLAYLIST_PASSWORD']
-      @secret_code_data = Track.set_secret_playlist
-      @secret_code_data.each do |data|
-        track = Track.new(
-          title: data[:title],
-          stream_url: data[:stream_url],
-          artist_name: data[:artist_name]
-        )
-        track.user_id = current_or_guest_user.id
-        @tracks << track
-        track.save
-      end
-      flash[:success] = 'You found a secret'.freeze
-      respond_with(@tracks.reverse!)
+    regex = /\Ahttps?:\/\/soundcloud/
+    url = params[:track][:original_url]
 
-    elsif %r{/\Ahttps?:\/\/soundcloud/}.match?(params[:track][:original_url])
-      @tracks = []
-      response = SOUNDCLOUD_CLIENT.get('/resolve', url: params[:track][:original_url])
+    return secret_playlist if url == ENV['PLAYLIST_PASSWORD']
+    return soundcloud_playlist if regex.match?(url)
 
-      soundcloud_data = Track.get_tracks(response)
+    flash[:error] = 'Not a valid SoundCloud URL'.freeze
+    respond_with(@tracks)
+  end
 
-      collect_tracks(soundcloud_data)
+  def soundcloud_playlist
+    @tracks = []
+    response = SOUNDCLOUD_CLIENT.get('/resolve', url: params[:track][:original_url])
 
-      flash[:success] = soundcloud_data[:alerts].try(first[:success])
-      flash[:error] = soundcloud_data[:alerts].try(last[:error])
+    soundcloud_data = Track.get_tracks(response)
+    collect_tracks(soundcloud_data)
 
-      respond_with(@tracks.reverse!)
-    else
-      flash[:error] = 'Not a valid SoundCloud URL'.freeze
-      respond_with(@tracks)
-    end
+    alerts = soundcloud_data[:alerts]
+    alerts.first[:success].present? ? flash[:success] = alerts.first[:success] : nil
+    alerts.last[:error].present? ? flash[:error] = alerts.last[:error] : nil
+
+    respond_with(@tracks.reverse!)
   end
 
   def collect_tracks(soundcloud_data)
@@ -67,12 +58,29 @@ class TracksController < ApplicationController
         title: data[:title],
         stream_url: data[:stream_url],
         artist_name: data[:artist_name],
-        original_url: params[:track][:original_url]
+        original_url: params[:track][:original_url],
+        user_id: current_or_guest_user.id
       )
-      track.user_id = current_or_guest_user.id
       track.save
       @tracks << track
     end
+  end
+
+  def secret_playlist
+    secret_code_data = Track.set_secret_playlist
+    secret_code_data.each do |data|
+      track = Track.new(
+        title: data[:title],
+        stream_url: data[:stream_url],
+        artist_name: data[:artist_name]
+      )
+      track.user_id = current_or_guest_user.id
+      @tracks << track
+      track.save
+    end
+    flash[:success] = 'You found a secret'.freeze
+
+    respond_with(@tracks.reverse!)
   end
 
   def edit
