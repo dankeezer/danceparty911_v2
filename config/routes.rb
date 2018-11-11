@@ -1,7 +1,6 @@
 Danceparty911V2::Application.routes.draw do
-
   #devise_for :users
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"} do 
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"} do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
@@ -32,5 +31,4 @@ Danceparty911V2::Application.routes.draw do
       get 'remove_all_guest' => 'login#remove_all_guest', as: 'remove_all_guest'
     end
   end
-
 end
